@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="分组背包"><meta name="keywords" content="动态规划, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/03/04/洛谷P1282/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>洛谷 P1282 多米诺骨牌 [ 分组背包(每组有且只能选一个) ] - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">洛谷 P1282 多米诺骨牌 [ 分组背包(每组有且只能选一个) ]
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-03-04
+        </span><span class="post-category">
+            <a href="/categories/题解/">题解</a>
+            <a href="/categories/题解/算法/">算法</a>
+            </span>
+        <span class="post-visits" data-url="/2020/03/04/洛谷P1282/" data-title="洛谷 P1282 多米诺骨牌 [ 分组背包(每组有且只能选一个) ]">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><a href="https://www.luogu.com.cn/problem/P1282" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P1282</a></p>
+<p><strong>题目描述</strong></p>
+<p>多米诺骨牌有上下 2 个方块组成，每个方块中有 1~6 个点。现有排成行的</p>
+<p>上方块中点数之和记为 S1，下方块中点数之和记为 S2，它们的差为|S1-S2|。例如在图 8-1 中，S1=6+1+1+1=9，S2=1+5+3+2=11，|S1-S2|=2。每个多米诺骨牌可以旋转 180°，使得上下两个方块互换位置。 编程用最少的旋转次数使多米诺骨牌上下 2 行点数之差达到最小。</p>
+<p><img src="/.io//1.png" alt="img"></p>
+<p>对于图中的例子，只要将最后一个多米诺骨牌旋转180°，可使上下2行点数之差为0。</p>
+<p><strong>输入格式</strong></p>
+<p>输入文件的第一行是一个正整数n(1≤n≤1000)，表示多米诺骨牌数。接下来的n行表示n个多米诺骨牌的点数。每行有两个用空格隔开的正整数，表示多米诺骨牌上下方块中的点数a和b，且1≤a，b≤6。</p>
+<p><strong>输出格式</strong></p>
+<p>输出文件仅一行，包含一个整数。表示求得的最小旋转次数。</p>
+<p><strong>输入输出样例</strong></p>
+<p><strong>输入 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4</span><br><span class="line">6 1</span><br><span class="line">1 5</span><br><span class="line">1 3</span><br><span class="line">1 2</span><br></pre></td></tr></table></figure>
+<p><strong>输出 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>要差值最小，就是填一个 sum/2 的背包…然后每组有且只能必须选择一个加入，转移方程：$d[i][j]=max(d[i-1][j-c_i]+w_i)$</p>
+<p>这样只能求得最小差值，题目要求差值最小的情况下旋转次数也最少，所以用 $c[i][j]$ 记录前 i 个骨牌容量为 j 的情况下最少的旋转次数，代价相等的情况下有</p>
+<p>$c[i][j]=min(c[i-1][j-c_0],c[i-1][j-c_1] + 1)$</p>
+<p>$c_0,c_1$ 表示当前骨牌上下点数。</p>
+<p>然后需要注意的是，下标越界… 容量为 0 初始化为 -INF ,即：$d[i][0]=-INF$（<del>调了好久，菜哭</del>）</p>
+<p>sum 可能是奇数，sum/2 取大的！考虑这样的情况，$pre + c_1 = sum/2 , pre + c_1 = sum/2 + 1$ </p>
+<p>这样取小的话旋转次数就多 1 。所以取大</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">1000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,sum=<span class="number">0</span>,d[MAX*<span class="number">6</span>][MAX*<span class="number">6</span>],c[MAX*<span class="number">6</span>][MAX*<span class="number">6</span>],g[MAX][MAX],a[MAX][<span class="number">2</span>],t1,t2;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	sf(n);</span><br><span class="line">	fi(i,<span class="number">0</span>,n)&#123;</span><br><span class="line">		sf(a[i][<span class="number">0</span>]);sf(a[i][<span class="number">1</span>]);</span><br><span class="line">		sum+=a[i][<span class="number">0</span>]+a[i][<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(sum&amp;<span class="number">1</span>)</span><br><span class="line">		sum/=<span class="number">2</span>,sum++;<span class="comment">//如果是奇数，取大的 </span></span><br><span class="line">	<span class="keyword">else</span> sum/=<span class="number">2</span>;  </span><br><span class="line">	fi(i,<span class="number">0</span>,n)&#123;</span><br><span class="line">		d[i][<span class="number">0</span>]=-INF;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=sum;j&gt;=<span class="number">1</span>;j--)&#123;</span><br><span class="line">			t1= i<span class="number">-1</span> &gt;= <span class="number">0</span>?d[i<span class="number">-1</span>][j-a[i][<span class="number">0</span>]] + a[i][<span class="number">0</span>] : a[i][<span class="number">0</span>];</span><br><span class="line">			t2= i<span class="number">-1</span> &gt;= <span class="number">0</span>?d[i<span class="number">-1</span>][j-a[i][<span class="number">1</span>]] + a[i][<span class="number">1</span>] : a[i][<span class="number">1</span>];</span><br><span class="line">			t1= j-a[i][<span class="number">0</span>]&gt;=<span class="number">0</span>?t1:<span class="number">0</span>;</span><br><span class="line">			t2= j-a[i][<span class="number">1</span>]&gt;=<span class="number">0</span>?t2:<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span>(t1==t2)&#123;</span><br><span class="line">				<span class="keyword">if</span>(c[i<span class="number">-1</span>][j-a[i][<span class="number">0</span>]] &lt;= c[i<span class="number">-1</span>][j-a[i][<span class="number">1</span>]]+<span class="number">1</span>)&#123;</span><br><span class="line">					d[i][j] =t1;</span><br><span class="line">					c[i][j]=c[i<span class="number">-1</span>][j-a[i][<span class="number">0</span>]];</span><br><span class="line">					<span class="comment">//g[i][j]=1; //记录转移路径 </span></span><br><span class="line">				&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">					d[i][j] =t2;</span><br><span class="line">					c[i][j]=c[i<span class="number">-1</span>][j-a[i][<span class="number">1</span>]]+<span class="number">1</span>;</span><br><span class="line">					<span class="comment">//g[i][j]=2;</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(t1&gt;t2) &#123;</span><br><span class="line">				d[i][j] =t1;</span><br><span class="line">				c[i][j]=c[i<span class="number">-1</span>][j-a[i][<span class="number">0</span>]];</span><br><span class="line">				<span class="comment">//g[i][j]=1;</span></span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				d[i][j] =t2;</span><br><span class="line">				c[i][j]=c[i<span class="number">-1</span>][j-a[i][<span class="number">1</span>]]+<span class="number">1</span>;</span><br><span class="line">				<span class="comment">//g[i][j]=2;</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">//打印方案 </span></span><br><span class="line"><span class="comment">//	for(int i=n-1;i&gt;=0;i--)&#123;</span></span><br><span class="line"><span class="comment">//		printf("%-4d",i);</span></span><br><span class="line"><span class="comment">//		if(g[i][sum]==1)&#123;</span></span><br><span class="line"><span class="comment">//			cout&lt;&lt;"1"&lt;&lt;" "&lt;&lt;c[i][sum]&lt;&lt;" "&lt;&lt;a[i][0]&lt;&lt;" "&lt;&lt;sum&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">//			sum-=a[i][0];</span></span><br><span class="line"><span class="comment">//		&#125;else if(g[i][sum]==2)&#123;</span></span><br><span class="line"><span class="comment">//			cout&lt;&lt;"2"&lt;&lt;" "&lt;&lt;c[i][sum]&lt;&lt;" "&lt;&lt;a[i][1]&lt;&lt;" "&lt;&lt;sum&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">//			sum-=a[i][1];</span></span><br><span class="line"><span class="comment">//		&#125;</span></span><br><span class="line"><span class="comment">//	&#125;</span></span><br><span class="line">	pf(c[n<span class="number">-1</span>][sum]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>放一下大佬的解法 <a href="https://www.luogu.com.cn/blog/Euclid/p1282-duo-mi-nuo-gu-pai" target="_blank" rel="noopener">P1282 多米诺骨牌</a> <a href="https://www.luogu.com.cn/problemnew/solution/P1282" target="_blank" rel="noopener">P1282 多米诺骨牌 题解</a></p>
+<p>蒟蒻想不到就是了…</p>
+</blockquote>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/动态规划/">动态规划</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/03/05/洛谷p1006/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">洛谷 p1006 传纸条 [ DP ]</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/03/03/洛谷p1280/">
+        <span class="next-text nav-default">洛谷 p1280 尼克的任务[ DP 倒序 ]</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/03/04/洛谷P1282/';
+        this.page.identifier = '2020/03/04/洛谷P1282/';
+        this.page.title = '洛谷 P1282 多米诺骨牌 [ 分组背包(每组有且只能选一个) ]';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="枚举 + dp"><meta name="keywords" content="动态规划, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/04/18/洛谷U106905整理书包/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>洛谷U106905整理书包 [ 枚举 dp ] - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">洛谷U106905整理书包 [ 枚举 dp ]
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-04-18
+        </span><span class="post-category">
+            <a href="/categories/题解/">题解</a>
+            <a href="/categories/题解/算法/">算法</a>
+            </span>
+        <span class="post-visits" data-url="/2020/04/18/洛谷U106905整理书包/" data-title="洛谷U106905整理书包 [ 枚举 dp ]">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><a href="https://www.luogu.com.cn/problem/U106905?contestId=28733" target="_blank" rel="noopener">U106905整理书包</a></p>
+<p><strong>题目背景</strong></p>
+<p>随着学校学习压力的增大，CYX 的书包日益沉重，终于有一天，他受不了了，于是，他在整理了书包后，洛谷上又顺便多了一道题……</p>
+<p><strong>题目描述</strong></p>
+<p>他将他所需要的 <em>n</em> 样学习文具列了出来，第 i<em> 样文具的重量是 w_i，价值是 v_i，减去包的自重，他最大只能承受 m</em> 的重量，求他能装下的最大文具价值。</p>
+<p>题出好了，但 CYX 很生气，因为这只是01背包的模板题，太简单了。于是他加了 k<em> 种组合增益效果，每种组合效果用一个三元组(</em>i<em>,</em>j<em>,</em>v<em>) 表示，意思是如果同时选择了第 </em>i<em> 种文具和第 </em>j<em> 种文具，就能额外增加 v</em> 的价值（<strong>注：组合之间不互斥，效果可以累加</strong>），还是求他能装下的最大价值。</p>
+<p>难度是上来了，可不料 CYX 更生气了，因为，他不会做了……</p>
+<p><strong>输入格式</strong></p>
+<p>输入数据共 1+n+k 行。</p>
+<p>第一行共三个整数 n<em>，</em>m<em>，</em>k*，分别表示 CYX 的学习文具的数量，除去书包的自重外 CYX 能承受的重量和增益组合的个数。</p>
+<p>之后 <em>n</em> 行，每行两个整数 w_i 和 v_i，表示第 i* 种文具的重量和价值。</p>
+<p>之后 k<em> 行，每行三个整数 </em>i<em>，</em>j<em>，</em>v<em>，表示如果同时选择了第 </em>i<em> 种文具和第 </em>j<em> 种文具，就能额外增加 </em>v* 的价值。</p>
+<p><strong>输出格式</strong></p>
+<p>仅一行一个整数，表示 CYX 能装下的最大价值。</p>
+<p><strong>输入输出样例</strong></p>
+<p><strong>输入 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4 8 0</span><br><span class="line">2 1</span><br><span class="line">6 8</span><br><span class="line">3 5</span><br><span class="line">5 6</span><br></pre></td></tr></table></figure>
+<p><strong>输出 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">11</span><br></pre></td></tr></table></figure>
+<p><strong>输入 #2</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">5 10 1</span><br><span class="line">6 3</span><br><span class="line">3 2</span><br><span class="line">5 3</span><br><span class="line">3 6</span><br><span class="line">2 4</span><br><span class="line">1 4 5</span><br></pre></td></tr></table></figure>
+<p><strong>输出 #2</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">14</span><br></pre></td></tr></table></figure>
+<p><strong>输入 #3</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">6 9 3</span><br><span class="line">4 3</span><br><span class="line">3 2</span><br><span class="line">8 4</span><br><span class="line">1 2</span><br><span class="line">5 4</span><br><span class="line">3 8</span><br><span class="line">2 5 5</span><br><span class="line">5 6 2</span><br><span class="line">2 5 7</span><br></pre></td></tr></table></figure>
+<p><strong>输出 #3</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20</span><br></pre></td></tr></table></figure>
+<p><strong>hint</strong></p>
+<p>【样例解释】</p>
+<p>样例一解释：选择第 3，4个文具，价值和为 11。</p>
+<p>样例二解释：选择第 1，4 个文具，满足第 1 种组合再加 5 的价值，价值和为 14。</p>
+<p>样例三解释：选择第 2，4，5 个文具，满足第 1，3 种组合再加 12 的价值，价值和为 20。</p>
+<hr>
+<p>【数据范围】</p>
+<p>对于 10% 的数据，保证 1≤<em>n</em>≤20。</p>
+<p>对于另外20% 的数据，保证 k*=0。</p>
+<p>对于另外 30% 的数据，保证 1≤<em>n</em>≤100，1≤<em>m</em>≤200。</p>
+<p>对于 100% 的数据，保证 1≤<em>n</em>≤10^3，1≤<em>m</em>≤2×10^3，0≤<em>k</em>≤10，1≤<em>w**i</em>≤300，1≤<em>i</em>,<em>j</em>≤<em>n</em>，1≤<em>v</em>≤500，1≤<em>v**i</em>≤500，i<em>\=</em>j*。</p>
+<blockquote>
+<p><img src="/.io//1.PNG" alt></p>
+<p><strong>0 &lt;= k &lt;= 10</strong> <del>应该能想到枚举吧</del></p>
+</blockquote>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/动态规划/">动态规划</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/04/19/T128953出题/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">T128953出题 [ 背包 贪心 ]</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/04/17/洛谷p2199/">
+        <span class="next-text nav-default">洛谷 p2199 最后的迷宫 [ bfs ]</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/04/18/洛谷U106905整理书包/';
+        this.page.identifier = '2020/04/18/洛谷U106905整理书包/';
+        this.page.title = '洛谷U106905整理书包 [ 枚举 dp ]';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

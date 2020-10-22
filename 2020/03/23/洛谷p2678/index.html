@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="跳石头 kotori的设备"><meta name="keywords" content="贪心, 二分答案, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/03/23/洛谷p2678/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>洛谷 p2678 p3743[ 二分 ] - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">洛谷 p2678 p3743[ 二分 ]
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-03-23
+        </span><span class="post-category">
+            <a href="/categories/题解/">题解</a>
+            <a href="/categories/题解/算法/">算法</a>
+            </span>
+        <span class="post-visits" data-url="/2020/03/23/洛谷p2678/" data-title="洛谷 p2678 p3743[ 二分 ]">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><a href="https://www.luogu.com.cn/problem/P2678" target="_blank" rel="noopener">P2678 跳石头</a></p>
+<p>类似：<a href="https://www.luogu.com.cn/problem/P3853" target="_blank" rel="noopener">P3853 [TJOI2007]路标设置</a></p>
+<p><strong>题目背景</strong></p>
+<p>一年一度的“跳石头”比赛又要开始了!</p>
+<p><strong>题目描述</strong></p>
+<p>这项比赛将在一条笔直的河道中进行，河道中分布着一些巨大岩石。组委会已经选择好了两块岩石作为比赛起点和终点。在起点和终点之间，有 <em>N</em> 块岩石（不含起点和终点的岩石）。在比赛过程中，选手们将从起点出发，每一步跳向相邻的岩石，直至到达终点。</p>
+<p>为了提高比赛难度，组委会计划移走一些岩石，使得选手们在比赛过程中的最短跳跃距离尽可能长。由于预算限制，组委会至多从起点和终点之间移走 <em>M</em> 块岩石（不能移走起点和终点的岩石）。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行包含三个整数 L<em>,</em>N<em>,</em>M<em>，分别表示起点到终点的距离，起点和终点之间的岩石数，以及组委会至多移走的岩石数。保证 L</em>≥1 且 N<em>≥</em>M≥0。</p>
+<p>接下来 <em>N</em> 行，每行一个整数，第 i<em>i</em> 行的整数 D_i( 0 &lt; D_i &lt; L)， 表示第 <em>i</em> 块岩石与起点的距离。这些岩石按与起点距离从小到大的顺序给出，且不会有两个岩石出现在同一个位置。</p>
+<p><strong>输出格式</strong></p>
+<p>一个整数，即最短跳跃距离的最大值。</p>
+<p><strong>输入输出样例</strong></p>
+<p><strong>输入 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">25 5 2 </span><br><span class="line">2</span><br><span class="line">11</span><br><span class="line">14</span><br><span class="line">17 </span><br><span class="line">21</span><br></pre></td></tr></table></figure>
+<p><strong>输出 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>二分答案…</p>
+<p>注意是起点和终点之间有 N 个石头，并且终点不能移走</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">50000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> L,n,m,ans,a[MAX];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isok</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> last=<span class="number">0</span>,cnt=<span class="number">0</span>;</span><br><span class="line">	fi(i,<span class="number">0</span>,n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]-last&lt;x) &#123;</span><br><span class="line">			cnt ++;</span><br><span class="line">		&#125;<span class="keyword">else</span> last = a[i];</span><br><span class="line">		<span class="keyword">if</span>(cnt&gt;m) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(a[n]-last&lt;x) <span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//终点不能移走 </span></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	sf(L);sf(n);sf(m);</span><br><span class="line">	<span class="keyword">int</span> last=<span class="number">0</span>;</span><br><span class="line">	fi(i,<span class="number">0</span>,n)</span><br><span class="line">		sf(a[i]);</span><br><span class="line">	a[n] = L;</span><br><span class="line">	<span class="keyword">int</span> l=<span class="number">0</span>,r=L;</span><br><span class="line">	<span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">		<span class="keyword">int</span> m=(l+r)/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>(isok(m))&#123;</span><br><span class="line">			ans = m;</span><br><span class="line">			l=m+<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> r=m<span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	pf(ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.luogu.com.cn/problem/P3743" target="_blank" rel="noopener">P3743 kotori的设备</a></p>
+<p><strong>题目描述</strong></p>
+<p>kotori 有 n 个可同时使用的设备。第 i 个设备每秒消耗ai个单位能量。能量的使用是连续的，也就是说能量不是某时刻突然消耗的，而是匀速消耗。也就是说，对于任意实数 ,在 k 秒内消耗的能量均为k*ai 单位。在开始的时候第 i 个设备里存储着bi个单位能量。</p>
+<p>同时 kotori 又有一个可以给任意一个设备充电的充电宝，每秒可以给接通的设备充能 p 个单位，充能也是连续的，不再赘述。你可以在任意时间给任意一个设备充能，从一个设备切换到另一个设备的时间忽略不计。</p>
+<p>kotori 想把这些设备一起使用，直到其中有设备能量降为 0。所以 kotori 想知道，</p>
+<p>在充电器的作用下，她最多能将这些设备一起使用多久。</p>
+<blockquote>
+<p>充电宝可以瞬间换一个设备充电，比如，当期望时间为 x , 当有2个设备同时快要到 0 时，选择哪一个先充？ 方法是先把其中一个充到 x ,再充另一个。因为充电宝可以瞬间移动，所以效果是一样的（<del>不看题解完全想不到…</del>）</p>
+<p>然后，就是普通的二分了。</p>
+<p>代码略</p>
+</blockquote>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/贪心/">贪心</a>
+            <a href="/tags/二分答案/">二分答案</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/03/24/洛谷p1967/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">洛谷 p1967 [ 最大生成树+LCA ]</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/03/20/洛谷p3956棋牌/">
+        <span class="next-text nav-default">洛谷 p3956 棋牌 [ 剪枝 ]</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/03/23/洛谷p2678/';
+        this.page.identifier = '2020/03/23/洛谷p2678/';
+        this.page.title = '洛谷 p2678 p3743[ 二分 ]';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

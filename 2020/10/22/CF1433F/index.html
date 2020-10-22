@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="CF1433F F. Zero Remainder Sum [dp]"><meta name="keywords" content="动态规划, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/10/22/CF1433F/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>CF1433F F. Zero Remainder Sum [dp] - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">CF1433F F. Zero Remainder Sum [dp]
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-10-22
+        </span><span class="post-category">
+            <a href="/categories/算法/">算法</a>
+            <a href="/categories/算法/题解/">题解</a>
+            </span>
+        <span class="post-visits" data-url="/2020/10/22/CF1433F/" data-title="CF1433F F. Zero Remainder Sum [dp]">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><a href="https://codeforces.com/contest/1433/problem/F" target="_blank" rel="noopener">F. Zero Remainder Sum</a></p>
+<p>You are given a matrix a of size n×m consisting of integers.</p>
+<p>You can choose <strong>no more than</strong> $\left\lfloor\frac{m}{2}\right\rfloor$ elements in <strong>each row</strong>. Your task is to choose these elements in such a way that their sum is <strong>divisible by</strong> k and this sum is the <strong>maximum</strong>.</p>
+<p>In other words, you can choose no more than a half (rounded down) of elements in each row, you have to find the maximum sum of these elements divisible by k.</p>
+<p>Note that you can choose zero elements (and the sum of such set is 00).</p>
+<p>Input</p>
+<p>The first line of the input contains three integers n, mm and k (1≤n,m,k≤70) — the number of rows in the matrix, the number of columns in the matrix and the value of k. The next n lines contain mm elements each, where the j-th element of the i-th row is $a_{i,j} (1≤a_{i,j}≤70)$.</p>
+<p>Output</p>
+<p>Print one integer — the maximum sum divisible by k you can obtain.</p>
+<p>Examples</p>
+<p>input</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3 4 3</span><br><span class="line">1 2 3 4</span><br><span class="line">5 2 2 2</span><br><span class="line">7 1 1 4</span><br></pre></td></tr></table></figure>
+<p>output</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">24</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>题意：一个矩阵每一行至多选择$\left\lfloor\frac{m}{2}\right\rfloor$ 个数，且最后总和 sum 能被 k 整除。</p>
+<p>设 $d[i][j][c][r]$ 表示取到第（i，j）个元素，第 i 行取了 c 个时，余数为 r 时的最大值。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">70</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,k,a[MAX][MAX],d[MAX][MAX][MAX][MAX];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	sf(n);sf(m);sf(k);</span><br><span class="line">	fi(i,<span class="number">0</span>,n) fi(j,<span class="number">0</span>,m) sf(a[i][j]);</span><br><span class="line">	mem(d,<span class="number">-0x3f</span>);</span><br><span class="line">	d[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">	fi(i,<span class="number">0</span>,n) fi(j,<span class="number">0</span>,m) fi(c,<span class="number">0</span>,m/<span class="number">2</span>+<span class="number">1</span>) fi(r,<span class="number">0</span>,k)&#123;</span><br><span class="line">		<span class="keyword">if</span>(d[i][j][c][r]==-INF) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span>(j==m<span class="number">-1</span>)&#123;</span><br><span class="line">			d[i+<span class="number">1</span>][<span class="number">0</span>][<span class="number">0</span>][r] = max(d[i+<span class="number">1</span>][<span class="number">0</span>][<span class="number">0</span>][r],d[i][j][c][r]);</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			d[i][j+<span class="number">1</span>][c][r] = max(d[i][j+<span class="number">1</span>][c][r],d[i][j][c][r]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(c&lt;(m/<span class="number">2</span>))&#123;</span><br><span class="line">			<span class="keyword">int</span> t = (r+a[i][j])%k;</span><br><span class="line">			<span class="keyword">if</span>(j==m<span class="number">-1</span>)&#123;</span><br><span class="line">				d[i+<span class="number">1</span>][<span class="number">0</span>][<span class="number">0</span>][t] = max(d[i+<span class="number">1</span>][<span class="number">0</span>][<span class="number">0</span>][t] ,d[i][j][c][r]+a[i][j]);</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				d[i][j+<span class="number">1</span>][c+<span class="number">1</span>][t] = max(d[i][j+<span class="number">1</span>][c+<span class="number">1</span>][t],d[i][j][c][r]+a[i][j]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	pfn(d[n][<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/动态规划/">动态规划</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/10/22/hello-world/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Hello World</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/09/26/CF1365D/">
+        <span class="next-text nav-default">CF1365D Solve The Maze [ dfs ]</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/10/22/CF1433F/';
+        this.page.identifier = '2020/10/22/CF1433F/';
+        this.page.title = 'CF1433F F. Zero Remainder Sum [dp]';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

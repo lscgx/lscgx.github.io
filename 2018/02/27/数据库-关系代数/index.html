@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="数据库-关系代数"><meta name="keywords" content="数据库, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2018/02/27/数据库-关系代数/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>数据库-关系代数 - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">数据库-关系代数
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-02-27
+        </span><span class="post-category">
+            <a href="/categories/数据库/">数据库</a>
+            <a href="/categories/数据库/关系代数/">关系代数</a>
+            </span>
+        <span class="post-visits" data-url="/2018/02/27/数据库-关系代数/" data-title="数据库-关系代数">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><blockquote>
+<p>关系代数是一种抽象的查询语言，它用于对关系的运算来表达查询。<br>关系代数的运算按运算符的不同分为传统的集合运算和专门的关系运算两类。</p>
+</blockquote>
+<a id="more"></a>
+<ol>
+<li>集合运算和关系运算的不同<ul>
+<li>传统的集合运算将关系看成元组的集合，其运算是从关系的“水平”方向进行，即行的角度来进行。而专门的关系运算不仅涉及行而且涉及列。</li>
+<li>比较运算符和逻辑运算符专门辅助关系运算。</li>
+<li>笛卡尔积定义不同<ul>
+<li>集合论中的笛卡儿积定义：<br>$${\displaystyle X\times Y=\left{\left(x,y\right)\mid x\in X\land y\in Y\right}}$$</li>
+<li>关系运算中的笛卡儿积定义：<br>$$R  \times S ={r  \cup s| r \in R, s  \in S }$$<br>或者<br>$$R  \times S ={  \mathop{t_rt_s}^{ \frown} | t_r \in R, t_s  \in S }$$(课本定义)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>关系运算<br>包括选择、投影、连接、除等。<ul>
+<li>选择：在关系R中选出满足规定条件的诸元组（即从<strong>行</strong>的角度进行的运算 ）。记作：<br>$$\sigma_F(R)={ t | t \in R  \wedge F(t)=’true’ }$$<br>( /ˈsɪɡmə/)<br>F是一个逻辑表达式。</li>
+<li>投影：从R中选出若干属性列组成新的关系（即从<strong>列</strong>的角度进行的运算）。记作：<br>$$ \Pi_A(R) ={t[A] | t \in R}$$<br>投影之后不仅取消原关系中的某些列而且会取消某些元组，因为取消某些列后可能出现重复的行，应取消在这些行。</li>
+<li>连接($\theta 连接$)，从连个关系的笛卡儿积中选择属性间满足一定条件的元组。记作:<br>$$\mathop{ R \bowtie S}_{a \theta  b} = { \mathop{t_rt_s}^{ \frown} | t_r \in R  \wedge t \in S \wedge t_r[A] \theta t_s[B]}$$<br>A 和 B 为 R 和 S 上可比较的属性组，$\theta$为比较运算符。<br>连接运算从R和S的笛卡儿积 R $\times$ S 中选取  R 关系在 A 属性组上的值和 S 关系在 B 属性组上的值满足比较关系 $\theta$ 的元组。<ul>
+<li>自然连接和等值连接<br>等值连接即$\theta$为 <strong>=</strong>的连接。两者的区别在于自然连接取消重复列。<br>两个关系R和S在做自然连接时，取公共属性上值相等的元组构成新的关系，可能产生悬浮元组（双方公共属性不相等的元组）。由此引出<strong>外连接、左外连接和右外连接</strong>。顾名思义，外连接(R &#10199; S )保留双方的悬浮元组，左外连接(R &#10197; S)保留 R 的，右外连接(R &#10198; S)保留 S 的。</li>
+</ul>
+</li>
+<li>除运算(同时从<strong>行和列</strong>角度进行的运算)<br>设关系 R 除以关系 S 的结果为关系 T,则 <strong>T 包含所有在R但是不在 S 中的属性和值，且 T 的元组和 S 的元组的所有组合都在 R 中</strong>。<br>给定关系 R(X, Y) 和 S(Y, Z),其中X，Y，Z为属性组。R中的 Y 与 S 中的 Y 可以有不同的属性名，但必须出自相同的域集。<br>R 与  S 的除运算得到一个新的关系P(X),P 是 R 中满足下列条件的元组在 X 属性列上的投影：元组在 X 上的分量值 x 的象集 $Y_x$ 包含 S 在 Y 上投影的集合。记作：<br>$$R \div S= {t_r[X]|t_r \in R \wedge  \Pi_y(S) \subseteq Y_x}$$<br>其中 $Y_x$ 为 x 在 R 中的象集，$x=t_r[X]$。<br>[例子]查询选修了所有课程的学生学号和姓名。<br>$$\Pi_{Sno,Cno}(SC) \div \Pi_{Cno}(Course)\bowtie \Pi_{Sno,Sname}(Student)$$</li>
+</ul>
+</li>
+<li><p>关系代数表达式等价替换规则。<br>设 E 是关系代数表达式。<br>(1)交换律</p>
+<ul>
+<li>连接、笛卡儿积的交换律<br>$$E_1 \times E_2 \equiv E_2 \times E_1$$<br>$$E_1 \bowtie E_2 \equiv E_2 \bowtie E_1$$<br>$$E_1 \mathop{\bowtie}_{F} E_2 \equiv E_2 \mathop{\bowtie}_{F}E_1 $$<br>F 是连接运算的条件。</li>
+<li>选择与投影操作的交换律<br>$$\sigma_{F}(\Pi_{A_1,A_2,\dotsb,A_n}(E)) \equiv \Pi_{A_1,A_2,\dotsb,A_n}(\sigma_{F}(E))$$<br>条件 F 里只涉及 属性$ {A_1,A_2,\dotsb,A_n}$时，上式成立。否则有下更一般的结论。<br>$$\Pi_{A_1,A_2,\dotsb,A_n}(\sigma_{F}(E)) \equiv                   \Pi_{A_1,A_2,\dotsb,A_n}(\sigma_{F}   (\Pi_{A_1,A_2,\dotsb,A_n,B_1,B_2,\dotsb,B_n}(E)))$$</li>
+<li>选择与笛卡儿积的交换律<br>如果 F 中涉及的属性都是 $E_1$ 中的属性，则<br>$$\sigma_{F}(E_1 \times E_2) \equiv \sigma_{F}(E_1) \times E_2$$<br>如果 $F=F_1 \wedge F_2$, 并且 $F_1$ 只涉及 $E_1$ 中的属性，$F_2$ 只涉及 $E_2$ 中的属性，则由等价变换l连接的交换律、选择的串接定律以及上式可推出<br>$$\sigma_{F}(E_1 \times E_2) \equiv \sigma_{F_1}(E_1) \times \sigma_{F_2}(E_2)$$<br>若$F_1$ 只涉及 $E_1$ 中的属性，$F_2$ 涉及 $E_1$ 和 $E_2$的属性，则仍有<br>$$\sigma_{F}(E_1 \times E_2) \equiv \sigma_{F_2}(\sigma_{F_1}(E_1) \times E_2)$$<br>它是部分选择在笛卡儿积前先做。</li>
+</ul>
+<p>(2)结合律</p>
+<ul>
+<li>连接、笛卡儿积的结合律</li>
+</ul>
+<p>(3)分配律</p>
+<ul>
+<li>选择与并的分配律<br>设 $E=E_1 \cup E_2$ ，$E_1$、$E_2$有相同的属性名，则<br>$$\sigma_{F}(E_1 \cup E_2) \equiv \sigma_{F}(E_1) \cup\sigma_{F}(E_2)$$</li>
+<li>选择与差运算的分配律<br>$E_1$、$E_2$有相同的属性名，则<br>$$\sigma_{F}(E_1 - E_2) \equiv \sigma_{F}(E_1) - \sigma_{F}(E_2)$$</li>
+<li>选择对自然连接的分配律<br>$$\sigma_{F}(E_1 \bowtie E_2) \equiv \sigma_{F}(E_1) \bowtie \sigma_{F}(E_2)$$<br>F 只涉及 $E_1$、$E_2$的公共属性。</li>
+<li>投影与笛卡儿积的分配律<br>A 是 $E_1$ 的属性，    B 是 $E_2$ 的属性。<br>$$\Pi_{A_1,A_2,\dotsb,A_n,B_1,B_2,\dotsb,B_n}(E_1 \times E_2) \equiv \Pi_{A_1,A_2,\dotsb,A_n}(E_1) \times \Pi_{B_1,B_2,\dotsb,B_n}(E_2)$$</li>
+<li>投影与并的分配律<br>$E_1$、$E_2$有相同的属性名，则<br>$$\Pi_{A_1,A_2,\dotsb,A_n}(E_1 \cup E_2) \equiv \Pi_{A_1,A_2,\dotsb,A_n}(E_1) \cup \Pi_{A_1,A_2,\dotsb,A_n}(E_2 )$$</li>
+</ul>
+<p>(4)串接定律</p>
+<ul>
+<li>投影的串接定律<br>$$\Pi_{A_1,A_2,\dotsb,A_n}(\Pi_{B_1,B_2,\dotsb,B_n}(E)) \equiv \Pi_{A_1,A_2,\dotsb,A_n}(E)$$<br>${A_1,A_2,\dotsb,A_n}$ 是 ${B_1,B_2,\dotsb,B_n}$ 的子集。</li>
+<li>选择的串接定律<br>$$\sigma_{F_1}(\sigma_{F_2}(E)) \equiv \sigma_{F_1\wedge F_2}(E)$$    </li>
+</ul>
+</li>
+</ol>
+<hr>
+<blockquote>
+<p>几个约定：<br>      (1) 设关系模式$R(A_1,A_2,\dotsb,A_n)$,它的一个关系为R。t $\in$ R 表示 <strong>t</strong> 是R的一个元组。$t[A_i]$则表示元组 <strong>t</strong> 中相应于属性$A_i$的一个分量。<br>      (2) $t[A] =( t[A_{i1}],t[A_{i2}],\dotsb,t[A_{ik}]) $ 表示元组 <strong>t</strong> 在属性列 A 上诸分量的集合，$\overline{A} $ 表示剩余的属性组。<br>      (3) R 为 n 目关系，S 为 m 目关系。$t_r \in R $,$t_s \in S $, $ \mathop{t_rt_s}^{ \frown} $ 称为元组的连接。它是一个n + m 的元组。<br>      (4) 给定一个关系为 R(X,Z) ,X 和Z为属性组。当 t[X]=x 时，x 在 R 上的象集定义为<br>      $$ Z_x={ t[Z] | t \in R,t[X]=x}$$<br>      它表示R中属性组X上的值为 x 的诸元组在 Z 上分量的集合。</p>
+</blockquote>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/数据库/">数据库</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2018/02/28/数据库-规范化/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">数据库-规范化</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2018/02/26/test-mathematical/">
+        <span class="next-text nav-default">test-mathematical</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2018/02/27/数据库-关系代数/';
+        this.page.identifier = '2018/02/27/数据库-关系代数/';
+        this.page.title = '数据库-关系代数';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

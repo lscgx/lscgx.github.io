@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="洛谷 p1140 相似基因 [ DP ]"><meta name="keywords" content="动态规划, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/03/03/洛谷p1140/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>洛谷 p1140 相似基因 [ DP ] - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">洛谷 p1140 相似基因 [ DP ]
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-03-03
+        </span><span class="post-category">
+            <a href="/categories/题解/">题解</a>
+            <a href="/categories/题解/算法/">算法</a>
+            </span>
+        <span class="post-visits" data-url="/2020/03/03/洛谷p1140/" data-title="洛谷 p1140 相似基因 [ DP ]">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><a href="https://www.luogu.com.cn/problem/P1140" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P1140</a></p>
+<p>题意：两个碱基对序列，4种核苷酸，简记作 A,C,G,T ，每种核苷酸各自对应时</p>
+<p>作用不同，求最大作用。</p>
+<blockquote>
+<p>$d[ i ][ j ][ 0/1 ]$ 表示到链 1 的  $i$ 位置，链 2 的  $j$ 位置时，末尾位置对齐或对空时的状态。</p>
+<p>状态转移如下代码</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">char</span> s1[MAX],s2[MAX];</span><br><span class="line"><span class="keyword">int</span> l1,l2,d[MAX][MAX][<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100</span>][<span class="number">100</span>];</span><br><span class="line"><span class="keyword">char</span> dn[<span class="number">5</span>]=&#123;<span class="string">'A'</span>,<span class="string">'C'</span>,<span class="string">'G'</span>,<span class="string">'T'</span>,<span class="string">'-'</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> dc[<span class="number">25</span>]=&#123;<span class="number">5</span>,<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-1</span>,<span class="number">-3</span>,<span class="number">-1</span>,<span class="number">5</span>,<span class="number">-3</span>,<span class="number">-2</span>,<span class="number">-4</span>,<span class="number">-2</span>,<span class="number">-3</span>,<span class="number">5</span>,</span><br><span class="line">           <span class="number">-2</span>,<span class="number">-2</span>,<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-2</span>,<span class="number">5</span>,<span class="number">-1</span>,<span class="number">-3</span>,<span class="number">-4</span>,<span class="number">-2</span>,<span class="number">-1</span>,-INF&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">	fi(i,<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">		fi(j,<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">			a[dn[i]][dn[j]]=dc[k++];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	sf(l1);<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s1+<span class="number">1</span>);</span><br><span class="line">	sf(l2);<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s2+<span class="number">1</span>);</span><br><span class="line">	init();</span><br><span class="line">	fi(i,<span class="number">1</span>,l1+<span class="number">1</span>)&#123;</span><br><span class="line">		d[i][<span class="number">0</span>][<span class="number">0</span>]=d[i<span class="number">-1</span>][<span class="number">0</span>][<span class="number">0</span>] + a[s1[i]][<span class="string">'-'</span>];</span><br><span class="line">		d[i][<span class="number">0</span>][<span class="number">1</span>]=-INF;</span><br><span class="line">	&#125;</span><br><span class="line">	fi(i,<span class="number">1</span>,l2+<span class="number">1</span>)&#123;</span><br><span class="line">		d[<span class="number">0</span>][i][<span class="number">0</span>]=d[<span class="number">0</span>][i<span class="number">-1</span>][<span class="number">0</span>] + a[<span class="string">'-'</span>][s2[i]];</span><br><span class="line">		d[<span class="number">0</span>][i][<span class="number">1</span>]=-INF;</span><br><span class="line">	&#125;</span><br><span class="line">	fi(i,<span class="number">1</span>,l1+<span class="number">1</span>)&#123;</span><br><span class="line">		fi(j,<span class="number">1</span>,l2+<span class="number">1</span>)&#123;</span><br><span class="line">			d[i][j][<span class="number">0</span>]=max(max(d[i<span class="number">-1</span>][j][<span class="number">0</span>]+a[s1[i]][<span class="string">'-'</span>],d[i][j<span class="number">-1</span>][<span class="number">0</span>]+a[<span class="string">'-'</span>][s2[j]]),</span><br><span class="line">			           max(d[i][j<span class="number">-1</span>][<span class="number">1</span>]+a[<span class="string">'-'</span>][s2[j]],d[i<span class="number">-1</span>][j][<span class="number">1</span>]+a[s1[i]][<span class="string">'-'</span>]));</span><br><span class="line">			d[i][j][<span class="number">1</span>]=max(d[i<span class="number">-1</span>][j<span class="number">-1</span>][<span class="number">0</span>]+a[s1[i]][s2[j]] , d[i<span class="number">-1</span>][j<span class="number">-1</span>][<span class="number">1</span>]+a[s1[i]][s2[j]]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	pf(max(d[l1][l2][<span class="number">0</span>],d[l1][l2][<span class="number">1</span>]));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>观察发现，第三个状态是多余的…去掉后如下…</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">char</span> s1[MAX],s2[MAX];</span><br><span class="line"><span class="keyword">int</span> l1,l2,d[MAX][MAX];</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100</span>][<span class="number">100</span>];</span><br><span class="line"><span class="keyword">char</span> dn[<span class="number">5</span>]=&#123;<span class="string">'A'</span>,<span class="string">'C'</span>,<span class="string">'G'</span>,<span class="string">'T'</span>,<span class="string">'-'</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> dc[<span class="number">25</span>]=&#123;<span class="number">5</span>,<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-1</span>,<span class="number">-3</span>,<span class="number">-1</span>,<span class="number">5</span>,<span class="number">-3</span>,<span class="number">-2</span>,<span class="number">-4</span>,<span class="number">-2</span>,<span class="number">-3</span>,<span class="number">5</span>,</span><br><span class="line">           <span class="number">-2</span>,<span class="number">-2</span>,<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-2</span>,<span class="number">5</span>,<span class="number">-1</span>,<span class="number">-3</span>,<span class="number">-4</span>,<span class="number">-2</span>,<span class="number">-1</span>,-INF&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">	fi(i,<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">		fi(j,<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">			a[dn[i]][dn[j]]=dc[k++];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	sf(l1);<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s1+<span class="number">1</span>);</span><br><span class="line">	sf(l2);<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s2+<span class="number">1</span>);</span><br><span class="line">	init();</span><br><span class="line">	fi(i,<span class="number">1</span>,l1+<span class="number">1</span>)</span><br><span class="line">		d[i][<span class="number">0</span>]=d[i<span class="number">-1</span>][<span class="number">0</span>] + a[s1[i]][<span class="string">'-'</span>];</span><br><span class="line">	fi(i,<span class="number">1</span>,l2+<span class="number">1</span>)</span><br><span class="line">		d[<span class="number">0</span>][i]=d[<span class="number">0</span>][i<span class="number">-1</span>]+ a[<span class="string">'-'</span>][s2[i]];</span><br><span class="line">	fi(i,<span class="number">1</span>,l1+<span class="number">1</span>)</span><br><span class="line">		fi(j,<span class="number">1</span>,l2+<span class="number">1</span>)</span><br><span class="line">			d[i][j]=max(d[i<span class="number">-1</span>][j<span class="number">-1</span>]+a[s1[i]][s2[j]],max(d[i][j<span class="number">-1</span>]+a[<span class="string">'-'</span>][s2[j]],d[i<span class="number">-1</span>][j]+a[s1[i]][<span class="string">'-'</span>]));</span><br><span class="line">	pf(d[l1][l2]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/动态规划/">动态规划</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/03/03/洛谷p1880/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">洛谷 p1880 石子合并 [ DP断环成链 ]</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/03/02/洛谷p1091/">
+        <span class="next-text nav-default">洛谷 p1091 合唱队形 [ LIS ]</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/03/03/洛谷p1140/';
+        this.page.identifier = '2020/03/03/洛谷p1140/';
+        this.page.title = '洛谷 p1140 相似基因 [ DP ]';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

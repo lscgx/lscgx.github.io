@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="洛谷 p1341"><meta name="keywords" content="图论, 欧拉路, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/02/25/洛谷p1341/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>洛谷 p1341 [ 欧拉回路 ] - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">洛谷 p1341 [ 欧拉回路 ]
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-02-25
+        </span><span class="post-category">
+            <a href="/categories/题解/">题解</a>
+            <a href="/categories/题解/算法/">算法</a>
+            <a href="/categories/题解/算法/知识点/">知识点</a>
+            </span>
+        <span class="post-visits" data-url="/2020/02/25/洛谷p1341/" data-title="洛谷 p1341 [ 欧拉回路 ]">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><strong>欧拉路</strong></p>
+<p><font color="#E91E63">欧拉回路 </font>: 每条边只经过一次，而且回到起点</p>
+<p><font color="#E91E63">欧拉路径 </font>: 每条边只经过一次，不要求回到起点</p>
+<p><strong>欧拉回路判断</strong>：</p>
+<p><font color="#E91E63">无向图 </font>：连通（不考虑度为零的点），每个顶点度数都为偶数。</p>
+<p><font color="#E91E63">有向图</font>：基图连通（把边当成无向边，同样不考虑度为0的点），每个顶点出度等于入度。</p>
+<p><font color="#E91E63">混合图 </font>（有有向边和无向边）:首先是基图连通(不考虑度为零的点)，然后需要借助网络流判定。<br>首先给原图中的每条无向边随便指定一个方向（成为初始方向），将原图改为有向图 G’ ,然后的任务就是改变 G’ 中某些边的方向（当然是无向边转化来的，原混合图中的有向边不能动）使其满足每个点的入度等于出度。<br>设D[ i ] 为G’ 中（点 i 的出度 -点 i 的入度） ，可以发现，在改变G’ 中的边的方向的过程中，任何点的D 值得奇偶性都不会发生改变（设将边<i , j> 改为 &lt;j,i&gt; ,则i 入度加1出度减1，i 入度减1或出度加1，两者之差减 2 或 加2，奇偶性不变）而最终要求的是每个点的出度等于入度，即每个点的D值都为零，是偶数，故可得：若初始定向得到的G’中任意一个点的D值为奇数，那么原图中一定不存在欧拉环。<br>若初始D值都是偶数，则将G’改装成网络：设立源点S和汇点T,对于每个D[ i ] &gt; 0点 i ，连边 &lt;S,i&gt;,容量为D[ i ] / 2;对于每个D[ j ] &lt; 0 的点 j ，连边 &lt;j,T&gt;,容量为 –D[ j ]/2; G‘ 中的每条边在网络中仍保留，容量为1（表示该边最多只能边方向一次）。求这个网络的最大流，若S引出的所有边均满流，若原混合图是欧拉图，将网络中所有流量为1 的中间边（就是不与S或T关联的边）在G’ 中改变方向，形成的新图G’’ 一定是有向欧拉图；若S引出的边没有满流，则原混合图不是欧拉图。</i></p>
+<p><strong>欧拉路径判断</strong>：</p>
+<p><font color="#E91E63">无向图 </font>：连通（不考虑度为0 的点），每个顶点度数都是偶数或者仅有两个顶点的度数为偶数。</p>
+<p><font color="#E91E63">有向图  </font>：基图连通（把边当成无向边，同样不考虑度0的度），每个顶点出度等于入度或者有且仅有一个点的出度比入度多1，有且仅有一个点的出度比入度小1，其余出度等于入度。</p>
+<p><font color="#E91E63">混合图  </font>：如果存在欧拉回路，一点存在欧拉路径。否则如果有且仅有两个点的（出度 – 入度）是奇数，那么给这两个点加边，判断是否存在欧拉回路。</p>
+<p><font color="#FFC107">题目:  </font><br><a href="https://www.luogu.com.cn/problem/P1341" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P1341</a><br>题目描述<br>给定n个各不相同的无序字母对（区分大小写，无序即字母对中的两个字母可以位置颠倒）。请构造一个有n+1个字母的字符串使得每个字母对都在这个字符串中出现。</p>
+<p>输入格式<br>第一行输入一个正整数n。</p>
+<p>以下n行每行两个字母，表示这两个字母需要相邻。</p>
+<p>输出格式<br>输出满足要求的字符串。</p>
+<p>如果没有满足要求的字符串，请输出“No Solution”。</p>
+<p>如果有多种方案，请输出前面的字母的ASCII编码尽可能小的（字典序最小）的方案<br>输入输出样例<br>输入<br>4<br>aZ<br>tZ<br>Xt<br>aX<br>输出<br>XaZtX</p>
+<blockquote>
+<p>看的题解…<br>把每个字母当作一个节点（…）自己搞字符串很懵逼</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">3000</span>;</span><br><span class="line"><span class="keyword">int</span> n,head,b[<span class="number">150</span>][<span class="number">150</span>],deg[<span class="number">150</span>],f[<span class="number">150</span>];</span><br><span class="line"><span class="keyword">char</span> a[<span class="number">2</span>],ans[MAX]; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> f[x]==x?x:f[x]=find(f[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="comment">//找欧拉回路/路径 </span></span><br><span class="line">	fi(i,<span class="number">64</span>,<span class="number">125</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(b[x][i])&#123;</span><br><span class="line">			b[x][i]=b[i][x]=<span class="number">0</span>;</span><br><span class="line">			dfs(i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	ans[n--]=x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	fi(i,<span class="number">64</span>,<span class="number">125</span>)f[i]=i;</span><br><span class="line">	sf(n);</span><br><span class="line">	fi(i,<span class="number">0</span>,n)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>,a); </span><br><span class="line">		b[a[<span class="number">0</span>]][a[<span class="number">1</span>]] = b[a[<span class="number">1</span>]][a[<span class="number">0</span>]] = <span class="number">1</span> ;</span><br><span class="line">		deg[a[<span class="number">0</span>]]++;</span><br><span class="line">		deg[a[<span class="number">1</span>]]++;</span><br><span class="line">		<span class="keyword">int</span> x=find(a[<span class="number">0</span>]),y=find(a[<span class="number">1</span>]);</span><br><span class="line">		f[x]=y;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	fi(i,<span class="number">64</span>,<span class="number">125</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(f[i]==i &amp;&amp; deg[i])cnt++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(cnt!=<span class="number">1</span>) &#123; <span class="comment">//非连通图 </span></span><br><span class="line">		pfc(<span class="string">"No Solution"</span>);<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">	&#125;</span><br><span class="line">	cnt=<span class="number">0</span>;</span><br><span class="line">	head=<span class="number">0</span>;</span><br><span class="line">	fi(i,<span class="number">64</span>,<span class="number">125</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(deg[i]&amp;<span class="number">1</span>)&#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			<span class="keyword">if</span>(head==<span class="number">0</span>) head=i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(cnt &amp;&amp; cnt!=<span class="number">2</span>) &#123;<span class="comment">//有奇度数点，且不是两个，不存在欧拉路 </span></span><br><span class="line">		pfc(<span class="string">"No Solution"</span>);<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(head==<span class="number">0</span>)</span><br><span class="line">		fi(i,<span class="number">64</span>,<span class="number">125</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(deg[i]) &#123;</span><br><span class="line">				head=i;<span class="keyword">break</span>; <span class="comment">//字典序最小，起点 </span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	dfs(head);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/图论/">图论</a>
+            <a href="/tags/欧拉路/">欧拉路</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/02/25/洛谷p1921万圣节农场/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">洛谷 p1921 万圣节农场 [ tarjan 记忆化搜索 ]</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/02/24/洛谷p1330/">
+        <span class="next-text nav-default">洛谷 p1330 [ 二分图 ]</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/02/25/洛谷p1341/';
+        this.page.identifier = '2020/02/25/洛谷p1341/';
+        this.page.title = '洛谷 p1341 [ 欧拉回路 ]';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="什么情况下建立索引..."><meta name="keywords" content="数据库, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2018/02/28/数据库-索引/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>数据库-索引 - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">数据库-索引
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-02-28
+        </span><span class="post-category">
+            <a href="/categories/数据库/">数据库</a>
+            </span>
+        <span class="post-visits" data-url="/2018/02/28/数据库-索引/" data-title="数据库-索引">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><blockquote>
+<p>数据库中常用的存取方法为索引方法和聚簇方法。索引方法包括B+树索引和Hash索引。</p>
+</blockquote>
+<ol>
+<li><p>B+树索引<br> 对一个或多个属性列建立索引（组合索引、唯一索引）。<br> 一般如下：</p>
+<ul>
+<li>如果一个（或一组）属性经常在查询条件里出现，则考虑建立索引。</li>
+<li>如果一个属性经常作为最大值和最小值等聚集函数的参数。</li>
+<li><p>如果一个（或一组）属性经常在连接操作的连接条件中出现。</p>
+<p>关系上定义的索引并不是越多越好，系统为维护索引要付出代价。更新频率高的关系索引不宜太多。</p>
+</li>
+</ul>
+</li>
+<li>Hash索引<br> 如果一个关系的属性主要出现在等值连接条件或主要出现在等值比较选择条件中，而且满足下列条件之一<ul>
+<li>一个关系的大小可以预知，而且不变。</li>
+<li>关系的大小动态改变，但数据库管理系统提供了动态hash存取方法。<br>则可选择hash存取方法。</li>
+</ul>
+</li>
+<li>聚簇索引<br> 为了提高某个属性（或属性组）的查询速度，把这个或这些属性上具有相同值得元组集中存放在连续得物理块中成为聚簇。该属性（或属性组）成为聚簇码。<br> 一个数据库可以建立多个聚簇，一个关系只能加入一个聚簇。<br> 首先涉及候选聚簇一般来说<br>   <em>(1) 对经常在一起进行连接操作的关系建立聚簇。<br>   (2) 如果一个关系的一组属性经常出现在相等比较条件中，则该单个关系可建立聚簇。<br>   (3) 如果一个人关系的一个（或一组）属性上的值重复率很高，则此单个             关系可建立聚簇。即对应每个聚簇码值呃平均元组数不能太少，太少             则聚簇的效果不明显。</em><br> 然后检查候选聚簇中的关系，取消其中不必要的关系。<br>   <em>(1) 从聚簇中删除经常进行全表扫描的关系。<br>   (2) 从聚簇中删除更新操作多于连接操作的关系。<br>   (3) 不同的聚簇中可能包含相同的关系，一个关系可以在某一个聚簇中，但不能同时加入多个聚簇。要从这多个聚簇方案（包括不建立聚簇）中选择一个较优的，即在这个聚簇上运行各种事务的总代价最小。</em><blockquote>
+<p>对已有关系建立聚簇将导致关系中元组移动其物理存储位置，并使次关系上原来建立的所有索引无效，必须重建。当一个元组的聚簇码值改变时，该元组的存储位置也要做相应移动，聚簇码要相对稳定，以减少修改聚簇码值所引起的维护开销。<br>因此，当通过聚簇码进行访问或连接是该关系的主要应用，与聚簇码无关的其他访问很少或者是次要的，这时可以使用聚簇。尤其当 SQL 语句中包含与聚簇码有关的ORDER BY、GROUP BY、UNION、DISTINCT等子句或短语时，使用聚簇特别有利，可以省去对结果集的排序操作；否则很可能适得其反。</p>
+</blockquote>
+</li>
+</ol>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/数据库/">数据库</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2018/03/01/递归-排序/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">递归-排序</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2018/02/28/数据库-规范化/">
+        <span class="next-text nav-default">数据库-规范化</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2018/02/28/数据库-索引/';
+        this.page.identifier = '2018/02/28/数据库-索引/';
+        this.page.title = '数据库-索引';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

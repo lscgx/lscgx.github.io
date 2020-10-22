@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="Calling REST Services with RestTemplate in Spring-boot."><meta name="keywords" content="spring-boot, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2018/03/28/Spring-boot-TestRestTemplate/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>spring-boot:TestRestTemplate、RestTemplate - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">spring-boot:TestRestTemplate、RestTemplate
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-03-28
+        </span><span class="post-category">
+            <a href="/categories/spring-boot/">spring-boot</a>
+            </span>
+        <span class="post-visits" data-url="/2018/03/28/Spring-boot-TestRestTemplate/" data-title="spring-boot:TestRestTemplate、RestTemplate">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><h3 id="RestTemplate"><a href="#RestTemplate" class="headerlink" title="RestTemplate"></a>RestTemplate</h3><p>RestTemplate用于去调用远程的 REST services 时， Spring Boot 不会自动提供RestTemplate bean,但是会 auto-configure a RestTemplateBuilder, which can be used to create RestTemplate instances when needed.</p>
+<h4 id="e-g"><a href="#e-g" class="headerlink" title="e.g."></a>e.g.</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RestTemplateService</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">	RestTemplateService(RestTemplateBuilder restTemplateBuilder) &#123;</span><br><span class="line">		<span class="keyword">this</span>.restTemplate = restTemplateBuilder.build();</span><br><span class="line">		<span class="comment">//添加拦截器</span></span><br><span class="line">		<span class="keyword">this</span>.restTemplate.getInterceptors().add(<span class="keyword">new</span> TokenInterceptor());</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//get </span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">someRestCall</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.restTemplate.getForObject(<span class="string">"http://127.0.0.1:9999/"</span>,String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">someJson</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.restTemplate.getForObject(<span class="string">"http://127.0.0.1:9999/bean"</span>,String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//post</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">post</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		MultiValueMap&lt;String, String&gt; map= <span class="keyword">new</span> LinkedMultiValueMap&lt;String, String&gt;();</span><br><span class="line">		map.add(<span class="string">"variable"</span>,<span class="string">"a post variable"</span>);</span><br><span class="line">		HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);</span><br><span class="line">		HttpEntity&lt;MultiValueMap&lt;String, String&gt;&gt; entity = <span class="keyword">new</span> HttpEntity&lt;MultiValueMap&lt;String, String&gt;&gt;(map, headers);</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.restTemplate.postForObject(<span class="string">"http://127.0.0.1:9999/post"</span>,entity,String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoController</span> </span>&#123;</span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	    <span class="keyword">return</span> <span class="string">"howdy!"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/res"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Response <span class="title">res</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	    <span class="keyword">return</span> <span class="keyword">new</span> Response();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@GetMapping</span>(<span class="string">"/v/&#123;variable&#125;"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getPathVariable</span><span class="params">(@PathVariable String variable )</span> </span>&#123;</span><br><span class="line">	    <span class="keyword">return</span> variable;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@PostMapping</span>(<span class="string">"/post"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">post</span><span class="params">(Date date,String variable)</span> </span>&#123;</span><br><span class="line">	    <span class="keyword">return</span> variable;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 上传文件</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@throws</span> GeneralException</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@RequestMapping</span>(</span><br><span class="line">			value=<span class="string">"/upload"</span>,</span><br><span class="line">			method=RequestMethod.POST,</span><br><span class="line">			consumes= &#123;</span><br><span class="line">					MediaType.APPLICATION_JSON_VALUE,</span><br><span class="line">					MediaType.MULTIPART_FORM_DATA_VALUE</span><br><span class="line">			&#125;)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">handleFileUpload</span><span class="params">(HttpServletRequest request)</span> <span class="keyword">throws</span> GeneralException </span>&#123;</span><br><span class="line">		Storage storage=StorageFactory.getStorage(config.getStorageClass());</span><br><span class="line">		<span class="keyword">if</span> (storage==<span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> GeneralException(<span class="string">"F105"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		List&lt;MultipartFile&gt; files= ((MultipartHttpServletRequest) request).getFiles(<span class="string">"file"</span>);</span><br><span class="line">		checkFileTypes(files);<span class="comment">//检查文件类型</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;files.size();++i) &#123;</span><br><span class="line">			MultipartFile file=files.get(i);</span><br><span class="line">			<span class="keyword">if</span>(!file.isEmpty()) &#123;</span><br><span class="line">				storage.store(file);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="TestRestTemplate"><a href="#TestRestTemplate" class="headerlink" title="TestRestTemplate"></a>TestRestTemplate</h3><p>测试用的RestTemplate，如果使用了@SpringBootTest，会自动配置一个TestRestTemplate，可直接使用。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">SpringBootTest</span>(<span class="title">webEnvironment</span> </span>= WebEnvironment.RANDOM_PORT)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoControllerTest</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> TestRestTemplate restTemplate;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">exampleTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		String body = <span class="keyword">this</span>.restTemplate.getForObject(<span class="string">"/"</span>, String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		assertThat(body).isEqualTo(<span class="string">"howdy!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getPathVariableTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		String body = <span class="keyword">this</span>.restTemplate.getForObject(<span class="string">"/v/this is a variable"</span>, String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		assertThat(body).isEqualTo(<span class="string">"this is a variable"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		MultiValueMap&lt;String, String&gt; map= <span class="keyword">new</span> LinkedMultiValueMap&lt;String, String&gt;();</span><br><span class="line">		map.add(<span class="string">"date"</span>,<span class="string">"2018-09-09"</span>);</span><br><span class="line">		map.add(<span class="string">"variable"</span>,<span class="string">"a post variable"</span>);</span><br><span class="line">		</span><br><span class="line">		HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);</span><br><span class="line">		HttpEntity&lt;MultiValueMap&lt;String, String&gt;&gt; entity = <span class="keyword">new</span> HttpEntity&lt;MultiValueMap&lt;String, String&gt;&gt;(map, headers);</span><br><span class="line">		String body = <span class="keyword">this</span>.restTemplate.postForObject(<span class="string">"/post"</span>,entity,String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		assertThat(body).isEqualTo(<span class="string">"a post variable"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleFileUpload</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		String path=<span class="string">"C:/Users/dy040/Pictures/mm.jpg"</span>;</span><br><span class="line">		File file=<span class="keyword">new</span> File(path);</span><br><span class="line">		FileSystemResource resource =<span class="keyword">new</span> FileSystemResource(file);</span><br><span class="line">		MultiValueMap&lt;String, Object&gt; map= <span class="keyword">new</span> LinkedMultiValueMap&lt;String, Object&gt;();</span><br><span class="line">		map.add(<span class="string">"file"</span>,resource);	</span><br><span class="line"><span class="comment">//		HttpHeaders headers = new HttpHeaders();</span></span><br><span class="line"><span class="comment">//		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);</span></span><br><span class="line"><span class="comment">//		HttpEntity&lt;MultiValueMap&lt;String, Object&gt;&gt; entity = new HttpEntity&lt;MultiValueMap&lt;String, Object&gt;&gt;(map, headers);	</span></span><br><span class="line">		String body = <span class="keyword">this</span>.restTemplate.postForObject(<span class="string">"/upload"</span>,map,String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		assertThat(body).isEqualTo(<span class="string">"success"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@TestConfiguration</span></span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Config</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="meta">@Bean</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> RestTemplateBuilder <span class="title">restTemplateBuilder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">new</span> RestTemplateBuilder().setConnectTimeout(<span class="number">1000</span>).setReadTimeout(<span class="number">1000</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/spring-boot/">spring-boot</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2018/04/18/51nod1475建设国家/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">51nod1475建设国家</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2018/03/15/同余/">
+        <span class="next-text nav-default">同余</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2018/03/28/Spring-boot-TestRestTemplate/';
+        this.page.identifier = '2018/03/28/Spring-boot-TestRestTemplate/';
+        this.page.title = 'spring-boot:TestRestTemplate、RestTemplate';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="金明的预算方案"><meta name="keywords" content="动态规划, DFS, noip, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/04/29/洛谷p1064/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>洛谷 p1064 金明的预算方案 [ dp dfs ] - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">洛谷 p1064 金明的预算方案 [ dp dfs ]
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-04-29
+        </span><span class="post-category">
+            <a href="/categories/题解/">题解</a>
+            <a href="/categories/题解/算法/">算法</a>
+            </span>
+        <span class="post-visits" data-url="/2020/04/29/洛谷p1064/" data-title="洛谷 p1064 金明的预算方案 [ dp dfs ]">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><a href="https://www.luogu.com.cn/problem/P1064" target="_blank" rel="noopener">P1064 金明的预算方案</a></p>
+<p><strong>题目描述</strong></p>
+<p>金明今天很开心，家里购置的新房就要领钥匙了，新房里有一间金明自己专用的很宽敞的房间。更让他高兴的是，妈妈昨天对他说：“你的房间需要购买哪些物品，怎么布置，你说了算，只要不超过<em>N</em>元钱就行”。今天一早，金明就开始做预算了，他把想买的物品分为两类：主件与附件，附件是从属于某个主件的，下表就是一些主件与附件的例子：</p>
+<p>主件 附件</p>
+<p>电脑 打印机，扫描仪</p>
+<p>书柜 图书</p>
+<p>书桌 台灯，文具</p>
+<p>工作椅 无</p>
+<p>如果要买归类为附件的物品，必须先买该附件所属的主件。每个主件可以有0个、1个或2个附件。附件不再有从属于自己的附件。金明想买的东西很多，肯定会超过妈妈限定的N<em>元。于是，他把每件物品规定了一个重要度，分为5等：用整数 1-5 表示，第 5等最重要。他还从因特网上查到了每件物品的价格（都是10元的整数倍）。他希望在不超过</em>N<em>元（可以等于N</em>元）的前提下，使每件物品的价格与重要度的乘积的总和最大。</p>
+<p>设第 j <em>件物品的价格为 v，重要度为 w_[j]，共选中了 k 件物品，编号依次为 j</em>1,<em>j</em>2,…,<em>j**k</em>，则所求的总和为：</p>
+<p><em>v</em>[<em>j</em>1]×<em>w</em>[<em>j</em>1]+<em>v</em>[<em>j</em>2]×<em>w</em>[<em>j</em>2]+…+<em>v</em>[<em>j**k</em>]×<em>w</em>[<em>j**k</em>]。</p>
+<p>请你帮助金明设计一个满足要求的购物单。</p>
+<p><strong>输入格式</strong></p>
+<p>第1行，为两个正整数，用一个空格隔开：</p>
+<p>N m （其中N(&lt;32000)表示总钱数，m(&lt;60)为希望购买物品的个数。） 从第2行到第m+1行，第 j *行给出了编号为j-1的物品的基本数据，每行有3个非负整数</p>
+<p>v p q （其中v<em>v</em>表示该物品的价格（v&lt;10000），p表示该物品的重要度（1-5），q<em>表示该物品是主件还是附件。如果q=0</em>，表示该物品为主件，如果q&gt;0，表示该物品为附件，<em>q</em>是所属主件的编号）</p>
+<p><strong>输出格式</strong></p>
+<p>一个正整数，为不超过总钱数的物品的价格与重要度乘积的总和的最大值（&lt;200000）。</p>
+<p><strong>输入输出样例</strong></p>
+<p><strong>输入 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1000 5</span><br><span class="line">800 2 0</span><br><span class="line">400 5 1</span><br><span class="line">300 5 1</span><br><span class="line">400 3 0</span><br><span class="line">500 2 0</span><br></pre></td></tr></table></figure>
+<p><strong>输出 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2200</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>1、 对于一棵子树，给予空间 v , 选择树根的情况下，对子子树们跑 01 背包。</p>
+<p>2、先求 dfs 序列，对于一个节点 x , </p>
+<ul>
+<li>如果选择 x ,那么他的子节点可以选择，d[i] 从 d[i-1] 直接转移而来</li>
+<li>如果不选择 x，那么子节点不可选，只能从左兄弟转移而来，跑 dfs 的时候记录左兄弟节点 pre[i].</li>
+</ul>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ull;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span> db;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; si;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sf(n) scanf(<span class="meta-string">"%d"</span>,&amp;n)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pf(n) printf(<span class="meta-string">"%d"</span>,n)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pfn(n) printf(<span class="meta-string">"%d\n"</span>,n)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pfc(c) printf(c) </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi(i,s,t) for(register int i=(s);i&lt;(t);i++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fd(i,s,t) for(register int i=(s)-1;i&gt;=(t);i--)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(a,c) memset(a,c,sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> all(x) (x).begin(),(x).end()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ft first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sd second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">200000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,u[MAX],p[MAX],q,d[MAX],pre[MAX];</span><br><span class="line">vi v[MAX];</span><br><span class="line"><span class="keyword">int</span> cnt=<span class="number">0</span>,f[<span class="number">100</span>][MAX]; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tmp=cnt;</span><br><span class="line">	fi(i,<span class="number">0</span>,v[x].size())&#123;</span><br><span class="line">		dfs(v[x][i]);</span><br><span class="line">	&#125;</span><br><span class="line">	d[++cnt]=x;</span><br><span class="line">	pre[cnt]=tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	sf(n);sf(m);</span><br><span class="line">	u[<span class="number">0</span>]=<span class="number">0</span>;p[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">	fi(i,<span class="number">1</span>,m+<span class="number">1</span>)&#123;</span><br><span class="line">		sf(u[i]);sf(p[i]);sf(q);</span><br><span class="line">		<span class="keyword">if</span>(q) v[q].pb(i);</span><br><span class="line">		<span class="keyword">else</span> v[<span class="number">0</span>].pb(i);</span><br><span class="line">	&#125;</span><br><span class="line">	dfs(<span class="number">0</span>);</span><br><span class="line">	fi(i,<span class="number">1</span>,cnt)</span><br><span class="line">		fi(j,<span class="number">0</span>,n+<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(j&gt;=u[d[i]]) f[i][j]=max(f[pre[i]][j],f[i<span class="number">-1</span>][j-u[d[i]]] + u[d[i]] * p[d[i]]);</span><br><span class="line">			<span class="keyword">else</span>  f[i][j] = f[pre[i]][j];</span><br><span class="line">		&#125; </span><br><span class="line">	pf(f[cnt<span class="number">-1</span>][n]);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/动态规划/">动态规划</a>
+            <a href="/tags/DFS/">DFS</a>
+            <a href="/tags/noip/">noip</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/05/02/CF1348C/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">CF1348C Phoenix and Distribution [ 贪心 ]</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/04/27/CF1342C/">
+        <span class="next-text nav-default">CF1342C C. Yet Another Counting Problem [ lcm ]</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/04/29/洛谷p1064/';
+        this.page.identifier = '2020/04/29/洛谷p1064/';
+        this.page.title = '洛谷 p1064 金明的预算方案 [ dp dfs ]';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

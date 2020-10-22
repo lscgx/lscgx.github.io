@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="洛谷 p1120 机器人搬重物"><meta name="keywords" content="BFS, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/02/21/洛谷p1120/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>洛谷p1120 - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">洛谷p1120
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-02-21
+        </span><span class="post-category">
+            <a href="/categories/算法/">算法</a>
+            </span>
+        <span class="post-visits" data-url="/2020/02/21/洛谷p1120/" data-title="洛谷p1120">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><a href="https://www.luogu.com.cn/problem/P1126" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P1126</a></p>
+<p>题意：2 * 2 的矩阵块从起点到终点，有 向左转，向右转，前进一步，前进2步，前进三步 5种操作。每个操作花费 1 秒。 问最少时间？</p>
+<blockquote>
+<p>直接搜索会超时的，，<br>要注意的是，每个位置的状态要把方向算进去。但是向前走的时候不用考虑方向，只要可以通过即可。 走多步的时候，要一个一个判断，可能中间有墙。<br>双向 BFS 的时候，相遇的时候两个方向需要特别处理，因为转向也有代价。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sf(n) scanf(<span class="meta-string">"%d"</span>,&amp;n)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pf(n) printf(<span class="meta-string">"%d"</span>,n)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pfc(c) printf(c)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi(i,s,t) for(int i=s;i&lt;t;i++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fd(s,t) for(int i=s-1;i&gt;=t;i--)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(a,c) memset(a,c,sizeof(a))</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">55</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,a[MAX][MAX],vis[MAX][MAX][<span class="number">4</span>],vis2[MAX][MAX],len[MAX][MAX][<span class="number">4</span>],</span><br><span class="line">   sx,sy,fx,fy,f,ans=INF,aw[<span class="number">4</span>][<span class="number">2</span>]=&#123;<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">-1</span>&#125;,</span><br><span class="line">   awr[<span class="number">4</span>]=&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">0</span>,<span class="number">1</span>&#125;,flag=<span class="number">0</span>; <span class="comment">//flag for end point</span></span><br><span class="line"><span class="keyword">char</span> tf;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> x,y;</span><br><span class="line">	<span class="keyword">int</span> f;</span><br><span class="line">	node(<span class="keyword">int</span> _x,<span class="keyword">int</span> _y,<span class="keyword">int</span> _f)&#123;</span><br><span class="line">		x=_x;y=_y;f=_f;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x&lt;<span class="number">1</span> || x&gt; n<span class="number">-1</span> || y&lt;<span class="number">1</span> || y&gt; m<span class="number">-1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">if</span>(a[x][y] ||a[x][y+<span class="number">1</span>] ||a[x+<span class="number">1</span>][y] ||a[x+<span class="number">1</span>][y+<span class="number">1</span>]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judge2</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> f,<span class="keyword">int</span> steps)</span></span>&#123;<span class="comment">// steps along f</span></span><br><span class="line">	<span class="keyword">int</span> tx,ty;</span><br><span class="line">	fi(i,<span class="number">0</span>,steps)&#123;</span><br><span class="line">		tx= x + aw[f][<span class="number">0</span>];</span><br><span class="line">		ty= y + aw[f][<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">if</span>(!judge(tx,ty)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		x=tx;y=ty;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">queue</span>&lt;node&gt;q;</span><br><span class="line"><span class="built_in">queue</span>&lt;node&gt;h;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bfs</span><span class="params">(node s,node r)</span></span>&#123;</span><br><span class="line">	mem(vis,<span class="number">0</span>);</span><br><span class="line">	mem(vis2,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span>(s.x==r.x &amp;&amp; s.y==r.y) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	q.push(s);</span><br><span class="line">	vis[s.x][s.y][s.f]=<span class="number">1</span>;</span><br><span class="line">	fi(i,<span class="number">0</span>,<span class="number">4</span>)&#123;</span><br><span class="line">		h.push(node(r.x,r.y,i)); </span><br><span class="line">		vis[r.x][r.y][i]=<span class="number">1</span>;</span><br><span class="line">		len[r.x][r.y][i]=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	vis2[s.x][s.y]=<span class="number">1</span>;</span><br><span class="line">	vis2[r.x][r.y]=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty() || !h.empty())&#123;</span><br><span class="line">		<span class="keyword">if</span>(!q.empty())&#123;</span><br><span class="line">			node t= q.front();</span><br><span class="line">			q.pop();</span><br><span class="line">			fi(i,<span class="number">1</span>,<span class="number">3</span>+<span class="number">1</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span>(judge2(t.x,t.y,t.f,i))&#123;</span><br><span class="line">					<span class="keyword">int</span> tx=t.x+aw[t.f][<span class="number">0</span>],ty=t.y+aw[t.f][<span class="number">1</span>];</span><br><span class="line">					fi(j,<span class="number">1</span>,i)&#123;</span><br><span class="line">						tx = tx + aw[t.f][<span class="number">0</span>];</span><br><span class="line">						ty = ty + aw[t.f][<span class="number">1</span>];</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">if</span>(vis2[tx][ty]==<span class="number">0</span>)&#123;</span><br><span class="line">						<span class="keyword">if</span>(len[tx][ty][t.f]&gt;len[t.x][t.y][t.f] + <span class="number">1</span> || len[tx][ty][t.f]==<span class="number">0</span> )</span><br><span class="line">							len[tx][ty][t.f]=len[t.x][t.y][t.f] + <span class="number">1</span>;</span><br><span class="line">						vis[tx][ty][t.f]=<span class="number">1</span>;</span><br><span class="line">						vis2[tx][ty]=<span class="number">1</span>;</span><br><span class="line">						q.push(node(tx,ty,t.f));</span><br><span class="line">					&#125;<span class="keyword">else</span> <span class="keyword">if</span>(vis2[tx][ty]==<span class="number">2</span>)&#123;</span><br><span class="line">						<span class="keyword">int</span> _min=INF;</span><br><span class="line">						fi(j,<span class="number">0</span>,<span class="number">4</span>)&#123;</span><br><span class="line">							<span class="keyword">if</span>(len[tx][ty][j])&#123;</span><br><span class="line">								<span class="keyword">int</span> tmp;</span><br><span class="line">								<span class="keyword">if</span>(t.f==awr[j]) tmp=<span class="number">0</span>;</span><br><span class="line">								<span class="keyword">else</span> <span class="keyword">if</span>((t.f - <span class="number">1</span> +<span class="number">4</span>)%<span class="number">4</span> == awr[j] ||(t.f + <span class="number">1</span> +<span class="number">4</span>)%<span class="number">4</span> == awr[j]) tmp=<span class="number">1</span>;</span><br><span class="line">								<span class="keyword">else</span> tmp=<span class="number">2</span>;</span><br><span class="line">								<span class="keyword">if</span>(_min &gt; len[tx][ty][j] + len[t.x][t.y][t.f]+<span class="number">1</span> + tmp)</span><br><span class="line">									_min=len[tx][ty][j] + len[t.x][t.y][t.f] +<span class="number">1</span>+ tmp;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">return</span> _min;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(!vis[t.x][t.y][(t.f<span class="number">-1</span>+<span class="number">4</span>)%<span class="number">4</span>])&#123;</span><br><span class="line">				<span class="keyword">int</span> k=(t.f<span class="number">-1</span>+<span class="number">4</span>)%<span class="number">4</span>;</span><br><span class="line">				q.push(node(t.x,t.y,k)); <span class="comment">//left</span></span><br><span class="line">				vis[t.x][t.y][k]=<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">if</span>(len[t.x][t.y][k]&gt;len[t.x][t.y][t.f] + <span class="number">1</span> || len[t.x][t.y][k]==<span class="number">0</span>)</span><br><span class="line">					len[t.x][t.y][k] = len[t.x][t.y][t.f] + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(!vis[t.x][t.y][(t.f+<span class="number">1</span>+<span class="number">4</span>)%<span class="number">4</span>])&#123;</span><br><span class="line">				<span class="keyword">int</span> k=(t.f+<span class="number">1</span>+<span class="number">4</span>)%<span class="number">4</span>;</span><br><span class="line">				q.push(node(t.x,t.y,k)); <span class="comment">//right</span></span><br><span class="line">				vis[t.x][t.y][k]=<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">if</span>(len[t.x][t.y][k]&gt;len[t.x][t.y][t.f] + <span class="number">1</span> || len[t.x][t.y][k]==<span class="number">0</span> )</span><br><span class="line">					len[t.x][t.y][k] = len[t.x][t.y][t.f] + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(!h.empty())&#123;</span><br><span class="line">			node t= h.front();</span><br><span class="line">			h.pop();</span><br><span class="line">			fi(i,<span class="number">1</span>,<span class="number">3</span>+<span class="number">1</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span>(judge2(t.x,t.y,t.f,i))&#123;</span><br><span class="line">					<span class="keyword">int</span> tx=t.x+aw[t.f][<span class="number">0</span>],ty=t.y+aw[t.f][<span class="number">1</span>];</span><br><span class="line">					fi(j,<span class="number">1</span>,i)&#123;</span><br><span class="line">						tx = tx + aw[t.f][<span class="number">0</span>];</span><br><span class="line">						ty = ty + aw[t.f][<span class="number">1</span>];</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">if</span>(vis2[tx][ty]==<span class="number">0</span>)&#123;</span><br><span class="line">						<span class="keyword">if</span>(len[tx][ty][t.f]&gt;len[t.x][t.y][t.f] + <span class="number">1</span> || len[tx][ty][t.f]==<span class="number">0</span> )</span><br><span class="line">							len[tx][ty][t.f]=len[t.x][t.y][t.f] + <span class="number">1</span>;</span><br><span class="line">						vis[tx][ty][t.f]=<span class="number">1</span>;</span><br><span class="line">						vis2[tx][ty]=<span class="number">2</span>;</span><br><span class="line">						h.push(node(tx,ty,t.f));</span><br><span class="line">					&#125;<span class="keyword">else</span> <span class="keyword">if</span>(vis2[tx][ty]==<span class="number">1</span>)&#123;</span><br><span class="line">						<span class="keyword">int</span> _min=INF;</span><br><span class="line">						fi(j,<span class="number">0</span>,<span class="number">4</span>)&#123;</span><br><span class="line">							<span class="keyword">if</span>(len[tx][ty][j])&#123;</span><br><span class="line">								<span class="keyword">int</span> tmp;</span><br><span class="line">								<span class="keyword">if</span>(t.f==awr[j]) tmp=<span class="number">0</span>;</span><br><span class="line">								<span class="keyword">else</span> <span class="keyword">if</span>((t.f - <span class="number">1</span> +<span class="number">4</span>)%<span class="number">4</span> == awr[j] ||(t.f + <span class="number">1</span> +<span class="number">4</span>)%<span class="number">4</span> == awr[j]) tmp=<span class="number">1</span>;</span><br><span class="line">								<span class="keyword">else</span> tmp=<span class="number">2</span>;</span><br><span class="line">								<span class="keyword">if</span>(_min &gt; len[tx][ty][j] + len[t.x][t.y][t.f] + <span class="number">1</span>+tmp)</span><br><span class="line">									_min=len[tx][ty][j] + len[t.x][t.y][t.f]+<span class="number">1</span>+ tmp;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">						<span class="keyword">return</span> _min;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(!vis[t.x][t.y][(t.f<span class="number">-1</span>+<span class="number">4</span>)%<span class="number">4</span>])&#123;</span><br><span class="line">				<span class="keyword">int</span> k=(t.f<span class="number">-1</span>+<span class="number">4</span>)%<span class="number">4</span>;</span><br><span class="line">				h.push(node(t.x,t.y,k)); <span class="comment">//left</span></span><br><span class="line">				vis[t.x][t.y][k]=<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">if</span>(len[t.x][t.y][k]&gt;len[t.x][t.y][t.f] + <span class="number">1</span> || len[t.x][t.y][k]==<span class="number">0</span>)</span><br><span class="line">					len[t.x][t.y][k] = len[t.x][t.y][t.f] + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(!vis[t.x][t.y][(t.f+<span class="number">1</span>+<span class="number">4</span>)%<span class="number">4</span>])&#123;</span><br><span class="line">				<span class="keyword">int</span> k=(t.f+<span class="number">1</span>+<span class="number">4</span>)%<span class="number">4</span>;</span><br><span class="line">				h.push(node(t.x,t.y,k)); <span class="comment">//right</span></span><br><span class="line">				vis[t.x][t.y][k]=<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">if</span>(len[t.x][t.y][k]&gt;len[t.x][t.y][t.f] + <span class="number">1</span> || len[t.x][t.y][k]==<span class="number">0</span> )</span><br><span class="line">					len[t.x][t.y][k] = len[t.x][t.y][t.f] + <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("in","r",stdin);</span></span><br><span class="line">	sf(n);sf(m);</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>)</span><br><span class="line">		fi(j,<span class="number">1</span>,m+<span class="number">1</span>)</span><br><span class="line">			sf(a[i][j]);</span><br><span class="line">	sf(sx);sf(sy);sf(fx);sf(fy);</span><br><span class="line">	getchar();</span><br><span class="line">	tf = getchar() ;</span><br><span class="line">	<span class="keyword">switch</span>(tf)&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'N'</span> : f=<span class="number">0</span> ; <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'E'</span> : f=<span class="number">1</span> ; <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'S'</span> : f=<span class="number">2</span> ; <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="string">'W'</span> : f=<span class="number">3</span> ; <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	pf(bfs(node(sx,sy,f),node(fx,fy,<span class="number">0</span>)) );<span class="comment">//-1 all aw</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/BFS/">BFS</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/02/22/洛谷p1434滑雪/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">洛谷 1434  [SHOI2002]滑雪 [ 记忆化搜索 ]</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/02/20/洛谷p1141/">
+        <span class="next-text nav-default">洛谷p1141</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/02/21/洛谷p1120/';
+        this.page.identifier = '2020/02/21/洛谷p1120/';
+        this.page.title = '洛谷p1120';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

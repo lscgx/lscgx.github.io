@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="Phoenix and Distribution"><meta name="keywords" content="贪心, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/05/02/CF1348C/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>CF1348C Phoenix and Distribution [ 贪心 ] - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">CF1348C Phoenix and Distribution [ 贪心 ]
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-05-02
+        </span><span class="post-category">
+            <a href="/categories/题解/">题解</a>
+            <a href="/categories/题解/算法/">算法</a>
+            </span>
+        <span class="post-visits" data-url="/2020/05/02/CF1348C/" data-title="CF1348C Phoenix and Distribution [ 贪心 ]">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><a href="https://codeforces.com/contest/1348/problem/C" target="_blank" rel="noopener">C. Phoenix and Distribution</a></p>
+<p>Phoenix has a string s consisting of lowercase Latin letters. He wants to distribute all the letters of his string into k <strong>non-empty</strong> strings a1,a2,…,ak such that every letter of s goes to exactly one of the strings ai. The strings ai <strong>do not</strong> need to be substrings of s. Phoenix can distribute letters of s and rearrange the letters within each string ai however he wants.</p>
+<p>For example, if s= abba and k=2, Phoenix may distribute the letters of his string in many ways, such as:</p>
+<ul>
+<li>ba and ba</li>
+<li>a and abb</li>
+<li>ab and ab</li>
+<li>aa and bb</li>
+</ul>
+<p>But these ways are invalid:</p>
+<ul>
+<li>baa and ba</li>
+<li>b and ba</li>
+<li>baba and empty string (ai should be non-empty)</li>
+</ul>
+<p>Phoenix wants to distribute the letters of his string s into k strings a1,a2,…,ak to <strong>minimize</strong> the lexicographically maximum string among them, i. e. minimize max(a1,a2,…,ak). Help him find the optimal distribution and print the minimal possible value of max(a1,a2,…,ak).</p>
+<p>String x is lexicographically less than string y if either x is a prefix of y and x≠y, or there exists an index i (1≤i≤min(|x|,|y|)) such that xi &lt; yi and for every j (1≤j&lt;i) xj=yj. Here |x|denotes the length of the string x.</p>
+<p><strong>题意：</strong> 将一组字符方程 k 份，使得字典序最大的一组最小。</p>
+<blockquote>
+<p>可以观察到：</p>
+<p>1、k 组的首字母应当最小，如果 k 组首字母有不同的。那么最大值就这个较大的字母，因为可以把其他所有字母加到别的组后面，并且不会比它大。</p>
+<p>2、较大的字母应当放到末尾，且长度越大越好。</p>
+<p>3、如果有两串字符相同，</p>
+<ul>
+<li>剩余未分配的字符相同，那么平均分到两组上面，是最优的</li>
+<li>剩余未分配的字符不相同，显然只分配给一组是最优的，因为可以使得较大的字母位置更靠后。</li>
+</ul>
+<p>所以，可以这样贪心：</p>
+<p>先从小到大排序，然后分配首字母，如果有不同的，直接输出最大的字母即可。</p>
+<p>然后，后续分配只在当前所有字母加起来相等的组上分配，并且更新组数。</p>
+<p>分配的时候，如果后续字母相同，则可以分配到各个相等的组上，否则只分配到第一组上。</p>
+<p>最后，答案就是第一组。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> t,n,k,l,cnt;</span><br><span class="line"><span class="keyword">char</span> a[MAX];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt; res[MAX];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//freopen("in","r",stdin);</span></span><br><span class="line">	sf(t);</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		sf(n);sf(k);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>,a);</span><br><span class="line">		l = <span class="built_in">strlen</span>(a);</span><br><span class="line">		sort(a,a+l);</span><br><span class="line">		fi(i,<span class="number">0</span>,k) res[i].clear();</span><br><span class="line">		fi(i,<span class="number">0</span>,k) res[i].pb(a[i]);</span><br><span class="line">		<span class="keyword">if</span>(res[k<span class="number">-1</span>][<span class="number">0</span>] != res[<span class="number">0</span>][<span class="number">0</span>])&#123;</span><br><span class="line">			<span class="built_in">putchar</span>(res[k<span class="number">-1</span>][<span class="number">0</span>]);</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">""</span>); <span class="keyword">continue</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> j = k,cnt=k;</span><br><span class="line">		<span class="keyword">while</span>(j&lt;l)&#123;</span><br><span class="line">			fi(i,<span class="number">0</span>,cnt)&#123;</span><br><span class="line">				<span class="keyword">if</span>(j&gt;=l) <span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">if</span>(!i) res[i].pb(a[j++]);</span><br><span class="line">				<span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">if</span>(a[j] == a[j<span class="number">-1</span>] &amp;&amp; a[j] == a[l<span class="number">-1</span>] )&#123;</span><br><span class="line">						res[i].pb(a[j]);</span><br><span class="line">						j++;</span><br><span class="line">					&#125;<span class="keyword">else</span> cnt = i;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		fi(j,<span class="number">0</span>,res[<span class="number">0</span>].size())&#123;</span><br><span class="line">			<span class="built_in">putchar</span>(res[<span class="number">0</span>][j]);</span><br><span class="line">		&#125;</span><br><span class="line">		pfc(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/贪心/">贪心</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/05/02/CF1348D/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">CF1348D Phoenix and Science [ 贪心+二分 ]</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/04/29/洛谷p1064/">
+        <span class="next-text nav-default">洛谷 p1064 金明的预算方案 [ dp dfs ]</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/05/02/CF1348C/';
+        this.page.identifier = '2020/05/02/CF1348C/';
+        this.page.title = 'CF1348C Phoenix and Distribution [ 贪心 ]';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

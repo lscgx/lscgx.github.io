@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="Policemen catch thieves"><meta name="keywords" content="贪心, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/01/07/Policemencatchthieves/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>Policemen catch thieves - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">Policemen catch thieves
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-01-07
+        </span><span class="post-category">
+            <a href="/categories/算法/">算法</a>
+            </span>
+        <span class="post-visits" data-url="/2020/01/07/Policemencatchthieves/" data-title="Policemen catch thieves">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><a href="https://www.geeksforgeeks.org/policemen-catch-thieves/" target="_blank" rel="noopener">https://www.geeksforgeeks.org/policemen-catch-thieves/</a><br>Given an array of size n that has the following specifications:</p>
+<ol>
+<li>Each element in the array contains either a policeman or a thief.</li>
+<li>Each policeman can catch only one thief.</li>
+<li>A policeman cannot catch a thief who is more than K units away from the policeman.</li>
+</ol>
+<p>We need to find the maximum number of thieves that can be caught.</p>
+<blockquote>
+<p>Examples:<br>Input : arr[] = {‘P’, ‘T’, ‘T’, ‘P’, ‘T’},<br>            k = 1.<br>Output : 2.<br>Here maximum 2 thieves can be caught, first<br>policeman catches first thief and second police-<br>man can catch either second or third thief.<br>Input : arr[] = {‘T’, ‘T’, ‘P’, ‘P’, ‘T’, ‘P’},<br>            k = 2.<br>Output : 3.<br>Input : arr[] = {‘P’, ‘T’, ‘P’, ‘T’, ‘T’, ‘P’},<br>            k = 3.<br>Output : 3.</p>
+</blockquote>
+<blockquote>
+<p><strong>focusing on just the allotment works</strong><br>1) Get the lowest index of policeman p and thief t. Make an allotment<br>  if |p-t| &lt;= k and increment to the next p and t found.<br>2) Otherwise increment min(p, t) to the next p or t found.<br>3) Repeat above two steps until next p and t are found.<br>4) Return the number of allotments made </p>
+</blockquote>
+<blockquote>
+<p>分析：考虑 P1 P2 , P1 在 P2 之前，如果 P1 与 一个 T  配对。<br>1）如果 T 在 P2 左侧区域 ，两种结果：<br>P2 左侧无 T 可选，此 T 更适合 P1 （即使选择 P2 对结果不造成影响）；P2 有 T 可选 ，P1 对 P2 不造成影响；<br>2）如果 T 在 P2 右侧，造成 P2 无 T 可选， 则选 P1 or P2 等同；若 P2 可选 则不影响； </p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Returns maximum number of thieves that can </span></span><br><span class="line"><span class="comment">// be caught. </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">policeThief</span><span class="params">(<span class="keyword">char</span> arr[], <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>; </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; thi; </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pol; </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// store indices in the vector </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123; </span><br><span class="line">        <span class="keyword">if</span> (arr[i] == <span class="string">'P'</span>) </span><br><span class="line">            pol.push_back(i); </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (arr[i] == <span class="string">'T'</span>) </span><br><span class="line">            thi.push_back(i); </span><br><span class="line">    &#125;    </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// track lowest current indices of </span></span><br><span class="line">    <span class="comment">// thief: thi[l], police: pol[r] </span></span><br><span class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = <span class="number">0</span>; </span><br><span class="line">    <span class="keyword">while</span> (l &lt; thi.size() &amp;&amp; r &lt; pol.size()) &#123; </span><br><span class="line">  </span><br><span class="line">        <span class="comment">// can be caught </span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">abs</span>(thi[l] - pol[r]) &lt;= k) &#123; </span><br><span class="line">            res++; </span><br><span class="line">            l++; </span><br><span class="line">            r++; </span><br><span class="line">        &#125; </span><br><span class="line">  </span><br><span class="line">        <span class="comment">// increment the minimum index </span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (thi[l] &lt; pol[r]) </span><br><span class="line">            l++; </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            r++; </span><br><span class="line">    &#125; </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> res; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/贪心/">贪心</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/01/08/MinimumSwapsforBracketBalancing/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Minimum Swaps for Bracket Balancing</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/01/07/huffmancodes/">
+        <span class="next-text nav-default">huffmancodes</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/01/07/Policemencatchthieves/';
+        this.page.identifier = '2020/01/07/Policemencatchthieves/';
+        this.page.title = 'Policemen catch thieves';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

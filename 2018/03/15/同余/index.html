@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="求日期的星期数？？"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2018/03/15/同余/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>同余 - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">同余
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-03-15
+        </span><span class="post-category">
+            <a href="/categories/数论/">数论</a>
+            </span>
+        <span class="post-visits" data-url="/2018/03/15/同余/" data-title="同余">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><h3 id="日期的星期数"><a href="#日期的星期数" class="headerlink" title="日期的星期数"></a>日期的星期数</h3><h4 id="闰年？"><a href="#闰年？" class="headerlink" title="闰年？"></a>闰年？</h4><blockquote>
+<p>被4整除，世纪数被4整除。闰年366天，2月29天。</p>
+</blockquote>
+<h4 id="y年m月d日，星期数？"><a href="#y年m月d日，星期数？" class="headerlink" title="y年m月d日，星期数？"></a>y年m月d日，星期数？</h4><p>用C 代表世纪数，0~6代表星期几。<br>为计算方便从3月1日开始计算，相当于把3月看成1月。现在y年m月d日变为Y年M月D日，有如下关系：<br>$$M=(m-3)mod12+1$$<br>$$Y=y-\lfloor m/11 \rfloor$$<br>由于$365\equiv 1(mod7)$,3月1日的星期数每过一个平年+1,每过一个闰年+2，设1600年3月1日的星期数为$w_{1600}$，y年3月1日(Y年3月1日)的星期数为$w_{Y}$，设y=Y=100C+X,从1600年到 Y 年要经过100C+X-1600年，星期数应加：<br>$$100C+X-1600\equiv 2C+X-3(mod 7)$$<br>每4年有一个闰年，有<br>$$\lfloor(100C+X-1600)/4\rfloor=25C+ \lfloor X/4\rfloor-400$$<br>个闰年，考虑到世纪年，应从这个数中减去C-16,再加$\lfloor  (C-16)/4\rfloor= \lfloor C/4\rfloor-4$。因此：<br>$$w_Y\equiv  w_{1600}+(2C+X+3)+(25C+\lfloor X/4\rfloor-400)-(C-16)+(\lfloor C/4\rfloor-4)$$<br>$$\equiv w_{1600}-2C+X +\lfloor X/4\rfloor +\lfloor C/4\rfloor(mod7)$$<br>已知2004年3月1日是星期一，代入上式，<br>$$1\equiv w_{1600}-2\times30+4+\lfloor 4/4\rfloor+\lfloor 20/4\rfloor\equiv w_{1600}+5(mod7)$$<br>得$w_{1600}=3$,于是，得到<br>$$w_Y\equiv 3-2C +X+\lfloor X/4\rfloor+\lfloor C/4\rfloor(mod7) \tag{1}$$<br>接下来计算从当年3月1日到每个月1号的天数，除每个月+30天外，3、5、7、8、10、12、1月有31天，应另外加的天数 z 如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">M</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">7</th>
+<th style="text-align:center">8</th>
+<th style="text-align:center">9</th>
+<th style="text-align:center">10</th>
+<th style="text-align:center">11</th>
+<th style="text-align:center">12</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">z</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+</tr>
+</tbody>
+</table>
+<p>z 可表示成<br>$$z=\left{<br>\begin{array}{lcl}<br>\lfloor M/2\rfloor      &amp;      &amp; {1 \leqslant M \leqslant 6}\<br>\lfloor (M+1)/2\rfloor    &amp;      &amp; {7 \leqslant M \leqslant 11}\<br>\lfloor (M+1)/2\rfloor +1    &amp;      &amp; {M=12}\<br>\end{array} \right.$$<br>$$ =\lfloor (M+\lfloor M/7\rfloor)/2\rfloor+\lfloor M/12\rfloor  $$<br>因此，M月d日应在 $w_Y$ 上加<br>$$30(M-1)+\lfloor (M+\lfloor M/7 \rfloor)/2\rfloor +\lfloor M/12 \rfloor+d-1$$<br>$$=2M+\lfloor (M+\lfloor M/7 \rfloor)/2\rfloor+\lfloor M/12 \rfloor+d-3(mod 7) \tag{2}$$<br>最后将 (1)(2)两式合并，得到y年m月d日的星期数计算公式如下：<br>$$w\equiv  X+\lfloor X/4\rfloor+\lfloor C/4\rfloor-2C+2M+\lfloor (M+\lfloor M/7 \rfloor)/2\rfloor+\lfloor M/12 \rfloor+d(mod7)$$<br>其中 $M=(m-3)mod12+1,Y=y-\lfloor M/11\rfloor=100C+X$<br>例如，中华人民共和国成立月1949年10月1日，C=19,X=49,M=8,d=1<br>$$w\equiv 49+\lfloor 49/4\rfloor+\lfloor 19/4\rfloor-2 \times19+2 \times 8+\lfloor (8+\lfloor 8/7\rfloor)/2\rfloor +\lfloor 8/12\rfloor+1 \equiv 6(mod7)$$</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li>《离散数学》</li>
+</ol>
+
+      </div>
+      
+      <footer class="post-footer">
+        
+        <nav class="post-nav"><a class="prev" href="/2018/03/28/Spring-boot-TestRestTemplate/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">spring-boot:TestRestTemplate、RestTemplate</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2018/03/01/递归-排序/">
+        <span class="next-text nav-default">递归-排序</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2018/03/15/同余/';
+        this.page.identifier = '2018/03/15/同余/';
+        this.page.title = '同余';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

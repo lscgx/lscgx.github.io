@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="钓鱼"><meta name="keywords" content="贪心, 动态规划, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/04/02/洛谷p1717/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>洛谷 p1717 钓鱼 [ dp 贪心 ] - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">洛谷 p1717 钓鱼 [ dp 贪心 ]
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-04-02
+        </span><span class="post-category">
+            <a href="/categories/题解/">题解</a>
+            <a href="/categories/题解/算法/">算法</a>
+            </span>
+        <span class="post-visits" data-url="/2020/04/02/洛谷p1717/" data-title="洛谷 p1717 钓鱼 [ dp 贪心 ]">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><a href="https://www.luogu.com.cn/problem/P1717" target="_blank" rel="noopener">P1717 钓鱼</a></p>
+<p><strong>题目描述</strong></p>
+<p>话说发源于小朋友精心设计的游戏被电脑组的童鞋们藐杀之后非常不爽，为了表示安慰和鼓励，VIP999 决定请他吃一次“年年大丰收”，为了表示诚意，他还决定亲自去钓鱼。</p>
+<p>但是，因为还要准备 NOIP2013, z老师只给了他 H<em> 个小时的空余时间，假设有 </em>n* 个鱼塘都在一条水平路边，从左边到右编号为 1, 2, 3 .. n 。</p>
+<p>VIP是个很讲究效率的孩子，他希望用这些时间钓到尽量多的鱼。他从湖1出发，向右走，有选择的在一些湖边停留一定的时间钓鱼，最后在某一个湖边结束钓鱼。他测出从第 i<em> 个湖到 i+1个湖需要走 5×</em>t_i* 分钟的路，还测出在第 i 个湖边停留，第一个5分钟可以钓到鱼 f_i，以后再每钓5分钟鱼，鱼量减少 d_i。为了简化问题，他假定没有其他人钓鱼，也不会有其他因素影响他钓到期望数量的鱼。请编程求出能钓最多鱼的数量。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行：湖的数量n。</p>
+<p>第二行：时间h（小时）。</p>
+<p>第三行：n个数，<em>f</em>1，f<em>2，… fn</em>。</p>
+<p>第四行：n个数，d<em>1，d</em>2，….d<em>n</em>。</p>
+<p>第五行：n-1个数，t<em>1，t</em>2，….t<em>n</em>−1</p>
+<p><strong>输出格式</strong></p>
+<p>一个数，所能钓鱼的最大数量。</p>
+<p><strong>输入输出样例</strong></p>
+<p><strong>输入 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">1</span><br><span class="line">10  1</span><br><span class="line">2  5</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<p><strong>输出 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">31</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>dp:</strong> $d[i][j]$ 表示前 i 个鱼塘花费 j 时间的最大收获。</p>
+<p>$dp[i][j] = max(dp[i][j] ,dp[i-1][j - k - t[i-1]] + k<em>f[i] - k</em>(k-1)/2 * d[i]);$</p>
+<p><strong>贪心：</strong> 直觉上，应该选择单位时间收获最大的鱼塘 x 先钓鱼，等到单位时间收获变小时，再考虑其他鱼塘。但是鱼塘之间转移有额外的代价。如果鱼塘 x 在最末尾，光是到达 x 就要花费很大的代价，显然这样贪心是不行的。如果，末尾是固定的呢？就是说花费在路程上的时间是固定（走回头路显然不合理），问题就转化为，n 个鱼塘，每个鱼塘每分钟的产鱼量递减，求 h 分钟内的最大产量，这样，只要选每分钟最大产量那个鱼塘。这样又有一个问题：如果每分钟最大产量的那个鱼塘都不同，就要来回转移。这里要用到一个“瞬移”的技巧 ，因为每个鱼塘的产鱼量是连续递减，所以这是可行的。最后呈现的效果就是，在一个鱼塘连续钓 t 分钟，然后再去往下一个鱼塘。</p>
+<p>具体就是： 枚举最末尾的鱼塘，减去路程，剩余时间 h’ , 用优先队列维护每分钟最大产量，花光 h’ 为止。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">25</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,h,cnt,ans;</span><br><span class="line"><span class="keyword">int</span> f[MAX],d[MAX],t[MAX],tt[MAX],dp[MAX][<span class="number">200</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	sf(n);sf(h);</span><br><span class="line">	h = h * <span class="number">60</span> /<span class="number">5</span>;</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>) sf(f[i]);</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>) sf(d[i]);</span><br><span class="line">	fi(i,<span class="number">1</span>,n) sf(t[i]);</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>)&#123; <span class="comment">//到达i点至少需要的时间 </span></span><br><span class="line">		tt[i] = tt[i<span class="number">-1</span>] + t[i<span class="number">-1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>)</span><br><span class="line">		fi(j,tt[i],h+<span class="number">1</span>)</span><br><span class="line">			fi(k,<span class="number">0</span>,j-t[i<span class="number">-1</span>]+<span class="number">1</span>) <span class="keyword">if</span>( j - k - t[i<span class="number">-1</span>]&gt;=<span class="number">0</span> &amp;&amp; (k<span class="number">-1</span>)*d[i]&lt;f[i])&#123;</span><br><span class="line">				dp[i][j] = max(dp[i][j] ,dp[i<span class="number">-1</span>][j - k - t[i<span class="number">-1</span>]] + k*f[i] - k*(k<span class="number">-1</span>)/<span class="number">2</span> * d[i]);</span><br><span class="line">				ans = max(ans,dp[i][j]);</span><br><span class="line">			&#125;</span><br><span class="line">	pf(ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/贪心/">贪心</a>
+            <a href="/tags/动态规划/">动态规划</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/04/02/小镇购物/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">小镇购物 [ bfs ]</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/03/31/UVA10859/">
+        <span class="next-text nav-default">UVA 10859 [ 树形dp ]</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/04/02/洛谷p1717/';
+        this.page.identifier = '2020/04/02/洛谷p1717/';
+        this.page.title = '洛谷 p1717 钓鱼 [ dp 贪心 ]';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

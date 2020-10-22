@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="CF1365D Solve The Maze"><meta name="keywords" content="dfs, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/09/26/CF1365D/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>CF1365D Solve The Maze [ dfs ] - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">CF1365D Solve The Maze [ dfs ]
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-09-26
+        </span><span class="post-category">
+            <a href="/categories/算法/">算法</a>
+            <a href="/categories/算法/题解/">题解</a>
+            </span>
+        <span class="post-visits" data-url="/2020/09/26/CF1365D/" data-title="CF1365D Solve The Maze [ dfs ]">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><a href="https://codeforces.com/contest/1365/problem/D" target="_blank" rel="noopener">CF1365D Solve The Maze </a></p>
+<p>Vivek has encountered a problem. He has a maze that can be represented as an n×m grid. Each of the grid cells may represent the following:</p>
+<ul>
+<li>Empty — ‘.’</li>
+<li>Wall — ‘#’</li>
+<li>Good person  — ‘G’</li>
+<li>Bad person — ‘B’</li>
+</ul>
+<p>The only escape from the maze is at cell (n,m)(n,m).</p>
+<p>A person can move to a cell only if it shares a side with their current cell and does not contain a wall. Vivek wants to block some of the empty cells by replacing them with walls in such a way, that all the good people are able to escape, while none of the bad people are able to. A cell that initially contains ‘G’ or ‘B’ <strong>cannot be blocked</strong> and <strong>can be travelled through</strong>.</p>
+<p>Help him determine if there exists a way to replace some (zero or more) empty cells with walls to satisfy the above conditions.</p>
+<p><strong>It is guaranteed that the cell (n,m) is empty.</strong> Vivek can also block this cell.</p>
+<p>Input</p>
+<p>The first line contains one integer t (1≤t≤100) — the number of test cases. The description of the test cases follows.</p>
+<p>The first line of each test case contains two integers n, m (1≤n,m≤50)— the number of rows and columns in the maze.</p>
+<p>Each of the next n lines contain mm characters. They describe the layout of the maze. If a character on a line equals ‘.’, the corresponding cell is empty. If it equals ‘#’, the cell has a wall. ‘G’ corresponds to a good person and ‘B’ corresponds to a bad person.</p>
+<p>Output</p>
+<p>For each test case, print “Yes” if there exists a way to replace some empty cells with walls to satisfy the given conditions. Otherwise print “No”</p>
+<p>You may print every letter in any case (upper or lower).</p>
+<p>Example</p>
+<p>input</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">6</span><br><span class="line">1 1</span><br><span class="line">.</span><br><span class="line">1 2</span><br><span class="line">G.</span><br><span class="line">2 2</span><br><span class="line">#B</span><br><span class="line">G.</span><br><span class="line">2 3</span><br><span class="line">G.#</span><br><span class="line">B#.</span><br><span class="line">3 3</span><br><span class="line">#B.</span><br><span class="line">#..</span><br><span class="line">GG.</span><br><span class="line">2 2</span><br><span class="line">#B</span><br><span class="line">B.</span><br></pre></td></tr></table></figure>
+<p>output</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Yes</span><br><span class="line">Yes</span><br><span class="line">No</span><br><span class="line">No</span><br><span class="line">Yes</span><br><span class="line">Yes</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>题意：一个网格上有好人有坏人，放置一些墙，使得只有好人能到达 （n,m）</p>
+<p>可以观察到：</p>
+<p>1、好人G 到达终点的路径上不能出现坏人 B, 显然。</p>
+<p>2、坏人旁边不能有好人</p>
+<p>所以可以这样处理：</p>
+<p>1、先判断所有的好人是否可以不经过坏人到达终点，不可以则输出 “NO”。</p>
+<p>2、然后处理所有坏人，将每一个坏人周围为 “.” 的全改为 “#” ，“B” 不处理，但是如果有 “G” 则不可行。因为经过上一步的处理，所有的好人都是不经过坏人到达终点的，所以此坏人B也是可以到达终点。</p>
+<p>3、再次判断是否所有的好人能否都到达终点。</p>
+<p>需要优化的地方是: 对于已经判断可以到达的点，后续再次经过时，可直接跳出。另 dfs 也需即时跳出。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">50</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> t,n,m,gx[<span class="number">3000</span>],gy[<span class="number">3000</span>],bx[<span class="number">3000</span>],by[<span class="number">3000</span>],gl,bl;</span><br><span class="line"><span class="keyword">int</span> vis[MAX][MAX],rev[MAX][MAX];</span><br><span class="line"><span class="keyword">int</span> aw[<span class="number">4</span>][<span class="number">2</span>]=&#123;<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">-1</span>&#125;,ok=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">char</span> a[MAX][MAX];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x&lt;<span class="number">1</span>||x&gt;n||y&lt;<span class="number">1</span>||y&gt;m) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ok) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span>(x==n &amp;&amp; y==m) &#123;</span><br><span class="line">		ok = <span class="number">1</span>;	<span class="keyword">return</span>;	</span><br><span class="line">	&#125;</span><br><span class="line">	fi(i,<span class="number">0</span>,<span class="number">4</span>)&#123;</span><br><span class="line">		<span class="keyword">int</span> tx = x + aw[i][<span class="number">0</span>],ty = y + aw[i][<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">if</span>(judge(tx,ty) &amp;&amp; vis[tx][ty] != key&amp;&amp;a[tx][ty]!=<span class="string">'#'</span>&amp;&amp;a[tx][ty]!=<span class="string">'B'</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(rev[tx][ty]) &#123;</span><br><span class="line">				ok =<span class="number">1</span> ;<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			vis[tx][ty]=key; </span><br><span class="line">			dfs(tx,ty,key);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("in","r",stdin);</span></span><br><span class="line">	sf(t);</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		sf(n);sf(m);</span><br><span class="line">		fi(i,<span class="number">1</span>,n+<span class="number">1</span>) <span class="built_in">scanf</span>(<span class="string">"%s"</span>,a[i]+<span class="number">1</span>);</span><br><span class="line">		gl=bl=<span class="number">0</span>;</span><br><span class="line">		fi(i,<span class="number">1</span>,n+<span class="number">1</span>)</span><br><span class="line">			fi(j,<span class="number">1</span>,m+<span class="number">1</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span>(a[i][j]==<span class="string">'G'</span>) &#123;</span><br><span class="line">					gx[gl] = i; gy[gl++] = j;</span><br><span class="line">				&#125;<span class="keyword">else</span> <span class="keyword">if</span>(a[i][j]==<span class="string">'B'</span>)&#123;</span><br><span class="line">					bx[bl] = i;by[bl++] = j;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; </span><br><span class="line">		<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">		mem(vis,<span class="number">0</span>);mem(rev,<span class="number">0</span>);</span><br><span class="line">		fi(i,<span class="number">0</span>,gl)&#123;</span><br><span class="line">			ok=<span class="number">0</span>;</span><br><span class="line">			dfs(gx[i],gy[i],i+<span class="number">1</span>);</span><br><span class="line">			<span class="keyword">if</span>(ok) &#123;</span><br><span class="line">				cnt++;rev[gx[i]][gy[i]] = <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(cnt!=gl)&#123;</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">"NO"</span>);<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(bl==<span class="number">0</span>)&#123;</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">"YES"</span>);<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		ok =<span class="number">1</span>;</span><br><span class="line">		fi(i,<span class="number">0</span>,bl)&#123;</span><br><span class="line">			ok = <span class="number">1</span>;</span><br><span class="line">			fi(j,<span class="number">0</span>,<span class="number">4</span>)&#123;</span><br><span class="line">				<span class="keyword">int</span> tx = bx[i] + aw[j][<span class="number">0</span>],ty = by[i] + aw[j][<span class="number">1</span>];</span><br><span class="line">				<span class="keyword">if</span>(judge(tx,ty) )&#123;</span><br><span class="line">					<span class="keyword">if</span>(a[tx][ty]==<span class="string">'.'</span>) a[tx][ty] = <span class="string">'#'</span>;</span><br><span class="line">					<span class="keyword">else</span> <span class="keyword">if</span>(a[tx][ty]==<span class="string">'G'</span>)&#123;</span><br><span class="line">						ok =<span class="number">0</span> ;<span class="keyword">break</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(!ok) <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(!ok) &#123;</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">"NO"</span>);<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		cnt=<span class="number">0</span>;</span><br><span class="line">		mem(vis,<span class="number">0</span>);mem(rev,<span class="number">0</span>);</span><br><span class="line">		fi(i,<span class="number">0</span>,gl)&#123;</span><br><span class="line">			ok=<span class="number">0</span>;</span><br><span class="line">			dfs(gx[i],gy[i],i+<span class="number">1</span>);</span><br><span class="line">			<span class="keyword">if</span>(ok) &#123;cnt++;rev[gx[i]][gy[i]] = <span class="number">1</span>;&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(cnt!=gl)&#123;</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">"NO"</span>);<span class="keyword">continue</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"YES"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/dfs/">dfs</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/10/22/CF1433F/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">CF1433F F. Zero Remainder Sum [dp]</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/09/26/CF1339D/">
+        <span class="next-text nav-default">CF1339D Edge Weight Assignment [ 构造贪心 ]</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/09/26/CF1365D/';
+        this.page.identifier = '2020/09/26/CF1365D/';
+        this.page.title = 'CF1365D Solve The Maze [ dfs ]';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="洛谷 p1921 万圣节农场"><meta name="keywords" content="图论, tarjan, 记忆化搜索, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/02/25/洛谷p1921万圣节农场/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>洛谷 p1921 万圣节农场 [ tarjan 记忆化搜索 ] - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">洛谷 p1921 万圣节农场 [ tarjan 记忆化搜索 ]
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-02-25
+        </span><span class="post-category">
+            <a href="/categories/算法/">算法</a>
+            <a href="/categories/算法/题解/">题解</a>
+            </span>
+        <span class="post-visits" data-url="/2020/02/25/洛谷p1921万圣节农场/" data-title="洛谷 p1921 万圣节农场 [ tarjan 记忆化搜索 ]">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><a href="https://www.luogu.com.cn/problem/P2921" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P2921</a></p>
+<p><strong>题目描述</strong></p>
+<p>每年，在威斯康星州，奶牛们都会穿上衣服，收集农夫约翰在N(1&lt;=N&lt;=100，000)个牛棚隔间中留下的糖果，以此来庆祝美国秋天的万圣节。</p>
+<p>由于牛棚不太大，FJ 通过指定奶牛必须遵循的穿越路线来确保奶牛的乐趣。为了实现这个让奶牛在牛棚里来回穿梭的方案，FJ 在第 i 号隔间上张贴了一个“下一个隔间”Next_i(1&lt;=Next_i&lt;=N)，告诉奶牛要去的下一个隔间；这样，为了收集它们的糖果，奶牛就会在牛棚里来回穿梭了。</p>
+<p>FJ 命令奶牛i应该从i号隔间开始收集糖果。如果一只奶牛回到某一个她已经去过的隔间，她就会停止收集糖果。</p>
+<p>在被迫停止收集糖果之前，计算一下每头奶牛要前往的隔间数（包含起点）。</p>
+<p><strong>输出格式</strong></p>
+<p>第1行 整数n。</p>
+<p>第2行到n+1行 每行包含一个整数 next_i 。</p>
+<p><strong>输出格式</strong></p>
+<p>n行，第i行包含一个整数，表示第i只奶牛要前往的隔间数。</p>
+<p><strong>输入输出样例</strong></p>
+<p><strong>输入 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4 </span><br><span class="line">1 </span><br><span class="line">3 </span><br><span class="line">2 </span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<p><strong>输出 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1 </span><br><span class="line">2 </span><br><span class="line">2 </span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<p><strong>样例解释</strong></p>
+<p>有4个隔间</p>
+<p>隔间1要求牛到隔间1</p>
+<p>隔间2要求牛到隔间3</p>
+<p>隔间3要求牛到隔间2</p>
+<p>隔间4要求牛到隔间3</p>
+<p>牛1，从1号隔间出发，总共访问1个隔间；</p>
+<p>牛2，从2号隔间出发，然后到三号隔间，然后到2号隔间，终止，总共访问2个隔间；</p>
+<p>牛3，从3号隔间出发，然后到2号隔间，然后到3号隔间，终止，总共访问2个隔间；</p>
+<p>牛4，从4号隔间出发，然后到3号隔间，然后到2号隔间，然后到3号隔间，终止，总共访问3个隔间。</p>
+<p>翻译提供者：吃葡萄吐糖</p>
+<blockquote>
+<p>先用 tarjan 找出所有的强连通分量 ( 包括强连通分量的大小 )，然后再跑一边 dfs</p>
+<p>搜索的时候，如果 u, v 不在一个圈内，则 ans [ u ] = 1  + ans[ v ]，需 dfs( v ) 先求出 ans[ v ] ; 否则两者相等，直接返回结果。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100000</span>+<span class="number">10</span>; </span><br><span class="line"><span class="keyword">int</span> n,next[MAX],ans[MAX];</span><br><span class="line"><span class="keyword">int</span> Low[MAX],DFN[MAX],Stack[MAX],Belong[MAX];</span><br><span class="line"><span class="keyword">int</span> ind,top;</span><br><span class="line"><span class="keyword">int</span> scc;   <span class="comment">//强连通分量的个数 </span></span><br><span class="line"><span class="keyword">bool</span> InStack[MAX];</span><br><span class="line"><span class="keyword">int</span> num[MAX];<span class="comment">//各个强连通分量包含点的个数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> fa)</span></span>&#123;</span><br><span class="line">	Low[u]=DFN[u]=++ind;</span><br><span class="line">	Stack[top++]=u;</span><br><span class="line">	InStack[u]=<span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">int</span> v=next[u];</span><br><span class="line">	<span class="keyword">if</span>(!DFN[v])&#123;</span><br><span class="line">		tarjan(v,u);</span><br><span class="line">		Low[u]=min(Low[u],Low[v]);</span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(InStack[v])&#123;</span><br><span class="line">		Low[u]=min(Low[u],DFN[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(Low[u]==DFN[u])&#123;</span><br><span class="line">		scc++;</span><br><span class="line">		<span class="keyword">do</span>&#123;</span><br><span class="line">			v=Stack[--top];</span><br><span class="line">			InStack[v]=<span class="literal">false</span>;</span><br><span class="line">			Belong[v]=scc; <span class="comment">//标记属于哪一个强连通分量</span></span><br><span class="line">			num[scc]++;</span><br><span class="line">		&#125;<span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(ans[u]) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">int</span> v=next[u];</span><br><span class="line">	<span class="keyword">if</span>(Belong[v]!=Belong[u])&#123;</span><br><span class="line">		dfs(v);</span><br><span class="line">		ans[u] = <span class="number">1</span> + ans[v];</span><br><span class="line">	&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">		ans[u] = num[Belong[u]];</span><br><span class="line">		dfs(v) ;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(DFN,<span class="number">0</span>,<span class="keyword">sizeof</span>(DFN));</span><br><span class="line">	<span class="built_in">memset</span>(InStack,<span class="literal">false</span>,<span class="keyword">sizeof</span>(InStack));</span><br><span class="line">	<span class="built_in">memset</span>(num,<span class="number">0</span>,<span class="keyword">sizeof</span>(num));</span><br><span class="line">	ind=scc=top=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">if</span>(!DFN[i])</span><br><span class="line">			tarjan(i,<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	sf(n);</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>)&#123;</span><br><span class="line">		sf(next[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	solve(n);</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span>(!ans[i])</span><br><span class="line">			dfs(i);</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>)&#123;</span><br><span class="line">		pf(ans[i]);</span><br><span class="line">		pfc(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/图论/">图论</a>
+            <a href="/tags/tarjan/">tarjan</a>
+            <a href="/tags/记忆化搜索/">记忆化搜索</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/02/26/洛谷1462通往奥格瑞玛的道路/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">洛谷 1462 通往奥格瑞玛的道路 [ 二分 + dij ]</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/02/25/洛谷p1341/">
+        <span class="next-text nav-default">洛谷 p1341 [ 欧拉回路 ]</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/02/25/洛谷p1921万圣节农场/';
+        this.page.identifier = '2020/02/25/洛谷p1921万圣节农场/';
+        this.page.title = '洛谷 p1921 万圣节农场 [ tarjan 记忆化搜索 ]';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

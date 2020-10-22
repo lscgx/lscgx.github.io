@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang>
+  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="Placing Lampposts"><meta name="keywords" content="动态规划, 树形dp, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+<link rel="canonical" href="https://lscgx.github.io/2020/03/31/UVA10859/">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114705470-1');
+</script><script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
+      appKey: "1uhkLS4uXL1oXys05sbkYR4w"
+    });
+  </script><script>
+  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
+</script>
+
+    <title>UVA 10859 [ 树形dp ] - Yzhid</title>
+  <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+    <a href="/." class="logo">Yzhid</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/about">
+        <li class="mobile-menu-item">About
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yzhid</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            Tags
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            About
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">UVA 10859 [ 树形dp ]
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-03-31
+        </span><span class="post-category">
+            <a href="/categories/题解/">题解</a>
+            <a href="/categories/题解/算法/">算法</a>
+            </span>
+        <span class="post-visits" data-url="/2020/03/31/UVA10859/" data-title="UVA 10859 [ 树形dp ]">
+          Visits 0
+        </span>
+        </div>
+    </header>
+
+    <div class="post-content"><p><a href="https://www.luogu.com.cn/problem/UVA10859" target="_blank" rel="noopener">UVA10859 Placing Lampposts</a></p>
+<p><strong>题目描述</strong></p>
+<p>给定一个<em>n</em>个点m条边的无向无环图，在尽量少的节点上放灯，使得所有边都与灯相邻（被灯照亮）。</p>
+<p>在灯的总数最小的前提下，被两盏灯同时照亮的边数应该尽可能大。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行输入T*,为数据组数。</p>
+<p>每组数据第一行输入n<em>,</em>m，分别为该组数据中图的点数和边数。</p>
+<p>以下m<em>行，输入各边的两端点</em> u<em>,</em>v。</p>
+<p><strong>输入格式</strong></p>
+<p>输出共<em>T</em>行。</p>
+<p>对每组数据，一行输出三个数，最小灯数、被两盏灯同时照亮的边数、只被一盏灯照亮的边数。</p>
+<p><strong>输入输出样例</strong></p>
+<p><strong>输入 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">4 3</span><br><span class="line">0 1</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">5 4</span><br><span class="line">0 1</span><br><span class="line">0 2</span><br><span class="line">0 3</span><br><span class="line">0 4</span><br></pre></td></tr></table></figure>
+<p><strong>输出 #1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2 1 2</span><br><span class="line">1 0 4</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>一般来说，如果有两个需要优化的量 $v_1$ 和 $v_2$ ,首先要求满足 $v_1$最小，在 $v_1$相同的情况下 $v_2$最小，则可以把二者组合成一个量  $M \times v_1+ v_2$,其中 $M$ 是一个比 “ $v_2$的最大理论值和 $v_2$的最小理论值之差”  还要大的数。这样只要两个解的 $v_1$不同， 则不管 $v_2$相差多少，都是 $v_1$起决定性作用。（抄自白书）</strong> </p>
+<p>本题 $d[i][1/0]$ 表示以$i$ 为根节点的子树，放与不放灯时的最小 $x$ ( $x= M \times v_1+ v_2$)值 ,</p>
+<p>如果父节点放灯，才允许子节点不放灯（要放灯最少所以选择不放） ，$d[i][1] =  \sum d[k][0]$   $k$ 是 $i$ 的子节点，如果 $i$  不是根 结果 +1 。</p>
+<p>如果父节点不放灯，子节点必须放灯 ，$d[i][0] =  \sum d[k][1] + M$  , 此时 如果 $i$  不是根 结果 +1 。</p>
+<p>因为 $i$  和其父节点只有一盏灯照亮。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">1000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> t,n,m,u,v,vis[MAX][<span class="number">2</span>],ans,d[MAX][<span class="number">2</span>];</span><br><span class="line">vi g[MAX];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dp</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> fa)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(vis[i][j]) <span class="keyword">return</span> d[i][j];</span><br><span class="line">	vis[i][j]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> &amp;ans = d[i][j];<span class="comment">// ans,d[i][j] "绑定"</span></span><br><span class="line">	ans =<span class="number">2000</span>;</span><br><span class="line">	fi(k,<span class="number">0</span>,g[i].size())	</span><br><span class="line">		<span class="keyword">if</span>(g[i][k]!=fa)</span><br><span class="line">			ans += dp(g[i][k],<span class="number">1</span>,i);</span><br><span class="line">	<span class="keyword">if</span>(!j &amp;&amp; fa&gt;=<span class="number">0</span>) ans ++;</span><br><span class="line">	<span class="keyword">if</span>(j||fa&lt;<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">		fi(k,<span class="number">0</span>,g[i].size())</span><br><span class="line">			<span class="keyword">if</span>(g[i][k]!=fa)</span><br><span class="line">				sum+=dp(g[i][k],<span class="number">0</span>,i);</span><br><span class="line">		<span class="keyword">if</span>(fa&gt;=<span class="number">0</span>) sum++;</span><br><span class="line">		ans = min(ans,sum);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	sf(t);</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		sf(n);sf(m);</span><br><span class="line">		fi(i,<span class="number">0</span>,n) g[i].clear();</span><br><span class="line">		fi(i,<span class="number">0</span>,m)&#123;</span><br><span class="line">			sf(u);sf(v);</span><br><span class="line">			g[u].pb(v);g[v].pb(u);</span><br><span class="line">		&#125;</span><br><span class="line">		mem(vis,<span class="number">0</span>);</span><br><span class="line">		ans =<span class="number">0</span>;</span><br><span class="line">		fi(i,<span class="number">0</span>,n)</span><br><span class="line">			<span class="keyword">if</span>(!vis[i][<span class="number">0</span>])</span><br><span class="line">				ans += dp(i,<span class="number">0</span>,<span class="number">-1</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d %d %d\n"</span>,ans/<span class="number">2000</span>,m-ans%<span class="number">2000</span>,ans%<span class="number">2000</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/动态规划/">动态规划</a>
+            <a href="/tags/树形dp/">树形dp</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2020/04/02/洛谷p1717/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">洛谷 p1717 钓鱼 [ dp 贪心 ]</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    <a class="next" href="/2020/03/30/cf1328E/">
+        <span class="next-text nav-default">CF 1328E Tree Queries [ LCA DFS ]</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yzhid</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://lscgx.github.io/2020/03/31/UVA10859/';
+        this.page.identifier = '2020/03/31/UVA10859/';
+        this.page.title = 'UVA 10859 [ 树形dp ]';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//https-lscgx-github-io.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

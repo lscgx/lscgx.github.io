@@ -6,7 +6,7 @@
   <link href="https://lscgx.github.io/atom.xml" rel="self"/>
   
   <link href="https://lscgx.github.io/"/>
-  <updated>2018-02-26T06:15:46.000Z</updated>
+  <updated>2020-10-22T03:40:08.586Z</updated>
   <id>https://lscgx.github.io/</id>
   
   <author>
@@ -15,23 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://lscgx.github.io/2020/10/22/hello-world/"/>
-    <id>https://lscgx.github.io/2020/10/22/hello-world/</id>
-    <published>2020-10-22T12:49:59.032Z</published>
-    <updated>2018-02-26T06:15:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br><a id="more"></a></p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code>$ hexo &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;`&lt;/pre&gt;More info: [Writing](https://hexo.io/docs/writing.html)### Run server&lt;pre&gt;`$ hexo &lt;span class=&quot;hljs-keyword&quot;&gt;server&lt;/span&gt;`&lt;/pre&gt;More info: [Server](https://hexo.io/docs/server.html)### Generate static files&lt;pre&gt;`&lt;span class=&quot;hljs-variable&quot;&gt;$ &lt;/span&gt;hexo generate`&lt;/pre&gt;More info: [Generating](https://hexo.io/docs/generating.html)### Deploy to remote sites&lt;pre&gt;`&lt;span class=&quot;hljs-variable&quot;&gt;$ &lt;/span&gt;hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;br&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>CF1433F F. Zero Remainder Sum [dp]</title>
@@ -495,6 +478,31 @@
     <category term="尺取法" scheme="https://lscgx.github.io/tags/尺取法/"/>
     
     <category term="前缀和" scheme="https://lscgx.github.io/tags/前缀和/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>T128953出题 [ 背包 贪心 ]</title>
+    <link href="https://lscgx.github.io/2020/04/19/T128953%E5%87%BA%E9%A2%98/"/>
+    <id>https://lscgx.github.io/2020/04/19/T128953%E5%87%BA%E9%A2%98/</id>
+    <published>2020-04-19T10:22:32.000Z</published>
+    <updated>2020-04-19T11:01:56.942Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P6433" target="_blank" rel="noopener">p6433「EZEC-1」出题</a></p><p><strong>题目背景</strong></p><p>你是一个毒瘤出题人。</p><p><strong>题目描述</strong></p><p>已知你有 <em>n</em> 道毒瘤题，已经出好了题面，但数据还没出好。你还剩下 <em>m</em> 的时间，每道题的毒瘤程度为 <em>a**i</em>，出数据的时间是 x*<em>i</em>，你有 k* 个老师，每个老师珂以把一道题的毒瘤程度翻倍（每道题目最多被翻倍一次）。你的父母由于坚决反对你出公开赛，抢走了你的一道题，现在老师和父母的行动你都可以控制，但每位老师和父母的行为必须执行，请问你要怎么做，才能使出的题毒瘤程度之和最大？</p><p><strong>输入格式</strong></p><p>第一行三个整数：n,m,k。</p><p>接下来 n<em> 行，每行 2 个整数，分别是 </em>a<strong>i<em>,</em>x</strong>i*。</p><p><strong>输出格式</strong></p><p>一个整数，最大的毒瘤程度之和。</p><p><strong>输入输出样例</strong></p><p><strong>输入 #1</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3 10 1</span><br><span class="line">6 9</span><br><span class="line">7 2</span><br><span class="line">1 8</span><br></pre></td></tr></table></figure><p><strong>输出 #1</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15</span><br></pre></td></tr></table></figure><p><strong>输入 #2</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">5 20 2</span><br><span class="line">5 3 </span><br><span class="line">9 7</span><br><span class="line">2 6</span><br><span class="line">7 8</span><br><span class="line">1 2</span><br></pre></td></tr></table></figure><p><strong>输出 #2</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">38</span><br></pre></td></tr></table></figure><p><strong>输入 #3</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3 6 2</span><br><span class="line">5 4</span><br><span class="line">3 3</span><br><span class="line">3 3</span><br></pre></td></tr></table></figure><p><strong>输出 #3</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">12</span><br></pre></td></tr></table></figure><blockquote><p><a href="https://www.luogu.com.cn/blog/pigstd/chu-ti-ren" target="_blank" rel="noopener">题解</a></p><p>用 $dp[i][j]$ 表示用 <em>i</em> 时间，使用 j 次翻倍后可以得到的最大毒瘤值</p><p>如果所有时间和 小于等于 m，就是一个贪心…<del>比赛的时候想大于是贪心，菜哭</del></p></blockquote><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,k,a[MAX],x[MAX],ans=<span class="number">0</span>,sum=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">1010</span>][MAX];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line"><span class="keyword">return</span> x&gt;y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//freopen("in","r",stdin);</span></span><br><span class="line">sf(n);sf(m);sf(k);</span><br><span class="line">fi(i,<span class="number">0</span>,n)&#123;</span><br><span class="line">sf(a[i]);sf(x[i]);</span><br><span class="line">sum += x[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(sum&lt;=m)&#123;</span><br><span class="line">sort(a,a+n,cmp);</span><br><span class="line">fi(i,<span class="number">0</span>,k) ans += a[i]*<span class="number">2</span>;</span><br><span class="line">        fi(i,k,n<span class="number">-1</span>) ans += a[i];</span><br><span class="line">pf(ans); </span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">fi(i,<span class="number">0</span>,n)</span><br><span class="line">fd(j,m+<span class="number">1</span>,x[i])&#123;</span><br><span class="line">f[j][<span class="number">0</span>]=max(f[j][<span class="number">0</span>],f[j-x[i]][<span class="number">0</span>]+a[i]);</span><br><span class="line">ans = max(ans,f[j][<span class="number">0</span>]);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> h = <span class="number">1</span>;h&lt;=min(k,i+<span class="number">1</span>);h++)&#123;</span><br><span class="line">f[j][h] =max(f[j][h],max(f[j-x[i]][h] + a[i],f[j-x[i]][h<span class="number">-1</span>] + <span class="number">2</span>*a[i])); </span><br><span class="line">ans = max(ans,f[j][h]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">pf(ans);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">T128953 「EZEC-1」出题</summary>
+    
+    
+    
+    <category term="题解" scheme="https://lscgx.github.io/categories/题解/"/>
+    
+    <category term="算法" scheme="https://lscgx.github.io/categories/题解/算法/"/>
+    
+    
+    <category term="贪心" scheme="https://lscgx.github.io/tags/贪心/"/>
+    
+    <category term="动态规划" scheme="https://lscgx.github.io/tags/动态规划/"/>
     
   </entry>
   

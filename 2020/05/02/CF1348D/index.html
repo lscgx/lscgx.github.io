@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang>
-  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -13,21 +15,58 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="Phoenix and Science"><meta name="keywords" content="贪心, 二分, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+
+
+  <meta name="description" content="Phoenix and Science">
+
+
+
+
+  <meta name="keywords" content="贪心, 二分, Yzhid">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yzhid">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+
+
+
 <link rel="canonical" href="https://lscgx.github.io/2020/05/02/CF1348D/">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-114705470-1');
-</script><script id="baidu_push">
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-114705470-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
 (function(){
     var bp = document.createElement('script');
     var curProtocol = window.location.protocol.split(':')[0];
@@ -41,17 +80,24 @@
     s.parentNode.insertBefore(bp, s);
 })();
 </script>
-<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
   <script id="leancloud">
     AV.init({
       appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
       appKey: "1uhkLS4uXL1oXys05sbkYR4w"
     });
-  </script><script>
-  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
-</script>
+  </script>
 
-    <title>CF1348D Phoenix and Science [ 贪心+二分 ] - Yzhid</title>
+
+
+
+
+    <title> CF1348D Phoenix and Science [ 贪心+二分 ] - Yzhid </title>
   <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
@@ -67,77 +113,156 @@
 </div>
 
 <nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list"><a href="/">
-        <li class="mobile-menu-item">Home
-          </li>
-      </a><a href="/archives/">
-        <li class="mobile-menu-item">Archives
-          </li>
-      </a><a href="/tags/">
-        <li class="mobile-menu-item">Tags
-          </li>
-      </a><a href="/categories/">
-        <li class="mobile-menu-item">Categories
-          </li>
-      </a><a href="/about">
-        <li class="mobile-menu-item">About
-          </li>
-      </a></ul>
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags/">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
 </nav>
-<div class="container" id="mobile-panel">
+
+    <div class="container" id="mobile-panel">
       <header id="header" class="header"><div class="logo-wrapper">
   <a href="/." class="logo">Yzhid</a>
 </div>
 
-<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/">
-            Home
-            </a>
+            
+            
+              首页
+            
+          </a>
         </li>
-      <li class="menu-item">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/archives/">
-            Archives
-            </a>
+            
+            
+              归档
+            
+          </a>
         </li>
-      <li class="menu-item">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/tags/">
-            Tags
-            </a>
+            
+            
+              标签
+            
+          </a>
         </li>
-      <li class="menu-item">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/categories/">
-            Categories
-            </a>
+            
+            
+              分类
+            
+          </a>
         </li>
-      <li class="menu-item">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/about">
-            About
-            </a>
+            
+            
+              关于
+            
+          </a>
         </li>
-      </ul></nav>
-</header>
+      
+    </ul>
+  
+</nav>
+
+      </header>
 
       <main id="main" class="main">
         <div class="content-wrapper">
-          <div id="content" class="content"><article class="post">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
     <header class="post-header">
-      <h1 class="post-title">CF1348D Phoenix and Science [ 贪心+二分 ]
-        </h1>
+      <h1 class="post-title">
+        
+          CF1348D Phoenix and Science [ 贪心+二分 ]
+        
+      </h1>
 
       <div class="post-meta">
         <span class="post-time">
           2020-05-02
-        </span><span class="post-category">
-            <a href="/categories/题解/">题解</a>
-            <a href="/categories/题解/算法/">算法</a>
-            </span>
-        <span class="post-visits" data-url="/2020/05/02/CF1348D/" data-title="CF1348D Phoenix and Science [ 贪心+二分 ]">
-          Visits 0
         </span>
-        </div>
+        
+          <div class="post-category">
+            
+              <a href="/categories/题解/">题解</a>
+            
+              <a href="/categories/题解/算法/">算法</a>
+            
+          </div>
+        
+        
+        <div class="post-visits" data-url="/2020/05/02/CF1348D/" data-title="CF1348D Phoenix and Science [ 贪心+二分 ]">
+            阅读次数
+          </div>
+        
+      </div>
     </header>
 
-    <div class="post-content"><p><a href="https://codeforces.com/contest/1348/problem/D" target="_blank" rel="noopener">D. Phoenix and Science</a></p>
+    
+    
+
+    <div class="post-content">
+      
+        <p><a href="https://codeforces.com/contest/1348/problem/D" target="_blank" rel="noopener">D. Phoenix and Science</a></p>
 <p>Phoenix has decided to become a scientist! He is currently investigating the growth of bacteria.</p>
 <p>Initially, on day 1, there is one bacterium with mass 1.</p>
 <p>Every day, some number of bacteria will split (possibly zero or all). When a bacterium of mass m splits, it becomes two bacteria of mass m/2 each. For example, a bacterium of mass 3 can split into two bacteria of mass 1.5.</p>
@@ -157,58 +282,188 @@
 </blockquote>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">10000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> t,n,sum;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//freopen("in","r",stdin);</span></span><br><span class="line">	sf(t);</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		sf(n);</span><br><span class="line">		n--;sum=<span class="number">0</span>;</span><br><span class="line">		db k = log2(n+<span class="number">2</span>);</span><br><span class="line">		<span class="keyword">int</span> tmp = (<span class="keyword">int</span>)k;</span><br><span class="line">		<span class="keyword">if</span>(<span class="number">1</span>&lt;&lt;tmp == n+<span class="number">2</span>) tmp--; <span class="comment">//天数</span></span><br><span class="line">		pfn(tmp);</span><br><span class="line">		<span class="keyword">if</span>(tmp==<span class="number">1</span> &amp;&amp; n==<span class="number">1</span>) &#123;</span><br><span class="line">			pfc(<span class="string">"0\n"</span>);<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> last = <span class="number">1</span>;</span><br><span class="line">		n -= tmp; </span><br><span class="line">		fi(i,<span class="number">1</span>,tmp+<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="keyword">int</span> l = <span class="number">1</span>,r = last,m,g;</span><br><span class="line">			<span class="keyword">while</span>(l&lt;=r)&#123;</span><br><span class="line">				m = (l+r)/<span class="number">2</span>;</span><br><span class="line">				g = m * (tmp-i+<span class="number">1</span>);</span><br><span class="line">				<span class="keyword">if</span>(g==n)&#123;</span><br><span class="line">					r = m;<span class="keyword">break</span>;</span><br><span class="line">				&#125;<span class="keyword">else</span> <span class="keyword">if</span>(g &lt; n )&#123;</span><br><span class="line">					l = m+<span class="number">1</span>;</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					r = m<span class="number">-1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(r * (tmp-i+<span class="number">1</span>) &lt;= n)&#123;</span><br><span class="line">				n -= r * (tmp-i+<span class="number">1</span>) ;</span><br><span class="line">				last += r;</span><br><span class="line">				pf(r);</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				pfc(<span class="string">"0"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			pfc(<span class="string">" "</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		pfc(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      </div>
       
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
       <footer class="post-footer">
-        <div class="post-tags">
-            <a href="/tags/贪心/">贪心</a>
-            <a href="/tags/二分/">二分</a>
-            </div>
         
-        <nav class="post-nav"><a class="prev" href="/2020/05/04/洛谷T126840/">
+          <div class="post-tags">
+            
+              <a href="/tags/贪心/">贪心</a>
+            
+              <a href="/tags/二分/">二分</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2020/05/04/洛谷T126840/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">洛谷 T126840 加密通信 [ gcd ]</span>
-        <span class="prev-text nav-mobile">Prev</span>
+        <span class="prev-text nav-mobile">上一篇</span>
       </a>
-    <a class="next" href="/2020/05/02/CF1348C/">
+    
+    
+      <a class="next" href="/2020/05/02/CF1348C/">
         <span class="next-text nav-default">CF1348C Phoenix and Distribution [ 贪心 ]</span>
-        <span class="prev-text nav-mobile">Next</span>
+        <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
-    </nav></footer>
-    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
           <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
-    </div></div>
+    
+  </div>
+
+
+        </div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
-        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
-    </div><div class="copyright">
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<!-- MathJax���ã���ͨ������Ԫ������д���ڹ�ʽ�� -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": { 
+        preferredFont: "TeX", 
+        availableFonts: ["STIX","TeX"], 
+        linebreaks: { automatic:true }, 
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) 
+    },
+    tex2jax: { 
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ], 
+        processEscapes: true, 
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {  
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, 
+        Macros: { href: "{}" } 
+    },
+    messageStyle: "none"
+    }); 
+</script>
+<!-- ��MathJaxԪ������has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- ͨ������CDN����MathJax��js���� -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
   </span>
 
-  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2018 - 
+    
+    2020
+
+    <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
     <span class="author">Yzhid</span>
   </span>
+  <!-- ����ҳ��mathjax���������Ƿ����MathJax��ѧ��ʽjs -->
+  <!--% if (page.mathjax){ %>
+  <%- partial('mathjax') %>
+  <% } %!-->
 </div>
-</footer>
+
+      </footer>
 
       <div class="back-to-top" id="back-to-top">
         <i class="iconfont icon-up"></i>
       </div>
-    </div><script type="text/javascript">
+    </div>
+
+    
+  
+  <script type="text/javascript">
     var disqus_config = function () {
         this.page.url = 'https://lscgx.github.io/2020/05/02/CF1348D/';
         this.page.identifier = '2020/05/02/CF1348D/';
@@ -222,8 +477,49 @@
     s.setAttribute('data-timestamp', +new Date());
     (d.head || d.body).appendChild(s);
     })();  
-  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</body>
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+  </body>
 </html>

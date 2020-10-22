@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang>
-  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -13,21 +15,56 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="求日期的星期数？？"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+
+
+  <meta name="description" content="求日期的星期数？？">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yzhid">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+
+
+
 <link rel="canonical" href="https://lscgx.github.io/2018/03/15/同余/">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-114705470-1');
-</script><script id="baidu_push">
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-114705470-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
 (function(){
     var bp = document.createElement('script');
     var curProtocol = window.location.protocol.split(':')[0];
@@ -41,17 +78,24 @@
     s.parentNode.insertBefore(bp, s);
 })();
 </script>
-<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
   <script id="leancloud">
     AV.init({
       appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
       appKey: "1uhkLS4uXL1oXys05sbkYR4w"
     });
-  </script><script>
-  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
-</script>
+  </script>
 
-    <title>同余 - Yzhid</title>
+
+
+
+
+    <title> 同余 - Yzhid </title>
   <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
@@ -67,76 +111,161 @@
 </div>
 
 <nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list"><a href="/">
-        <li class="mobile-menu-item">Home
-          </li>
-      </a><a href="/archives/">
-        <li class="mobile-menu-item">Archives
-          </li>
-      </a><a href="/tags/">
-        <li class="mobile-menu-item">Tags
-          </li>
-      </a><a href="/categories/">
-        <li class="mobile-menu-item">Categories
-          </li>
-      </a><a href="/about">
-        <li class="mobile-menu-item">About
-          </li>
-      </a></ul>
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags/">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
 </nav>
-<div class="container" id="mobile-panel">
+
+    <div class="container" id="mobile-panel">
       <header id="header" class="header"><div class="logo-wrapper">
   <a href="/." class="logo">Yzhid</a>
 </div>
 
-<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/">
-            Home
-            </a>
+            
+            
+              首页
+            
+          </a>
         </li>
-      <li class="menu-item">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/archives/">
-            Archives
-            </a>
+            
+            
+              归档
+            
+          </a>
         </li>
-      <li class="menu-item">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/tags/">
-            Tags
-            </a>
+            
+            
+              标签
+            
+          </a>
         </li>
-      <li class="menu-item">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/categories/">
-            Categories
-            </a>
+            
+            
+              分类
+            
+          </a>
         </li>
-      <li class="menu-item">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/about">
-            About
-            </a>
+            
+            
+              关于
+            
+          </a>
         </li>
-      </ul></nav>
-</header>
+      
+    </ul>
+  
+</nav>
+
+      </header>
 
       <main id="main" class="main">
         <div class="content-wrapper">
-          <div id="content" class="content"><article class="post">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
     <header class="post-header">
-      <h1 class="post-title">同余
-        </h1>
+      <h1 class="post-title">
+        
+          同余
+        
+      </h1>
 
       <div class="post-meta">
         <span class="post-time">
           2018-03-15
-        </span><span class="post-category">
-            <a href="/categories/数论/">数论</a>
-            </span>
-        <span class="post-visits" data-url="/2018/03/15/同余/" data-title="同余">
-          Visits 0
         </span>
-        </div>
+        
+          <div class="post-category">
+            
+              <a href="/categories/数论/">数论</a>
+            
+          </div>
+        
+        
+        <div class="post-visits" data-url="/2018/03/15/同余/" data-title="同余">
+            阅读次数
+          </div>
+        
+      </div>
     </header>
 
-    <div class="post-content"><h3 id="日期的星期数"><a href="#日期的星期数" class="headerlink" title="日期的星期数"></a>日期的星期数</h3><h4 id="闰年？"><a href="#闰年？" class="headerlink" title="闰年？"></a>闰年？</h4><blockquote>
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#日期的星期数"><span class="toc-text">日期的星期数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#闰年？"><span class="toc-text">闰年？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#y年m月d日，星期数？"><span class="toc-text">y年m月d日，星期数？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h3 id="日期的星期数"><a href="#日期的星期数" class="headerlink" title="日期的星期数"></a>日期的星期数</h3><h4 id="闰年？"><a href="#闰年？" class="headerlink" title="闰年？"></a>闰年？</h4><blockquote>
 <p>被4整除，世纪数被4整除。闰年366天，2月29天。</p>
 </blockquote>
 <h4 id="y年m月d日，星期数？"><a href="#y年m月d日，星期数？" class="headerlink" title="y年m月d日，星期数？"></a>y年m月d日，星期数？</h4><p>用C 代表世纪数，0~6代表星期几。<br>为计算方便从3月1日开始计算，相当于把3月看成1月。现在y年m月d日变为Y年M月D日，有如下关系：<br>$$M=(m-3)mod12+1$$<br>$$Y=y-\lfloor m/11 \rfloor$$<br>由于$365\equiv 1(mod7)$,3月1日的星期数每过一个平年+1,每过一个闰年+2，设1600年3月1日的星期数为$w_{1600}$，y年3月1日(Y年3月1日)的星期数为$w_{Y}$，设y=Y=100C+X,从1600年到 Y 年要经过100C+X-1600年，星期数应加：<br>$$100C+X-1600\equiv 2C+X-3(mod 7)$$<br>每4年有一个闰年，有<br>$$\lfloor(100C+X-1600)/4\rfloor=25C+ \lfloor X/4\rfloor-400$$<br>个闰年，考虑到世纪年，应从这个数中减去C-16,再加$\lfloor  (C-16)/4\rfloor= \lfloor C/4\rfloor-4$。因此：<br>$$w_Y\equiv  w_{1600}+(2C+X+3)+(25C+\lfloor X/4\rfloor-400)-(C-16)+(\lfloor C/4\rfloor-4)$$<br>$$\equiv w_{1600}-2C+X +\lfloor X/4\rfloor +\lfloor C/4\rfloor(mod7)$$<br>已知2004年3月1日是星期一，代入上式，<br>$$1\equiv w_{1600}-2\times30+4+\lfloor 4/4\rfloor+\lfloor 20/4\rfloor\equiv w_{1600}+5(mod7)$$<br>得$w_{1600}=3$,于是，得到<br>$$w_Y\equiv 3-2C +X+\lfloor X/4\rfloor+\lfloor C/4\rfloor(mod7) \tag{1}$$<br>接下来计算从当年3月1日到每个月1号的天数，除每个月+30天外，3、5、7、8、10、12、1月有31天，应另外加的天数 z 如下表所示：</p>
@@ -181,54 +310,180 @@
 <li>《离散数学》</li>
 </ol>
 
-      </div>
       
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
       <footer class="post-footer">
         
-        <nav class="post-nav"><a class="prev" href="/2018/03/28/Spring-boot-TestRestTemplate/">
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/03/28/Spring-boot-TestRestTemplate/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">spring-boot:TestRestTemplate、RestTemplate</span>
-        <span class="prev-text nav-mobile">Prev</span>
+        <span class="prev-text nav-mobile">上一篇</span>
       </a>
-    <a class="next" href="/2018/03/01/递归-排序/">
+    
+    
+      <a class="next" href="/2018/03/01/递归-排序/">
         <span class="next-text nav-default">递归-排序</span>
-        <span class="prev-text nav-mobile">Next</span>
+        <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
-    </nav></footer>
-    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
           <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
-    </div></div>
+    
+  </div>
+
+
+        </div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
-        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
-    </div><div class="copyright">
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<!-- MathJax���ã���ͨ������Ԫ������д���ڹ�ʽ�� -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": { 
+        preferredFont: "TeX", 
+        availableFonts: ["STIX","TeX"], 
+        linebreaks: { automatic:true }, 
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) 
+    },
+    tex2jax: { 
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ], 
+        processEscapes: true, 
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {  
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, 
+        Macros: { href: "{}" } 
+    },
+    messageStyle: "none"
+    }); 
+</script>
+<!-- ��MathJaxԪ������has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- ͨ������CDN����MathJax��js���� -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
   </span>
 
-  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2018 - 
+    
+    2020
+
+    <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
     <span class="author">Yzhid</span>
   </span>
+  <!-- ����ҳ��mathjax���������Ƿ����MathJax��ѧ��ʽjs -->
+  <!--% if (page.mathjax){ %>
+  <%- partial('mathjax') %>
+  <% } %!-->
 </div>
-</footer>
+
+      </footer>
 
       <div class="back-to-top" id="back-to-top">
         <i class="iconfont icon-up"></i>
       </div>
-    </div><script type="text/javascript">
+    </div>
+
+    
+  
+  <script type="text/javascript">
     var disqus_config = function () {
         this.page.url = 'https://lscgx.github.io/2018/03/15/同余/';
         this.page.identifier = '2018/03/15/同余/';
@@ -242,9 +497,32 @@
     s.setAttribute('data-timestamp', +new Date());
     (d.head || d.body).appendChild(s);
     })();  
-  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -262,5 +540,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-</body>
+
+  </body>
 </html>

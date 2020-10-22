@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang>
-  <head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8">
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
@@ -13,21 +15,58 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="description" content="递归-排序"><meta name="keywords" content="算法, 排序, Yzhid"><link rel="alternate" href="/atom.xml" title="Yzhid"><link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+
+
+  <meta name="description" content="递归-排序">
+
+
+
+
+  <meta name="keywords" content="算法, 排序, Yzhid">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yzhid">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/Fireworks.png?v=2.6.0">
+
+
+
 <link rel="canonical" href="https://lscgx.github.io/2018/03/01/递归-排序/">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0">
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114705470-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-114705470-1');
-</script><script id="baidu_push">
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-114705470-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
 (function(){
     var bp = document.createElement('script');
     var curProtocol = window.location.protocol.split(':')[0];
@@ -41,17 +80,24 @@
     s.parentNode.insertBefore(bp, s);
 })();
 </script>
-<script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
   <script id="leancloud">
     AV.init({
       appId: "7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz",
       appKey: "1uhkLS4uXL1oXys05sbkYR4w"
     });
-  </script><script>
-  window.config = {"leancloud":{"app_id":"7gkhMBt9oQBBsuV4JXo6FqfY-gzGzoHsz","app_key":"1uhkLS4uXL1oXys05sbkYR4w"},"toc":"","fancybox":"","pjax":"","latex":""};
-</script>
+  </script>
 
-    <title>递归-排序 - Yzhid</title>
+
+
+
+
+    <title> 递归-排序 - Yzhid </title>
   <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
@@ -67,76 +113,161 @@
 </div>
 
 <nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list"><a href="/">
-        <li class="mobile-menu-item">Home
-          </li>
-      </a><a href="/archives/">
-        <li class="mobile-menu-item">Archives
-          </li>
-      </a><a href="/tags/">
-        <li class="mobile-menu-item">Tags
-          </li>
-      </a><a href="/categories/">
-        <li class="mobile-menu-item">Categories
-          </li>
-      </a><a href="/about">
-        <li class="mobile-menu-item">About
-          </li>
-      </a></ul>
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags/">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
 </nav>
-<div class="container" id="mobile-panel">
+
+    <div class="container" id="mobile-panel">
       <header id="header" class="header"><div class="logo-wrapper">
   <a href="/." class="logo">Yzhid</a>
 </div>
 
-<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/">
-            Home
-            </a>
+            
+            
+              首页
+            
+          </a>
         </li>
-      <li class="menu-item">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/archives/">
-            Archives
-            </a>
+            
+            
+              归档
+            
+          </a>
         </li>
-      <li class="menu-item">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/tags/">
-            Tags
-            </a>
+            
+            
+              标签
+            
+          </a>
         </li>
-      <li class="menu-item">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/categories/">
-            Categories
-            </a>
+            
+            
+              分类
+            
+          </a>
         </li>
-      <li class="menu-item">
+      
+        <li class="menu-item">
           <a class="menu-item-link" href="/about">
-            About
-            </a>
+            
+            
+              关于
+            
+          </a>
         </li>
-      </ul></nav>
-</header>
+      
+    </ul>
+  
+</nav>
+
+      </header>
 
       <main id="main" class="main">
         <div class="content-wrapper">
-          <div id="content" class="content"><article class="post">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
     <header class="post-header">
-      <h1 class="post-title">递归-排序
-        </h1>
+      <h1 class="post-title">
+        
+          递归-排序
+        
+      </h1>
 
       <div class="post-meta">
         <span class="post-time">
           2018-03-01
-        </span><span class="post-category">
-            <a href="/categories/算法/">算法</a>
-            </span>
-        <span class="post-visits" data-url="/2018/03/01/递归-排序/" data-title="递归-排序">
-          Visits 0
         </span>
-        </div>
+        
+          <div class="post-category">
+            
+              <a href="/categories/算法/">算法</a>
+            
+          </div>
+        
+        
+        <div class="post-visits" data-url="/2018/03/01/递归-排序/" data-title="递归-排序">
+            阅读次数
+          </div>
+        
+      </div>
     </header>
 
-    <div class="post-content"><h3 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h3><p>在算法分析中，主定理（英语：master theorem）提供了用渐近符号（大O符号）表示许多由分治法得到的递推关系式的方法<br>递归式子中三种情况：大部分操作（消耗时间）运行在根节点上，叶节点上或递归树的各行之间。<br><a id="more"></a></p>
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#主定理"><span class="toc-text">主定理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#情形一"><span class="toc-text">情形一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#情形二"><span class="toc-text">情形二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#情形三"><span class="toc-text">情形三</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#归纳-induction-、递归-recursion-及-归简-reduction"><span class="toc-text">归纳(induction)、递归(recursion)及 归简(reduction)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排序算法"><span class="toc-text">排序算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#冒泡排序"><span class="toc-text">冒泡排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择排序"><span class="toc-text">选择排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#插入排序"><span class="toc-text">插入排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#归并排序"><span class="toc-text">归并排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计数排序"><span class="toc-text">计数排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基数排序"><span class="toc-text">基数排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆排序"><span class="toc-text">堆排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#快速排序"><span class="toc-text">快速排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#希尔排序"><span class="toc-text">希尔排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#桶排序"><span class="toc-text">桶排序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h3 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h3><p>在算法分析中，主定理（英语：master theorem）提供了用渐近符号（大O符号）表示许多由分治法得到的递推关系式的方法<br>递归式子中三种情况：大部分操作（消耗时间）运行在根节点上，叶节点上或递归树的各行之间。<br><a id="more"></a></p>
 <h4 id="情形一"><a href="#情形一" class="headerlink" title="情形一"></a>情形一</h4><blockquote>
 <p>如果存在常数  $\epsilon &gt;0$，有<br> $ f(n)=O\left(n^{\log _{b}(a)-\epsilon }\right) $ (多项式地小于）<br>那么<br> $ T(n)=\Theta \left(n^{\log _{b}a}\right) $</p>
 </blockquote>
@@ -164,58 +295,188 @@
 <li>《python算法教程》 </li>
 </ol>
 
-      </div>
       
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
       <footer class="post-footer">
-        <div class="post-tags">
-            <a href="/tags/算法/">算法</a>
-            <a href="/tags/排序/">排序</a>
-            </div>
         
-        <nav class="post-nav"><a class="prev" href="/2018/03/15/同余/">
+          <div class="post-tags">
+            
+              <a href="/tags/算法/">算法</a>
+            
+              <a href="/tags/排序/">排序</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/03/15/同余/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">同余</span>
-        <span class="prev-text nav-mobile">Prev</span>
+        <span class="prev-text nav-mobile">上一篇</span>
       </a>
-    <a class="next" href="/2018/02/28/数据库-索引/">
+    
+    
+      <a class="next" href="/2018/02/28/数据库-索引/">
         <span class="next-text nav-default">数据库-索引</span>
-        <span class="prev-text nav-mobile">Next</span>
+        <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
-    </nav></footer>
-    </article></div><div class="comments" id="comments"><div id="disqus_thread">
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
           <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
-    </div></div>
+    
+  </div>
+
+
+        </div>
       </main>
 
-      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
-        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
-    </div><div class="copyright">
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:dy0407@live.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<!-- MathJax���ã���ͨ������Ԫ������д���ڹ�ʽ�� -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": { 
+        preferredFont: "TeX", 
+        availableFonts: ["STIX","TeX"], 
+        linebreaks: { automatic:true }, 
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) 
+    },
+    tex2jax: { 
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ], 
+        processEscapes: true, 
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {  
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, 
+        Macros: { href: "{}" } 
+    },
+    messageStyle: "none"
+    }); 
+</script>
+<!-- ��MathJaxԪ������has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- ͨ������CDN����MathJax��js���� -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
   </span>
 
-  <span class="copyright-year">&copy;2018 - 2020<span class="heart">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2018 - 
+    
+    2020
+
+    <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
     <span class="author">Yzhid</span>
   </span>
+  <!-- ����ҳ��mathjax���������Ƿ����MathJax��ѧ��ʽjs -->
+  <!--% if (page.mathjax){ %>
+  <%- partial('mathjax') %>
+  <% } %!-->
 </div>
-</footer>
+
+      </footer>
 
       <div class="back-to-top" id="back-to-top">
         <i class="iconfont icon-up"></i>
       </div>
-    </div><script type="text/javascript">
+    </div>
+
+    
+  
+  <script type="text/javascript">
     var disqus_config = function () {
         this.page.url = 'https://lscgx.github.io/2018/03/01/递归-排序/';
         this.page.identifier = '2018/03/01/递归-排序/';
@@ -229,9 +490,32 @@
     s.setAttribute('data-timestamp', +new Date());
     (d.head || d.body).appendChild(s);
     })();  
-  </script><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -249,5 +533,6 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-</body>
+
+  </body>
 </html>

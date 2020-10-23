@@ -119,20 +119,6 @@
       </tags>
   </entry>
   <entry>
-    <title>51 nod 1344 走格子</title>
-    <url>/2019/01/18/51nod1344/</url>
-    <content><![CDATA[<p><a href="https://www.51nod.com/Challenge/Problem.html#!#problemId=1344" target="_blank" rel="noopener">https://www.51nod.com/Challenge/Problem.html#!#problemId=1344</a></p>
-<p>有编号1-n的n个格子，机器人从1号格子顺序向后走，一直走到n号格子，并需要从n号格子走出去。机器人有一个初始能量，每个格子对应一个整数A[i]，表示这个格子的能量值。如果A[i] &gt; 0，机器人走到这个格子能够获取A[i]个能量，如果A[i] &lt; 0，走到这个格子需要消耗相应的能量，如果机器人的能量 &lt; 0，就无法继续前进了。问机器人最少需要有多少初始能量，才能完成整个旅程。</p>
-<p>例如：n = 5。{1，-2，-1，3，4} 最少需要2个初始能量，才能从1号走到5号格子。途中的能量变化如下3 1 0 3 7。<br>输入<br>第1行：1个数n，表示格子的数量。(1 &lt;= n &lt;= 50000)<br>第2 - n + 1行：每行1个数A[i]，表示格子里的能量值(-1000000000 &lt;= A[i] &lt;= 1000000000)<br>输出<br>输出1个数，对应从1走到n最少需要多少初始能量。<br>输入样例<br>5<br>1<br>-2<br>-1<br>3<br>4<br>输出样例<br>2<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>); </span><br><span class="line">	<span class="keyword">int</span> n,t;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>,temp=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">while</span>(n--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">		<span class="keyword">if</span>(temp+t&lt;<span class="number">0</span>)&#123;</span><br><span class="line">			ans-=temp+t;</span><br><span class="line">			temp=<span class="number">0</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			temp+=t;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>贪心</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>51 nod 1279 扔盘子</title>
     <url>/2019/01/18/51nod1279/</url>
     <content><![CDATA[<p><a href="https://www.51nod.com/Challenge/Problem.html#!#problemId=1279" target="_blank" rel="noopener">https://www.51nod.com/Challenge/Problem.html#!#problemId=1279</a></p>
@@ -144,6 +130,20 @@
 </blockquote>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">50000</span>;</span><br><span class="line"><span class="keyword">int</span> n,m,d,t,w,c[MAX],ans;<span class="comment">//</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>); </span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">	t=INF;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;w);</span><br><span class="line">		<span class="keyword">if</span>(w&lt;t)&#123;</span><br><span class="line">			t=w;</span><br><span class="line">		&#125;</span><br><span class="line">		c[i]=min(w,t);</span><br><span class="line">	&#125;</span><br><span class="line">	t=n<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;d);	</span><br><span class="line">		<span class="keyword">while</span>(t&gt;=<span class="number">-1</span>&amp;&amp;c[t--]&lt;d);</span><br><span class="line">		<span class="keyword">if</span>(t&lt;<span class="number">-1</span>)<span class="keyword">break</span>;</span><br><span class="line">		ans++;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <tags>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>51 nod 1344 走格子</title>
+    <url>/2019/01/18/51nod1344/</url>
+    <content><![CDATA[<p><a href="https://www.51nod.com/Challenge/Problem.html#!#problemId=1344" target="_blank" rel="noopener">https://www.51nod.com/Challenge/Problem.html#!#problemId=1344</a></p>
+<p>有编号1-n的n个格子，机器人从1号格子顺序向后走，一直走到n号格子，并需要从n号格子走出去。机器人有一个初始能量，每个格子对应一个整数A[i]，表示这个格子的能量值。如果A[i] &gt; 0，机器人走到这个格子能够获取A[i]个能量，如果A[i] &lt; 0，走到这个格子需要消耗相应的能量，如果机器人的能量 &lt; 0，就无法继续前进了。问机器人最少需要有多少初始能量，才能完成整个旅程。</p>
+<p>例如：n = 5。{1，-2，-1，3，4} 最少需要2个初始能量，才能从1号走到5号格子。途中的能量变化如下3 1 0 3 7。<br>输入<br>第1行：1个数n，表示格子的数量。(1 &lt;= n &lt;= 50000)<br>第2 - n + 1行：每行1个数A[i]，表示格子里的能量值(-1000000000 &lt;= A[i] &lt;= 1000000000)<br>输出<br>输出1个数，对应从1走到n最少需要多少初始能量。<br>输入样例<br>5<br>1<br>-2<br>-1<br>3<br>4<br>输出样例<br>2<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt; </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>); </span><br><span class="line">	<span class="keyword">int</span> n,t;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>,temp=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">while</span>(n--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">		<span class="keyword">if</span>(temp+t&lt;<span class="number">0</span>)&#123;</span><br><span class="line">			ans-=temp+t;</span><br><span class="line">			temp=<span class="number">0</span>;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			temp+=t;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
       <tags>
         <tag>贪心</tag>
       </tags>
@@ -238,19 +238,6 @@
       </tags>
   </entry>
   <entry>
-    <title>51 nod 2176 n 最大的质因数</title>
-    <url>/2020/01/01/51nod2176/</url>
-    <content><![CDATA[<p><a href="http://www.51nod.com/Challenge/Problem.html#problemId=2176" target="_blank" rel="noopener">http://www.51nod.com/Challenge/Problem.html#problemId=2176</a></p>
-<blockquote>
-<p>对于 n ，一直除去因子直到无法再除为止。</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line">ll t,n,k;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n);</span><br><span class="line">		k=<span class="number">2</span>; </span><br><span class="line">		<span class="keyword">while</span>(n&gt;<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="keyword">while</span>(n%k==<span class="number">0</span>) n/=k;</span><br><span class="line">			k++;</span><br><span class="line">			<span class="keyword">if</span>(k*k&gt;n&amp;&amp;n&gt;<span class="number">1</span>) k=n;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,k<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>数学</tag>
-        <tag>剪枝</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>51 nod 1649 齐头并进</title>
     <url>/2019/02/20/51nod1649/</url>
     <content><![CDATA[<p><a href="https://www.51nod.com/Challenge/Problem.html#!#problemId=1649" target="_blank" rel="noopener">https://www.51nod.com/Challenge/Problem.html#!#problemId=1649</a><br>在一个叫奥斯汀的城市，有n个小镇（从1到n编号），这些小镇通过m条双向火车铁轨相连。当然某些小镇之间也有公路相连。为了保证每两个小镇之间的人可以方便的相互访问，市长就在那些没有铁轨直接相连的小镇之间建造了公路。在两个直接通过公路或者铁路相连的小镇之间移动，要花费一个小时的时间。</p>
@@ -290,6 +277,19 @@
         <tag>贪心</tag>
         <tag>STL</tag>
         <tag>并查集</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>51 nod 2176 n 最大的质因数</title>
+    <url>/2020/01/01/51nod2176/</url>
+    <content><![CDATA[<p><a href="http://www.51nod.com/Challenge/Problem.html#problemId=2176" target="_blank" rel="noopener">http://www.51nod.com/Challenge/Problem.html#problemId=2176</a></p>
+<blockquote>
+<p>对于 n ，一直除去因子直到无法再除为止。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line">ll t,n,k;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n);</span><br><span class="line">		k=<span class="number">2</span>; </span><br><span class="line">		<span class="keyword">while</span>(n&gt;<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="keyword">while</span>(n%k==<span class="number">0</span>) n/=k;</span><br><span class="line">			k++;</span><br><span class="line">			<span class="keyword">if</span>(k*k&gt;n&amp;&amp;n&gt;<span class="number">1</span>) k=n;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,k<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>数学</tag>
+        <tag>剪枝</tag>
       </tags>
   </entry>
   <entry>
@@ -362,56 +362,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CF1339D Edge Weight Assignment [ 构造贪心 ]</title>
-    <url>/2020/09/26/CF1339D/</url>
-    <content><![CDATA[<p><a href="https://codeforces.com/contest/1339/problem/D" target="_blank" rel="noopener">CF1339D Edge Weight Assignment</a></p>
-<p>You have unweighted tree of n vertices. You have to assign a <strong>positive</strong> weight to each edge so that the following condition would hold:</p>
-<ul>
-<li>For every two different leaves v1 and v2 of this tree, <a href="https://en.wikipedia.org/wiki/Bitwise_operation#XOR" target="_blank" rel="noopener">bitwise XOR</a> of weights of all edges on the simple path between v1 and v2 has to be equal to 0.</li>
-</ul>
-<p>Note that you can put <strong>very large</strong> positive integers (like $10^{10}$).</p>
-<p>It’s guaranteed that such assignment always exists under given constraints. Now let’s define f as <strong>the number of distinct weights</strong> in assignment.</p>
-<p><img src="/.io//822324016e7a6837336849481ecbe0190b03dfa3.png" alt="img"></p>
-<p>In this example, assignment is valid, because bitwise XOR of all edge weights between every pair of leaves is 0. ff value is 2 here, because there are 2 distinct edge weights(4 and 5).</p>
-<p><img src="/.io//82d52d5070be134d11729e65fab0a8709aae6b3f.png" alt="img"></p>
-<p>In this example, assignment is invalid, because bitwise XOR of all edge weights between vertex 1 and vertex 6 (3,4,5,4) is not 0.</p>
-<p>What are the minimum and the maximum possible values of f for the given tree? Find and print both.</p>
-<p>Input</p>
-<p>The first line contains integer n ($3≤n≤10^5$) — the number of vertices in given tree.</p>
-<p>The ii-th of the next n−1 lines contains two integers ai and bi ($1≤ai&lt;bi≤n$) — it means there is an edge between ai and bi. It is guaranteed that given graph forms tree of n vertices.</p>
-<p>Output</p>
-<p>Print two integers — the minimum and maximum possible value of f can be made from valid assignment of given tree. Note that it’s always possible to make an assignment under given constraints.</p>
-<p>Examples</p>
-<p>input</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">6</span><br><span class="line">1 3</span><br><span class="line">2 3</span><br><span class="line">3 4</span><br><span class="line">4 5</span><br><span class="line">5 6</span><br></pre></td></tr></table></figure>
-<p>output</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1 4</span><br></pre></td></tr></table></figure>
-<p>input</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">6</span><br><span class="line">1 3</span><br><span class="line">2 3</span><br><span class="line">3 4</span><br><span class="line">4 5</span><br><span class="line">4 6</span><br></pre></td></tr></table></figure>
-<p>output</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">3 3</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>首先找到一个度为 1 的点作为树根构造树。记录每个节点的深度 d[i] 和其到其最深的叶子节点的距离 l[i]</p>
-<p>可以观察到：</p>
-<p>对于可分配的最大值有</p>
-<p>1、一个父亲节点的所有 $l[i] = 1$ 的子节点一共可以分配一个值（因为之前的路径上的值是已经分配好的，要想 XOR 为 0, 这里必须分配同一个值），其他的可以各自分配一个。有一个例外就是 当 $d[i] &lt;= 3$ 因为到根节点的距离 = 2，所以不分配新的值。</p>
-<p>对于可分配的最小值有</p>
-<p>1、如果根到某一个叶子节点的边数为偶数，则分配一个值足以。</p>
-<p>2、如果为奇数，则最多需要三个。简单证明：$x = 3 + x’$  , $x 为奇数x’ 为偶数$ 偶数分配一个值，三个奇数需要三个值，总的下来需要三个值。</p>
-<p>所以可以这样判断，对于所有不为根的叶子节点如果有奇数，则可分配的最小值为 3，否则 为1。2 的话显然可以用 1 替换。</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,a,b,sz[MAX],rt=<span class="number">0</span>,vis[MAX],l[MAX],d[MAX],_min=<span class="number">1</span>,_max=<span class="number">0</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> to,next;</span><br><span class="line">&#125;e[MAX*<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> head[MAX],tot=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">	e[tot].to = v;</span><br><span class="line">	e[tot].next = head[u];</span><br><span class="line">	head[u] = tot++;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">	vis[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i!=<span class="number">-1</span>;i=e[i].next)&#123;</span><br><span class="line">		<span class="keyword">int</span> v = e[i].to;</span><br><span class="line">		<span class="keyword">if</span>(vis[v]) <span class="keyword">continue</span>;</span><br><span class="line">		cnt++;</span><br><span class="line">		d[v] = d[u]+<span class="number">1</span>;</span><br><span class="line">		l[u] = max(l[u],dfs(v));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(cnt==<span class="number">0</span>) <span class="keyword">return</span> l[u]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> ++l[u];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">	vis[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> zo = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i!=<span class="number">-1</span>;i=e[i].next)&#123;</span><br><span class="line">		<span class="keyword">int</span> v = e[i].to;</span><br><span class="line">		<span class="keyword">if</span>(vis[v]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span>(l[v] == <span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(zo &amp;&amp; d[v]&gt;<span class="number">3</span>)&#123;</span><br><span class="line">				zo = <span class="number">0</span>;</span><br><span class="line">				_max ++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(l[v]&gt;<span class="number">0</span>) _max++;</span><br><span class="line">		dfs2(v);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("in","r",stdin);</span></span><br><span class="line">	mem(head,<span class="number">-1</span>);mem(sz,<span class="number">0</span>);mem(vis,<span class="number">0</span>);mem(l,<span class="number">0</span>);</span><br><span class="line">	sf(n);</span><br><span class="line">	fi(i,<span class="number">0</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">		sf(a);sf(b);</span><br><span class="line">		addedge(a,b);addedge(b,a);</span><br><span class="line">		sz[a]++;sz[b]++;</span><br><span class="line">	&#125;</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span>(sz[i]==<span class="number">1</span>) &#123;</span><br><span class="line">			rt = i; <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	d[rt] = <span class="number">1</span>;</span><br><span class="line">	dfs(rt);</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span>(sz[i] == <span class="number">1</span> &amp;&amp; i != rt &amp;&amp; (d[i]<span class="number">-1</span>) &amp; <span class="number">1</span>)&#123;</span><br><span class="line">			_min = <span class="number">3</span>; <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	mem(vis,<span class="number">0</span>);</span><br><span class="line">	dfs2(rt);</span><br><span class="line">	pf(_min);pfc(<span class="string">" "</span>);pfn(_max);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>算法</category>
-        <category>题解</category>
-      </categories>
-      <tags>
-        <tag>贪心</tag>
-        <tag>dfs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CF 1339B Sorted Adjacent Differences</title>
     <url>/2020/04/13/CF1339B/</url>
     <content><![CDATA[<p><a href="https://codeforces.com/contest/1339/problem/B" target="_blank" rel="noopener">B. Sorted Adjacent Differences</a></p>
@@ -459,6 +409,56 @@
       </categories>
       <tags>
         <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CF1339D Edge Weight Assignment [ 构造贪心 ]</title>
+    <url>/2020/09/26/CF1339D/</url>
+    <content><![CDATA[<p><a href="https://codeforces.com/contest/1339/problem/D" target="_blank" rel="noopener">CF1339D Edge Weight Assignment</a></p>
+<p>You have unweighted tree of n vertices. You have to assign a <strong>positive</strong> weight to each edge so that the following condition would hold:</p>
+<ul>
+<li>For every two different leaves v1 and v2 of this tree, <a href="https://en.wikipedia.org/wiki/Bitwise_operation#XOR" target="_blank" rel="noopener">bitwise XOR</a> of weights of all edges on the simple path between v1 and v2 has to be equal to 0.</li>
+</ul>
+<p>Note that you can put <strong>very large</strong> positive integers (like $10^{10}$).</p>
+<p>It’s guaranteed that such assignment always exists under given constraints. Now let’s define f as <strong>the number of distinct weights</strong> in assignment.</p>
+<p><img src="/.io//822324016e7a6837336849481ecbe0190b03dfa3.png" alt="img"></p>
+<p>In this example, assignment is valid, because bitwise XOR of all edge weights between every pair of leaves is 0. ff value is 2 here, because there are 2 distinct edge weights(4 and 5).</p>
+<p><img src="/.io//82d52d5070be134d11729e65fab0a8709aae6b3f.png" alt="img"></p>
+<p>In this example, assignment is invalid, because bitwise XOR of all edge weights between vertex 1 and vertex 6 (3,4,5,4) is not 0.</p>
+<p>What are the minimum and the maximum possible values of f for the given tree? Find and print both.</p>
+<p>Input</p>
+<p>The first line contains integer n ($3≤n≤10^5$) — the number of vertices in given tree.</p>
+<p>The ii-th of the next n−1 lines contains two integers ai and bi ($1≤ai&lt;bi≤n$) — it means there is an edge between ai and bi. It is guaranteed that given graph forms tree of n vertices.</p>
+<p>Output</p>
+<p>Print two integers — the minimum and maximum possible value of f can be made from valid assignment of given tree. Note that it’s always possible to make an assignment under given constraints.</p>
+<p>Examples</p>
+<p>input</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">6</span><br><span class="line">1 3</span><br><span class="line">2 3</span><br><span class="line">3 4</span><br><span class="line">4 5</span><br><span class="line">5 6</span><br></pre></td></tr></table></figure>
+<p>output</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1 4</span><br></pre></td></tr></table></figure>
+<p>input</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">6</span><br><span class="line">1 3</span><br><span class="line">2 3</span><br><span class="line">3 4</span><br><span class="line">4 5</span><br><span class="line">4 6</span><br></pre></td></tr></table></figure>
+<p>output</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">3 3</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>首先找到一个度为 1 的点作为树根构造树。记录每个节点的深度 d[i] 和其到其最深的叶子节点的距离 l[i]</p>
+<p>可以观察到：</p>
+<p>对于可分配的最大值有</p>
+<p>1、一个父亲节点的所有 $l[i] = 1$ 的子节点一共可以分配一个值（因为之前的路径上的值是已经分配好的，要想 XOR 为 0, 这里必须分配同一个值），其他的可以各自分配一个。有一个例外就是 当 $d[i] &lt;= 3$ 因为到根节点的距离 = 2，所以不分配新的值。</p>
+<p>对于可分配的最小值有</p>
+<p>1、如果根到某一个叶子节点的边数为偶数，则分配一个值足以。</p>
+<p>2、如果为奇数，则最多需要三个。简单证明：$x = 3 + x’$  , $x 为奇数x’ 为偶数$ 偶数分配一个值，三个奇数需要三个值，总的下来需要三个值。</p>
+<p>所以可以这样判断，对于所有不为根的叶子节点如果有奇数，则可分配的最小值为 3，否则 为1。2 的话显然可以用 1 替换。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">100000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,a,b,sz[MAX],rt=<span class="number">0</span>,vis[MAX],l[MAX],d[MAX],_min=<span class="number">1</span>,_max=<span class="number">0</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> to,next;</span><br><span class="line">&#125;e[MAX*<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> head[MAX],tot=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addedge</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">	e[tot].to = v;</span><br><span class="line">	e[tot].next = head[u];</span><br><span class="line">	head[u] = tot++;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">	vis[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i!=<span class="number">-1</span>;i=e[i].next)&#123;</span><br><span class="line">		<span class="keyword">int</span> v = e[i].to;</span><br><span class="line">		<span class="keyword">if</span>(vis[v]) <span class="keyword">continue</span>;</span><br><span class="line">		cnt++;</span><br><span class="line">		d[v] = d[u]+<span class="number">1</span>;</span><br><span class="line">		l[u] = max(l[u],dfs(v));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(cnt==<span class="number">0</span>) <span class="keyword">return</span> l[u]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> ++l[u];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">	vis[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> zo = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i!=<span class="number">-1</span>;i=e[i].next)&#123;</span><br><span class="line">		<span class="keyword">int</span> v = e[i].to;</span><br><span class="line">		<span class="keyword">if</span>(vis[v]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span>(l[v] == <span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(zo &amp;&amp; d[v]&gt;<span class="number">3</span>)&#123;</span><br><span class="line">				zo = <span class="number">0</span>;</span><br><span class="line">				_max ++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(l[v]&gt;<span class="number">0</span>) _max++;</span><br><span class="line">		dfs2(v);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("in","r",stdin);</span></span><br><span class="line">	mem(head,<span class="number">-1</span>);mem(sz,<span class="number">0</span>);mem(vis,<span class="number">0</span>);mem(l,<span class="number">0</span>);</span><br><span class="line">	sf(n);</span><br><span class="line">	fi(i,<span class="number">0</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">		sf(a);sf(b);</span><br><span class="line">		addedge(a,b);addedge(b,a);</span><br><span class="line">		sz[a]++;sz[b]++;</span><br><span class="line">	&#125;</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span>(sz[i]==<span class="number">1</span>) &#123;</span><br><span class="line">			rt = i; <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	d[rt] = <span class="number">1</span>;</span><br><span class="line">	dfs(rt);</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">if</span>(sz[i] == <span class="number">1</span> &amp;&amp; i != rt &amp;&amp; (d[i]<span class="number">-1</span>) &amp; <span class="number">1</span>)&#123;</span><br><span class="line">			_min = <span class="number">3</span>; <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	mem(vis,<span class="number">0</span>);</span><br><span class="line">	dfs2(rt);</span><br><span class="line">	pf(_min);pfc(<span class="string">" "</span>);pfn(_max);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>题解</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+        <tag>dfs</tag>
       </tags>
   </entry>
   <entry>
@@ -556,25 +556,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CF1359D Yet Another Yet Another Task [ dp ]</title>
-    <url>/2020/05/31/CF1359D/</url>
-    <content><![CDATA[<p><a href="https://codeforces.com/contest/1359/problem/D" target="_blank" rel="noopener">D. Yet Another Yet Another Task</a></p>
-<p>题意：一个数列，找字段和去除段内最大值后最大的区间；</p>
-<blockquote>
-<p>枚举最大值 _max，对于有比 _max 大的区间都不考虑，在此基础上求最大字段和</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> n,a[MAX],ans=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//freopen("in","r",stdin);</span></span><br><span class="line">	sf(n);</span><br><span class="line">	fi(i,<span class="number">0</span>,n) sf(a[i]);</span><br><span class="line">	fi(_max,<span class="number">1</span>,<span class="number">31</span>)&#123;</span><br><span class="line">		<span class="keyword">int</span> em=<span class="number">0</span>,res=<span class="number">0</span>;</span><br><span class="line">		fi(i,<span class="number">0</span>,n)&#123;</span><br><span class="line">			<span class="keyword">int</span> tmp= a[i]&gt;_max?-INF:a[i];</span><br><span class="line">			em=max(em,<span class="number">0</span>)+tmp;</span><br><span class="line">			res=max(res,em);</span><br><span class="line">		&#125;</span><br><span class="line">		ans = max(ans,res-_max);</span><br><span class="line">	&#125;</span><br><span class="line">	pfn(ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>动态规划</tag>
-        <tag>枚举</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CF1348C Phoenix and Distribution [ 贪心 ]</title>
     <url>/2020/05/02/CF1348C/</url>
     <content><![CDATA[<p><a href="https://codeforces.com/contest/1348/problem/C" target="_blank" rel="noopener">C. Phoenix and Distribution</a></p>
@@ -653,6 +634,62 @@
       </tags>
   </entry>
   <entry>
+    <title>CF1359D Yet Another Yet Another Task [ dp ]</title>
+    <url>/2020/05/31/CF1359D/</url>
+    <content><![CDATA[<p><a href="https://codeforces.com/contest/1359/problem/D" target="_blank" rel="noopener">D. Yet Another Yet Another Task</a></p>
+<p>题意：一个数列，找字段和去除段内最大值后最大的区间；</p>
+<blockquote>
+<p>枚举最大值 _max，对于有比 _max 大的区间都不考虑，在此基础上求最大字段和</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> n,a[MAX],ans=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//freopen("in","r",stdin);</span></span><br><span class="line">	sf(n);</span><br><span class="line">	fi(i,<span class="number">0</span>,n) sf(a[i]);</span><br><span class="line">	fi(_max,<span class="number">1</span>,<span class="number">31</span>)&#123;</span><br><span class="line">		<span class="keyword">int</span> em=<span class="number">0</span>,res=<span class="number">0</span>;</span><br><span class="line">		fi(i,<span class="number">0</span>,n)&#123;</span><br><span class="line">			<span class="keyword">int</span> tmp= a[i]&gt;_max?-INF:a[i];</span><br><span class="line">			em=max(em,<span class="number">0</span>)+tmp;</span><br><span class="line">			res=max(res,em);</span><br><span class="line">		&#125;</span><br><span class="line">		ans = max(ans,res-_max);</span><br><span class="line">	&#125;</span><br><span class="line">	pfn(ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+        <tag>枚举</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CF1363E Tree Shuffling [ dfs ]</title>
+    <url>/2020/06/04/CF1363E/</url>
+    <content><![CDATA[<p><a href="https://codeforces.com/contest/1363/problem/E" target="_blank" rel="noopener">CF1363E Tree Shuffling</a></p>
+<p>题意：Ashish has a tree consisting of n nodes numbered 1 to n rooted at node 1. The ii-th node in the tree has a cost a[i], and binary digit b[i] is written in it. He wants to have binary digit c[i] written in the i-th node in the end.</p>
+<p>To achieve this, he can perform the following operation any number of times:</p>
+<p>Select any k nodes from the subtree of any node u, and shuffle the digits in these nodes as he wishes, incurring a cost of k⋅a[u]. Here, he can choose k ranging from 1 to the size of the subtree of u.</p>
+<p>He wants to perform the operations in such a way that every node finally has the digit corresponding to its target.</p>
+<p>Help him find the minimum total cost he needs to spend so that after all the operations, every node u has digit c[u] written in it, or determine that it is impossible.</p>
+<p><img src="/.io//02ed56cecf6dea5880ad08c321cf503b04888bd7.png" alt="img"></p>
+<p>Examples</p>
+<p>input1</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">1 0 1</span><br><span class="line">20 1 0</span><br><span class="line">300 0 1</span><br><span class="line">4000 0 0</span><br><span class="line">50000 1 0</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">2 4</span><br><span class="line">1 5</span><br></pre></td></tr></table></figure>
+<p>output1</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
+<p>input2</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">10000 0 1</span><br><span class="line">2000 1 0</span><br><span class="line">300 0 1</span><br><span class="line">40 0 0</span><br><span class="line">1 1 0</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">2 4</span><br><span class="line">1 5</span><br></pre></td></tr></table></figure>
+<p>output2</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">24000</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>显然可以观察到： 当一个节点拥有 0 需要 1 时，可以看作整体拥有一个 “0” 资源，对于 1 同理；</p>
+<p>所以只有当两个相等是才是有解的。</p>
+<p>可以观察到，当在某一个节点 u 操作时</p>
+<p>1、此时的代价应为 u 到root 路径上最小代价，此时有两种方法，一是提前计算出在某节点操作的最小代价；二是将操作推迟到最小处再执行</p>
+<p>2、当节点 u 的子节点操作后，该节点 u 所拥有的 0/1 个数是变化的，可以在递归回溯的时候更新</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">200000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,u,v;</span><br><span class="line">vi g[MAX];</span><br><span class="line">ll a[MAX],b[MAX],c[MAX],vis[MAX],fa[MAX],m[MAX],ans=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u,ll _min)</span></span>&#123;</span><br><span class="line">	vis[u]=<span class="number">1</span>;</span><br><span class="line">	fi(i,<span class="number">0</span>,g[u].size())&#123;</span><br><span class="line">		<span class="keyword">int</span> v=g[u][i];</span><br><span class="line">		<span class="keyword">if</span>(vis[v]) <span class="keyword">continue</span>;</span><br><span class="line">		fa[v]=u;</span><br><span class="line">		m[v]=min(m[v],_min);</span><br><span class="line">		dfs(v,m[v]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function">pii <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">	pii cnt;</span><br><span class="line">	<span class="keyword">if</span>(b[u]!=c[u])&#123;</span><br><span class="line">		<span class="keyword">if</span>(b[u]) cnt.first++;</span><br><span class="line">		<span class="keyword">else</span> cnt.second++;</span><br><span class="line">	&#125;</span><br><span class="line">	fi(i,<span class="number">0</span>,g[u].size())&#123;</span><br><span class="line">		<span class="keyword">int</span> v=g[u][i];</span><br><span class="line">		<span class="keyword">if</span>(v==fa[u]) <span class="keyword">continue</span>;</span><br><span class="line">		pii res= dfs2(v);</span><br><span class="line">		cnt.first+=res.first;</span><br><span class="line">		cnt.second+=res.second;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(a[u]&lt;=m[u])&#123;</span><br><span class="line">		<span class="keyword">int</span> tmp =  min(cnt.first, cnt.second);</span><br><span class="line">		ans += <span class="number">2</span>*tmp*a[u];</span><br><span class="line">		cnt.first-=tmp;</span><br><span class="line">		cnt.second-=tmp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("in","r",stdin);</span></span><br><span class="line">	sf(n);</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>,&amp;a[i],&amp;b[i],&amp;c[i]);</span><br><span class="line">		m[i]=a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	fi(i,<span class="number">0</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">		sf(u);sf(v);</span><br><span class="line">		g[u].pb(v);	g[v].pb(u);</span><br><span class="line">	&#125;</span><br><span class="line">	mem(vis,<span class="number">0</span>);mem(fa,<span class="number">0</span>);</span><br><span class="line">	dfs(<span class="number">1</span>,a[<span class="number">1</span>]);</span><br><span class="line">	pii res=dfs2(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span>(res.first||res.second)&#123;</span><br><span class="line">		<span class="built_in">puts</span>(<span class="string">"-1"</span>);<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>贪心</tag>
+        <tag>dfs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CF1365D Solve The Maze [ dfs ]</title>
     <url>/2020/09/26/CF1365D/</url>
     <content><![CDATA[<p><a href="https://codeforces.com/contest/1365/problem/D" target="_blank" rel="noopener">CF1365D Solve The Maze </a></p>
@@ -697,43 +734,6 @@
         <category>题解</category>
       </categories>
       <tags>
-        <tag>dfs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CF1363E Tree Shuffling [ dfs ]</title>
-    <url>/2020/06/04/CF1363E/</url>
-    <content><![CDATA[<p><a href="https://codeforces.com/contest/1363/problem/E" target="_blank" rel="noopener">CF1363E Tree Shuffling</a></p>
-<p>题意：Ashish has a tree consisting of n nodes numbered 1 to n rooted at node 1. The ii-th node in the tree has a cost a[i], and binary digit b[i] is written in it. He wants to have binary digit c[i] written in the i-th node in the end.</p>
-<p>To achieve this, he can perform the following operation any number of times:</p>
-<p>Select any k nodes from the subtree of any node u, and shuffle the digits in these nodes as he wishes, incurring a cost of k⋅a[u]. Here, he can choose k ranging from 1 to the size of the subtree of u.</p>
-<p>He wants to perform the operations in such a way that every node finally has the digit corresponding to its target.</p>
-<p>Help him find the minimum total cost he needs to spend so that after all the operations, every node u has digit c[u] written in it, or determine that it is impossible.</p>
-<p><img src="/.io//02ed56cecf6dea5880ad08c321cf503b04888bd7.png" alt="img"></p>
-<p>Examples</p>
-<p>input1</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">1 0 1</span><br><span class="line">20 1 0</span><br><span class="line">300 0 1</span><br><span class="line">4000 0 0</span><br><span class="line">50000 1 0</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">2 4</span><br><span class="line">1 5</span><br></pre></td></tr></table></figure>
-<p>output1</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
-<p>input2</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">10000 0 1</span><br><span class="line">2000 1 0</span><br><span class="line">300 0 1</span><br><span class="line">40 0 0</span><br><span class="line">1 1 0</span><br><span class="line">1 2</span><br><span class="line">2 3</span><br><span class="line">2 4</span><br><span class="line">1 5</span><br></pre></td></tr></table></figure>
-<p>output2</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">24000</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>显然可以观察到： 当一个节点拥有 0 需要 1 时，可以看作整体拥有一个 “0” 资源，对于 1 同理；</p>
-<p>所以只有当两个相等是才是有解的。</p>
-<p>可以观察到，当在某一个节点 u 操作时</p>
-<p>1、此时的代价应为 u 到root 路径上最小代价，此时有两种方法，一是提前计算出在某节点操作的最小代价；二是将操作推迟到最小处再执行</p>
-<p>2、当节点 u 的子节点操作后，该节点 u 所拥有的 0/1 个数是变化的，可以在递归回溯的时候更新</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">200000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,u,v;</span><br><span class="line">vi g[MAX];</span><br><span class="line">ll a[MAX],b[MAX],c[MAX],vis[MAX],fa[MAX],m[MAX],ans=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u,ll _min)</span></span>&#123;</span><br><span class="line">	vis[u]=<span class="number">1</span>;</span><br><span class="line">	fi(i,<span class="number">0</span>,g[u].size())&#123;</span><br><span class="line">		<span class="keyword">int</span> v=g[u][i];</span><br><span class="line">		<span class="keyword">if</span>(vis[v]) <span class="keyword">continue</span>;</span><br><span class="line">		fa[v]=u;</span><br><span class="line">		m[v]=min(m[v],_min);</span><br><span class="line">		dfs(v,m[v]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line"><span class="function">pii <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">	pii cnt;</span><br><span class="line">	<span class="keyword">if</span>(b[u]!=c[u])&#123;</span><br><span class="line">		<span class="keyword">if</span>(b[u]) cnt.first++;</span><br><span class="line">		<span class="keyword">else</span> cnt.second++;</span><br><span class="line">	&#125;</span><br><span class="line">	fi(i,<span class="number">0</span>,g[u].size())&#123;</span><br><span class="line">		<span class="keyword">int</span> v=g[u][i];</span><br><span class="line">		<span class="keyword">if</span>(v==fa[u]) <span class="keyword">continue</span>;</span><br><span class="line">		pii res= dfs2(v);</span><br><span class="line">		cnt.first+=res.first;</span><br><span class="line">		cnt.second+=res.second;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(a[u]&lt;=m[u])&#123;</span><br><span class="line">		<span class="keyword">int</span> tmp =  min(cnt.first, cnt.second);</span><br><span class="line">		ans += <span class="number">2</span>*tmp*a[u];</span><br><span class="line">		cnt.first-=tmp;</span><br><span class="line">		cnt.second-=tmp;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	freopen("in","r",stdin);</span></span><br><span class="line">	sf(n);</span><br><span class="line">	fi(i,<span class="number">1</span>,n+<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>,&amp;a[i],&amp;b[i],&amp;c[i]);</span><br><span class="line">		m[i]=a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	fi(i,<span class="number">0</span>,n<span class="number">-1</span>)&#123;</span><br><span class="line">		sf(u);sf(v);</span><br><span class="line">		g[u].pb(v);	g[v].pb(u);</span><br><span class="line">	&#125;</span><br><span class="line">	mem(vis,<span class="number">0</span>);mem(fa,<span class="number">0</span>);</span><br><span class="line">	dfs(<span class="number">1</span>,a[<span class="number">1</span>]);</span><br><span class="line">	pii res=dfs2(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">if</span>(res.first||res.second)&#123;</span><br><span class="line">		<span class="built_in">puts</span>(<span class="string">"-1"</span>);<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>贪心</tag>
         <tag>dfs</tag>
       </tags>
   </entry>
@@ -1027,13 +1027,6 @@
       </tags>
   </entry>
   <entry>
-    <title>TESTTETS</title>
-    <url>/2020/10/23/TESTTETS/</url>
-    <content><![CDATA[<p><img src="/.io//3fa6231c46d2b757dab5e58bde3c305fceb036d4.png" alt="img"></p>
-<p><img src="/.io//images\3fa6231c46d2b757dab5e58bde3c305fceb036d4.png" alt="img"></p>
-]]></content>
-  </entry>
-  <entry>
     <title>UVA 10859 [ 树形dp ]</title>
     <url>/2020/03/31/UVA10859/</url>
     <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/UVA10859" target="_blank" rel="noopener">UVA10859 Placing Lampposts</a></p>
@@ -1150,18 +1143,6 @@
       </tags>
   </entry>
   <entry>
-    <title>test</title>
-    <url>/2020/01/28/test-laptop-yzhid/</url>
-    <content><![CDATA[<p>emmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm</p>
-]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
-      <tags>
-        <tag>test</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>test_11</title>
     <url>/2018/02/24/test-11/</url>
     <content><![CDATA[<p><img src="http://www.gx8899.com/uploads/allimg/2017100509/4y4onjbnbgy.jpg" alt="png"><br><a id="more"></a></p>
@@ -1204,9 +1185,21 @@
         <category>test</category>
       </categories>
       <tags>
-        <tag>test</tag>
         <tag>c++</tag>
+        <tag>test</tag>
         <tag>MARKDOWN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2020/01/28/test-laptop-yzhid/</url>
+    <content><![CDATA[<p>emmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm</p>
+]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+      <tags>
+        <tag>test</tag>
       </tags>
   </entry>
   <entry>
@@ -1595,18 +1588,6 @@
       </tags>
   </entry>
   <entry>
-    <title>数组最大值</title>
-    <url>/2020/01/21/%E6%95%B0%E7%BB%84%E6%9C%80%E5%A4%A7%E5%80%BC/</url>
-    <content><![CDATA[<p>数组先升后降，找到这个转折点。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bs</span><span class="params">(<span class="keyword">int</span> a[] ,<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==r) <span class="keyword">return</span> a[l];</span><br><span class="line">	<span class="keyword">if</span>((l+<span class="number">1</span> == r) &amp;&amp; a[l]&gt;=a[r]) </span><br><span class="line">		<span class="keyword">return</span> a[l];</span><br><span class="line">	<span class="keyword">if</span>((l+<span class="number">1</span> == r) &amp;&amp; a[l]&lt;a[r]) </span><br><span class="line">		<span class="keyword">return</span> a[r];</span><br><span class="line">	<span class="keyword">int</span> m=(l+r)/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">if</span>(a[m] &gt;a[m+<span class="number">1</span>] &amp;&amp; a[m] &gt;a[m<span class="number">-1</span>]) </span><br><span class="line">		<span class="keyword">return</span> a[m];</span><br><span class="line">	<span class="keyword">if</span>(a[m] &gt;a[m+<span class="number">1</span>] &amp;&amp; a[m] &lt;a[m<span class="number">-1</span>]) </span><br><span class="line">		<span class="keyword">return</span> bs(a,l,m<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">		<span class="keyword">return</span> bs(a,m+<span class="number">1</span>,r);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>分治</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据库-规范化</title>
     <url>/2018/02/28/%E6%95%B0%E6%8D%AE%E5%BA%93-%E8%A7%84%E8%8C%83%E5%8C%96/</url>
     <content><![CDATA[<ol>
@@ -1648,6 +1629,18 @@
       </categories>
       <tags>
         <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数组最大值</title>
+    <url>/2020/01/21/%E6%95%B0%E7%BB%84%E6%9C%80%E5%A4%A7%E5%80%BC/</url>
+    <content><![CDATA[<p>数组先升后降，找到这个转折点。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bs</span><span class="params">(<span class="keyword">int</span> a[] ,<span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==r) <span class="keyword">return</span> a[l];</span><br><span class="line">	<span class="keyword">if</span>((l+<span class="number">1</span> == r) &amp;&amp; a[l]&gt;=a[r]) </span><br><span class="line">		<span class="keyword">return</span> a[l];</span><br><span class="line">	<span class="keyword">if</span>((l+<span class="number">1</span> == r) &amp;&amp; a[l]&lt;a[r]) </span><br><span class="line">		<span class="keyword">return</span> a[r];</span><br><span class="line">	<span class="keyword">int</span> m=(l+r)/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">if</span>(a[m] &gt;a[m+<span class="number">1</span>] &amp;&amp; a[m] &gt;a[m<span class="number">-1</span>]) </span><br><span class="line">		<span class="keyword">return</span> a[m];</span><br><span class="line">	<span class="keyword">if</span>(a[m] &gt;a[m+<span class="number">1</span>] &amp;&amp; a[m] &lt;a[m<span class="number">-1</span>]) </span><br><span class="line">		<span class="keyword">return</span> bs(a,l,m<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">else</span> </span><br><span class="line">		<span class="keyword">return</span> bs(a,m+<span class="number">1</span>,r);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>分治</tag>
       </tags>
   </entry>
   <entry>
@@ -2025,28 +2018,6 @@
       </tags>
   </entry>
   <entry>
-    <title>洛谷 p1032 字串变换</title>
-    <url>/2020/02/20/%E6%B4%9B%E8%B0%B7p1032/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P1032" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P1032</a></p>
-<p>题意：字串 A B, 存在一些转换规则使得子串由  A’ -&gt; B’ ，问最少的转换步数。超过 10 步，输出 “NO ANSWER!”<br>输入输出样例<br>输入<br>abcd xyz<br>abc xu<br>ud y<br>y yz<br>输出<br>3</p>
-<blockquote>
-<p>双向 bfs , 有几个字符串的坑…<br>有相同的多个子串时，每次只转换一个子串，因为有多种选择每个都要试一遍。。</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sf(n) scanf(<span class="meta-string">"%d"</span>,&amp;n)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pf(n) printf(<span class="meta-string">"%d"</span>,n)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pfc(c) printf(c)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi(i,s,t) for(int i=s;i&lt;t;i++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fd(s,t) for(int i=s-1;i&gt;=t;i--)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(a,c) memset(a,c,sizeof(a))</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="built_in">string</span> a,b,c[<span class="number">10</span>],d[<span class="number">10</span>];</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt; m,len; <span class="comment">//vis</span></span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="built_in">string</span>&gt; s;</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="built_in">string</span>&gt; t;</span><br><span class="line"><span class="keyword">int</span> cnt=<span class="number">0</span>,L[<span class="number">30</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">count</span><span class="params">(<span class="built_in">string</span> a,<span class="built_in">string</span> b)</span></span>&#123; <span class="comment">//num of b in a</span></span><br><span class="line">	<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> len = b.size(),l = a.find(b);</span><br><span class="line">	<span class="keyword">while</span>(l!=<span class="number">-1</span>)&#123;</span><br><span class="line">		L[cnt++]=l;</span><br><span class="line">		l=a.find(b,l+len);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">string</span> _replace(<span class="keyword">int</span> index,<span class="built_in">string</span> a,<span class="built_in">string</span> b,<span class="built_in">string</span> c)&#123;</span><br><span class="line">	<span class="keyword">int</span> len = b.size();</span><br><span class="line">	a.replace(index,len,c);</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bfs</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	queue&lt;string&gt; s;</span></span><br><span class="line"><span class="comment">//	queue&lt;string&gt; t;</span></span><br><span class="line">	<span class="keyword">if</span>(!a.compare(b)) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	s.push(a);m[a]=<span class="number">1</span>;</span><br><span class="line">	t.push(b);m[b]=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(!s.empty() || !t.empty())&#123;</span><br><span class="line">		<span class="keyword">if</span>(!s.empty())&#123;</span><br><span class="line">			<span class="built_in">string</span> tmp= s.front();</span><br><span class="line">			s.pop();</span><br><span class="line">			fi(i,<span class="number">0</span>,cnt)&#123;</span><br><span class="line">				<span class="keyword">int</span> l= count(tmp,c[i]);</span><br><span class="line">				fi(j,<span class="number">0</span>,l)&#123;</span><br><span class="line">					<span class="built_in">string</span> tmp2= _replace(L[j],tmp,c[i],d[i]);</span><br><span class="line">					<span class="keyword">if</span>(tmp2.compare(tmp)!=<span class="number">0</span>)&#123;</span><br><span class="line">						<span class="keyword">if</span>(m[tmp2]==<span class="number">0</span>)&#123;</span><br><span class="line">							len[tmp2] = len[tmp] +<span class="number">1</span> ;</span><br><span class="line">							<span class="keyword">if</span>(len[tmp2]&gt;<span class="number">10</span>) <span class="keyword">continue</span>; <span class="comment">// 10 steps</span></span><br><span class="line">							m[tmp2]=<span class="number">1</span>;</span><br><span class="line">							s.push(tmp2);</span><br><span class="line">						&#125; <span class="keyword">else</span> <span class="keyword">if</span>(m[tmp2]==<span class="number">2</span>)&#123;</span><br><span class="line">							<span class="keyword">return</span> len[tmp2] + len[tmp] +<span class="number">1</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(!t.empty())&#123;</span><br><span class="line">			<span class="built_in">string</span> tmp= t.front();</span><br><span class="line">			t.pop();</span><br><span class="line">			fi(i,<span class="number">0</span>,cnt)&#123;</span><br><span class="line">				<span class="keyword">int</span> l= count(tmp,d[i]);</span><br><span class="line">				fi(j,<span class="number">0</span>,l)&#123;</span><br><span class="line">					<span class="built_in">string</span> tmp2= _replace(L[j],tmp,d[i],c[i]);</span><br><span class="line">					<span class="keyword">if</span>(tmp2.compare(tmp)!=<span class="number">0</span>)&#123;</span><br><span class="line">						<span class="keyword">if</span>(m[tmp2]==<span class="number">0</span>)&#123;</span><br><span class="line">							len[tmp2] = len[tmp] +<span class="number">1</span> ;</span><br><span class="line">							<span class="keyword">if</span>(len[tmp2]&gt;<span class="number">10</span>)<span class="keyword">continue</span>;</span><br><span class="line">							m[tmp2]=<span class="number">2</span>; </span><br><span class="line">							t.push(tmp2);</span><br><span class="line">						&#125; <span class="keyword">else</span> <span class="keyword">if</span>(m[tmp2]==<span class="number">1</span>) &#123;</span><br><span class="line">							<span class="keyword">return</span> len[tmp2] + len[tmp] +<span class="number">1</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;c[cnt]&gt;&gt;d[cnt]) cnt++;</span><br><span class="line">	<span class="keyword">int</span> t=bfs();</span><br><span class="line">	<span class="keyword">if</span>(t&gt;<span class="number">-1</span>) <span class="built_in">cout</span>&lt;&lt;t;</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO ANSWER!"</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>补一个 c++ 字符串替换函数，本题没用</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> _replace(<span class="built_in">string</span> a,<span class="built_in">string</span> b,<span class="built_in">string</span> c)&#123;<span class="comment">//replace all b in a</span></span><br><span class="line">	<span class="keyword">int</span> len1 = b.size(),len2=c.size(),l = a.find(b),L[<span class="number">100</span>],cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(l!=<span class="number">-1</span>)&#123;</span><br><span class="line">		L[cnt++]=l;</span><br><span class="line">		l = a.find(b,l+len1);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;cnt;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> inc= i&gt;<span class="number">0</span>? i * (len2-len1):<span class="number">0</span>;</span><br><span class="line">		a.replace(L[i] + inc ,len1,c);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>STL</tag>
-        <tag>BFS</tag>
-        <tag>字符串</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>洛谷 p1063 能量项链[ 区间DP ]</title>
     <url>/2020/03/08/%E6%B4%9B%E8%B0%B7p1063/</url>
     <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P1063" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P1063</a></p>
@@ -2107,6 +2078,28 @@
         <tag>动态规划</tag>
         <tag>DFS</tag>
         <tag>noip</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>洛谷 p1032 字串变换</title>
+    <url>/2020/02/20/%E6%B4%9B%E8%B0%B7p1032/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P1032" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P1032</a></p>
+<p>题意：字串 A B, 存在一些转换规则使得子串由  A’ -&gt; B’ ，问最少的转换步数。超过 10 步，输出 “NO ANSWER!”<br>输入输出样例<br>输入<br>abcd xyz<br>abc xu<br>ud y<br>y yz<br>输出<br>3</p>
+<blockquote>
+<p>双向 bfs , 有几个字符串的坑…<br>有相同的多个子串时，每次只转换一个子串，因为有多种选择每个都要试一遍。。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sf(n) scanf(<span class="meta-string">"%d"</span>,&amp;n)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pf(n) printf(<span class="meta-string">"%d"</span>,n)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pfc(c) printf(c)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fi(i,s,t) for(int i=s;i&lt;t;i++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fd(s,t) for(int i=s-1;i&gt;=t;i--)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(a,c) memset(a,c,sizeof(a))</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="built_in">string</span> a,b,c[<span class="number">10</span>],d[<span class="number">10</span>];</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt; m,len; <span class="comment">//vis</span></span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="built_in">string</span>&gt; s;</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="built_in">string</span>&gt; t;</span><br><span class="line"><span class="keyword">int</span> cnt=<span class="number">0</span>,L[<span class="number">30</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">count</span><span class="params">(<span class="built_in">string</span> a,<span class="built_in">string</span> b)</span></span>&#123; <span class="comment">//num of b in a</span></span><br><span class="line">	<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> len = b.size(),l = a.find(b);</span><br><span class="line">	<span class="keyword">while</span>(l!=<span class="number">-1</span>)&#123;</span><br><span class="line">		L[cnt++]=l;</span><br><span class="line">		l=a.find(b,l+len);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">string</span> _replace(<span class="keyword">int</span> index,<span class="built_in">string</span> a,<span class="built_in">string</span> b,<span class="built_in">string</span> c)&#123;</span><br><span class="line">	<span class="keyword">int</span> len = b.size();</span><br><span class="line">	a.replace(index,len,c);</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bfs</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//	queue&lt;string&gt; s;</span></span><br><span class="line"><span class="comment">//	queue&lt;string&gt; t;</span></span><br><span class="line">	<span class="keyword">if</span>(!a.compare(b)) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	s.push(a);m[a]=<span class="number">1</span>;</span><br><span class="line">	t.push(b);m[b]=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(!s.empty() || !t.empty())&#123;</span><br><span class="line">		<span class="keyword">if</span>(!s.empty())&#123;</span><br><span class="line">			<span class="built_in">string</span> tmp= s.front();</span><br><span class="line">			s.pop();</span><br><span class="line">			fi(i,<span class="number">0</span>,cnt)&#123;</span><br><span class="line">				<span class="keyword">int</span> l= count(tmp,c[i]);</span><br><span class="line">				fi(j,<span class="number">0</span>,l)&#123;</span><br><span class="line">					<span class="built_in">string</span> tmp2= _replace(L[j],tmp,c[i],d[i]);</span><br><span class="line">					<span class="keyword">if</span>(tmp2.compare(tmp)!=<span class="number">0</span>)&#123;</span><br><span class="line">						<span class="keyword">if</span>(m[tmp2]==<span class="number">0</span>)&#123;</span><br><span class="line">							len[tmp2] = len[tmp] +<span class="number">1</span> ;</span><br><span class="line">							<span class="keyword">if</span>(len[tmp2]&gt;<span class="number">10</span>) <span class="keyword">continue</span>; <span class="comment">// 10 steps</span></span><br><span class="line">							m[tmp2]=<span class="number">1</span>;</span><br><span class="line">							s.push(tmp2);</span><br><span class="line">						&#125; <span class="keyword">else</span> <span class="keyword">if</span>(m[tmp2]==<span class="number">2</span>)&#123;</span><br><span class="line">							<span class="keyword">return</span> len[tmp2] + len[tmp] +<span class="number">1</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(!t.empty())&#123;</span><br><span class="line">			<span class="built_in">string</span> tmp= t.front();</span><br><span class="line">			t.pop();</span><br><span class="line">			fi(i,<span class="number">0</span>,cnt)&#123;</span><br><span class="line">				<span class="keyword">int</span> l= count(tmp,d[i]);</span><br><span class="line">				fi(j,<span class="number">0</span>,l)&#123;</span><br><span class="line">					<span class="built_in">string</span> tmp2= _replace(L[j],tmp,d[i],c[i]);</span><br><span class="line">					<span class="keyword">if</span>(tmp2.compare(tmp)!=<span class="number">0</span>)&#123;</span><br><span class="line">						<span class="keyword">if</span>(m[tmp2]==<span class="number">0</span>)&#123;</span><br><span class="line">							len[tmp2] = len[tmp] +<span class="number">1</span> ;</span><br><span class="line">							<span class="keyword">if</span>(len[tmp2]&gt;<span class="number">10</span>)<span class="keyword">continue</span>;</span><br><span class="line">							m[tmp2]=<span class="number">2</span>; </span><br><span class="line">							t.push(tmp2);</span><br><span class="line">						&#125; <span class="keyword">else</span> <span class="keyword">if</span>(m[tmp2]==<span class="number">1</span>) &#123;</span><br><span class="line">							<span class="keyword">return</span> len[tmp2] + len[tmp] +<span class="number">1</span>;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;c[cnt]&gt;&gt;d[cnt]) cnt++;</span><br><span class="line">	<span class="keyword">int</span> t=bfs();</span><br><span class="line">	<span class="keyword">if</span>(t&gt;<span class="number">-1</span>) <span class="built_in">cout</span>&lt;&lt;t;</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"NO ANSWER!"</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>补一个 c++ 字符串替换函数，本题没用</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> _replace(<span class="built_in">string</span> a,<span class="built_in">string</span> b,<span class="built_in">string</span> c)&#123;<span class="comment">//replace all b in a</span></span><br><span class="line">	<span class="keyword">int</span> len1 = b.size(),len2=c.size(),l = a.find(b),L[<span class="number">100</span>],cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(l!=<span class="number">-1</span>)&#123;</span><br><span class="line">		L[cnt++]=l;</span><br><span class="line">		l = a.find(b,l+len1);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;cnt;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> inc= i&gt;<span class="number">0</span>? i * (len2-len1):<span class="number">0</span>;</span><br><span class="line">		a.replace(L[i] + inc ,len1,c);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>STL</tag>
+        <tag>BFS</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
@@ -2838,25 +2831,6 @@
       </tags>
   </entry>
   <entry>
-    <title>洛谷 p1604B 进制星球 [ 高精度 ]</title>
-    <url>/2020/02/23/%E6%B4%9B%E8%B0%B7p1604B%E8%BF%9B%E5%88%B6%E6%98%9F%E7%90%83/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P1604" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P1604</a></p>
-<p>题目背景<br>进制题目，而且还是个计算器~~</p>
-<p>题目描述<br>话说有一天，小Z乘坐宇宙飞船，飞到一个美丽的星球。因为历史的原因，科技在这个美丽的星球上并不很发达，星球上人们普遍采用B（2&lt;=B&lt;=36）进制计数。星球上的人们用美味的食物招待了小Z，作为回报，小Z希望送一个能够完成B进制加法的计算器给他们。 现在小Z希望你可以帮助他，编写实现B进制加法的程序。</p>
-<p>输入格式<br>共3行第1行：一个十进制的整数,表示进制B。第2-3行：每行一个B进制数正整数。数字的每一位属于{0，1，2，3，4，5，6，7，8，9，A，B……}，每个数字长度&lt;=2000位。</p>
-<p>输出格式<br>一个B进制数，表示输入的两个数的和。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">2000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">char</span> a[MAX],b[MAX];</span><br><span class="line"><span class="keyword">int</span>  c[MAX*<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	sf(n);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s%s"</span>,a,b);</span><br><span class="line">	<span class="keyword">int</span> last =<span class="number">0</span>,t, l1=<span class="built_in">strlen</span>(a),l2=<span class="built_in">strlen</span>(b) ;</span><br><span class="line">	<span class="keyword">int</span> i=l1<span class="number">-1</span>,j=l2<span class="number">-1</span>,cnt=<span class="number">0</span>,t1,t2;</span><br><span class="line">	<span class="keyword">while</span>(i&gt;=<span class="number">0</span> &amp;&amp; j&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&gt;=<span class="string">'A'</span>) t1= a[i]-<span class="string">'A'</span>+<span class="number">10</span>;</span><br><span class="line">		<span class="keyword">else</span> t1=a[i] - <span class="string">'0'</span>;</span><br><span class="line">		<span class="keyword">if</span>(b[j]&gt;=<span class="string">'A'</span>) t2= b[j]-<span class="string">'A'</span>+<span class="number">10</span>;</span><br><span class="line">		<span class="keyword">else</span> t2=b[j] - <span class="string">'0'</span>;</span><br><span class="line">		t = t1 + t2 + last;</span><br><span class="line">		c[cnt++]=t % n;</span><br><span class="line">		last = t / n;</span><br><span class="line">		i--;j--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(i&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&gt;=<span class="string">'A'</span>) t1= a[i]-<span class="string">'A'</span>+<span class="number">10</span>;</span><br><span class="line">		<span class="keyword">else</span> t1=a[i] - <span class="string">'0'</span>;</span><br><span class="line">		t = t1 + last;</span><br><span class="line">		c[cnt++] = t % n;</span><br><span class="line">		last = t / n;</span><br><span class="line">		i--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(j&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(b[j]&gt;=<span class="string">'A'</span>) t2= b[j]-<span class="string">'A'</span>+<span class="number">10</span>;</span><br><span class="line">		<span class="keyword">else</span> t2= b[j] - <span class="string">'0'</span>;</span><br><span class="line">		t = t2 + last;</span><br><span class="line">		c[cnt++] = t % n;</span><br><span class="line">		last = t / n;</span><br><span class="line">		j--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(last!=<span class="number">0</span>) c[cnt++] = last;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=cnt<span class="number">-1</span>;j&gt;=<span class="number">0</span>;j--)&#123;</span><br><span class="line">		<span class="keyword">if</span>(c[j]&gt;=<span class="number">10</span>)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%c"</span>,<span class="string">'A'</span> + c[j] - <span class="number">10</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span> pf(c[j]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>算法</category>
-        <category>题解</category>
-        <category>洛谷</category>
-      </categories>
-      <tags>
-        <tag>高精度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>洛谷 p1638 逛画展 [ 二分 尺取法 ]</title>
     <url>/2020/04/02/%E6%B4%9B%E8%B0%B7p1638/</url>
     <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P1638" target="_blank" rel="noopener">P1638 逛画展</a></p>
@@ -2996,6 +2970,25 @@
       <tags>
         <tag>动态规划</tag>
         <tag>DP优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>洛谷 p1604B 进制星球 [ 高精度 ]</title>
+    <url>/2020/02/23/%E6%B4%9B%E8%B0%B7p1604B%E8%BF%9B%E5%88%B6%E6%98%9F%E7%90%83/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P1604" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P1604</a></p>
+<p>题目背景<br>进制题目，而且还是个计算器~~</p>
+<p>题目描述<br>话说有一天，小Z乘坐宇宙飞船，飞到一个美丽的星球。因为历史的原因，科技在这个美丽的星球上并不很发达，星球上人们普遍采用B（2&lt;=B&lt;=36）进制计数。星球上的人们用美味的食物招待了小Z，作为回报，小Z希望送一个能够完成B进制加法的计算器给他们。 现在小Z希望你可以帮助他，编写实现B进制加法的程序。</p>
+<p>输入格式<br>共3行第1行：一个十进制的整数,表示进制B。第2-3行：每行一个B进制数正整数。数字的每一位属于{0，1，2，3，4，5，6，7，8，9，A，B……}，每个数字长度&lt;=2000位。</p>
+<p>输出格式<br>一个B进制数，表示输入的两个数的和。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">2000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">char</span> a[MAX],b[MAX];</span><br><span class="line"><span class="keyword">int</span>  c[MAX*<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	sf(n);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s%s"</span>,a,b);</span><br><span class="line">	<span class="keyword">int</span> last =<span class="number">0</span>,t, l1=<span class="built_in">strlen</span>(a),l2=<span class="built_in">strlen</span>(b) ;</span><br><span class="line">	<span class="keyword">int</span> i=l1<span class="number">-1</span>,j=l2<span class="number">-1</span>,cnt=<span class="number">0</span>,t1,t2;</span><br><span class="line">	<span class="keyword">while</span>(i&gt;=<span class="number">0</span> &amp;&amp; j&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&gt;=<span class="string">'A'</span>) t1= a[i]-<span class="string">'A'</span>+<span class="number">10</span>;</span><br><span class="line">		<span class="keyword">else</span> t1=a[i] - <span class="string">'0'</span>;</span><br><span class="line">		<span class="keyword">if</span>(b[j]&gt;=<span class="string">'A'</span>) t2= b[j]-<span class="string">'A'</span>+<span class="number">10</span>;</span><br><span class="line">		<span class="keyword">else</span> t2=b[j] - <span class="string">'0'</span>;</span><br><span class="line">		t = t1 + t2 + last;</span><br><span class="line">		c[cnt++]=t % n;</span><br><span class="line">		last = t / n;</span><br><span class="line">		i--;j--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(i&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(a[i]&gt;=<span class="string">'A'</span>) t1= a[i]-<span class="string">'A'</span>+<span class="number">10</span>;</span><br><span class="line">		<span class="keyword">else</span> t1=a[i] - <span class="string">'0'</span>;</span><br><span class="line">		t = t1 + last;</span><br><span class="line">		c[cnt++] = t % n;</span><br><span class="line">		last = t / n;</span><br><span class="line">		i--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(j&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(b[j]&gt;=<span class="string">'A'</span>) t2= b[j]-<span class="string">'A'</span>+<span class="number">10</span>;</span><br><span class="line">		<span class="keyword">else</span> t2= b[j] - <span class="string">'0'</span>;</span><br><span class="line">		t = t2 + last;</span><br><span class="line">		c[cnt++] = t % n;</span><br><span class="line">		last = t / n;</span><br><span class="line">		j--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(last!=<span class="number">0</span>) c[cnt++] = last;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=cnt<span class="number">-1</span>;j&gt;=<span class="number">0</span>;j--)&#123;</span><br><span class="line">		<span class="keyword">if</span>(c[j]&gt;=<span class="number">10</span>)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%c"</span>,<span class="string">'A'</span> + c[j] - <span class="number">10</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span> pf(c[j]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>算法</category>
+        <category>题解</category>
+        <category>洛谷</category>
+      </categories>
+      <tags>
+        <tag>高精度</tag>
       </tags>
   </entry>
   <entry>
@@ -3508,6 +3501,27 @@
       </tags>
   </entry>
   <entry>
+    <title>洛谷 p3956 棋牌 [ 剪枝 ]</title>
+    <url>/2020/03/20/%E6%B4%9B%E8%B0%B7p3956%E6%A3%8B%E7%89%8C/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P3956" target="_blank" rel="noopener">P3956 棋盘</a></p>
+<p>题意: 常见的矩阵…那样…</p>
+<blockquote>
+<p>dfs + 剪枝 ，最优性剪枝和记忆化搜索都是要记录一部分结果，但是又有区别，可以看一下这里 <a href="https://lscgx.github.io/2020/02/22/%E6%B4%9B%E8%B0%B71433%E5%90%83%E5%A5%B6%E9%85%AA/">洛谷 1434 [SHOI2002]滑雪</a> </p>
+<p>本题可以将每一块看成一个图上的节点，跑 dij, 这样</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> n,m,a[MAX][MAX],x,y,c,vis[MAX][MAX],ans,_min[MAX][MAX]; </span><br><span class="line"><span class="keyword">int</span> aw[<span class="number">4</span>][<span class="number">2</span>]=&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">-1</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x&lt;<span class="number">1</span>||x&gt;n||y&lt;<span class="number">1</span>||y&gt;n) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> d,<span class="keyword">int</span> f)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x==n&amp;&amp;y==n)&#123;</span><br><span class="line">		ans = min(ans,d);</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	_min[x][y]=d;</span><br><span class="line">	fi(i,<span class="number">0</span>,<span class="number">4</span>)&#123;</span><br><span class="line">		<span class="keyword">int</span> tx= x+aw[i][<span class="number">0</span>],ty=y+aw[i][<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">if</span>(judge(tx,ty) &amp;&amp; !vis[tx][ty])&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[tx][ty]==<span class="number">-1</span> &amp;&amp; f) <span class="keyword">continue</span>;<span class="comment">//不能连续走空白格</span></span><br><span class="line">			vis[tx][ty]=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(a[tx][ty]==<span class="number">-1</span> &amp;&amp; d+<span class="number">2</span>&lt;_min[tx][ty])&#123;</span><br><span class="line">				a[tx][ty]=a[x][y];</span><br><span class="line">				dfs(tx,ty,d+<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line">				a[tx][ty]=<span class="number">-1</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(a[tx][ty]==a[x][y] &amp;&amp; d&lt;_min[tx][ty])&#123;</span><br><span class="line">				dfs(tx,ty,d,<span class="number">0</span>);</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(d+<span class="number">1</span>&lt;_min[tx][ty])&#123;</span><br><span class="line">				dfs(tx,ty,d+<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			vis[tx][ty]=<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	sf(n);sf(m);</span><br><span class="line">	mem(a,<span class="number">-1</span>);</span><br><span class="line">	mem(vis,<span class="number">0</span>);</span><br><span class="line">	mem(_min,<span class="number">0x3f</span>);</span><br><span class="line">	fi(i,<span class="number">0</span>,m)&#123;</span><br><span class="line">		sf(x);sf(y);sf(c);</span><br><span class="line">		a[x][y]=c;</span><br><span class="line">	&#125;</span><br><span class="line">	vis[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;ans =INF;</span><br><span class="line">	dfs(<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span>(ans==INF)pfc(<span class="string">"-1"</span>);</span><br><span class="line">	<span class="keyword">else</span> pf(ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>题解</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>图论</tag>
+        <tag>剪枝</tag>
+        <tag>DFS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>洛谷 p3650 滑雪课程设计 [ 枚举 ]</title>
     <url>/2020/03/10/%E6%B4%9B%E8%B0%B7p3650/</url>
     <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P3650" target="_blank" rel="noopener">https://www.luogu.com.cn/problem/P3650</a></p>
@@ -3538,27 +3552,6 @@
       <tags>
         <tag>贪心</tag>
         <tag>枚举</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>洛谷 p3956 棋牌 [ 剪枝 ]</title>
-    <url>/2020/03/20/%E6%B4%9B%E8%B0%B7p3956%E6%A3%8B%E7%89%8C/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P3956" target="_blank" rel="noopener">P3956 棋盘</a></p>
-<p>题意: 常见的矩阵…那样…</p>
-<blockquote>
-<p>dfs + 剪枝 ，最优性剪枝和记忆化搜索都是要记录一部分结果，但是又有区别，可以看一下这里 <a href="https://lscgx.github.io/2020/02/22/%E6%B4%9B%E8%B0%B71433%E5%90%83%E5%A5%B6%E9%85%AA/">洛谷 1434 [SHOI2002]滑雪</a> </p>
-<p>本题可以将每一块看成一个图上的节点，跑 dij, 这样</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> n,m,a[MAX][MAX],x,y,c,vis[MAX][MAX],ans,_min[MAX][MAX]; </span><br><span class="line"><span class="keyword">int</span> aw[<span class="number">4</span>][<span class="number">2</span>]=&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">-1</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x&lt;<span class="number">1</span>||x&gt;n||y&lt;<span class="number">1</span>||y&gt;n) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> d,<span class="keyword">int</span> f)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x==n&amp;&amp;y==n)&#123;</span><br><span class="line">		ans = min(ans,d);</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">	_min[x][y]=d;</span><br><span class="line">	fi(i,<span class="number">0</span>,<span class="number">4</span>)&#123;</span><br><span class="line">		<span class="keyword">int</span> tx= x+aw[i][<span class="number">0</span>],ty=y+aw[i][<span class="number">1</span>];</span><br><span class="line">		<span class="keyword">if</span>(judge(tx,ty) &amp;&amp; !vis[tx][ty])&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[tx][ty]==<span class="number">-1</span> &amp;&amp; f) <span class="keyword">continue</span>;<span class="comment">//不能连续走空白格</span></span><br><span class="line">			vis[tx][ty]=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(a[tx][ty]==<span class="number">-1</span> &amp;&amp; d+<span class="number">2</span>&lt;_min[tx][ty])&#123;</span><br><span class="line">				a[tx][ty]=a[x][y];</span><br><span class="line">				dfs(tx,ty,d+<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line">				a[tx][ty]=<span class="number">-1</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(a[tx][ty]==a[x][y] &amp;&amp; d&lt;_min[tx][ty])&#123;</span><br><span class="line">				dfs(tx,ty,d,<span class="number">0</span>);</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(d+<span class="number">1</span>&lt;_min[tx][ty])&#123;</span><br><span class="line">				dfs(tx,ty,d+<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			vis[tx][ty]=<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	freopen(<span class="string">"in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">	sf(n);sf(m);</span><br><span class="line">	mem(a,<span class="number">-1</span>);</span><br><span class="line">	mem(vis,<span class="number">0</span>);</span><br><span class="line">	mem(_min,<span class="number">0x3f</span>);</span><br><span class="line">	fi(i,<span class="number">0</span>,m)&#123;</span><br><span class="line">		sf(x);sf(y);sf(c);</span><br><span class="line">		a[x][y]=c;</span><br><span class="line">	&#125;</span><br><span class="line">	vis[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;ans =INF;</span><br><span class="line">	dfs(<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span>(ans==INF)pfc(<span class="string">"-1"</span>);</span><br><span class="line">	<span class="keyword">else</span> pf(ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>题解</category>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>图论</tag>
-        <tag>剪枝</tag>
-        <tag>DFS</tag>
       </tags>
   </entry>
   <entry>
@@ -3836,5 +3829,15 @@
         <tag>算法</tag>
         <tag>排序</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>TESTTETS</title>
+    <url>/2020/10/23/TESTTETS/</url>
+    <content><![CDATA[<blockquote>
+<p>hdhjhdjhshd</p>
+</blockquote>
+<p><img src="/.io//3fa6231c46d2b757dab5e58bde3c305fceb036d4.png" alt="img"></p>
+<p><img src="/.io//images\3fa6231c46d2b757dab5e58bde3c305fceb036d4.png" alt="img"></p>
+]]></content>
   </entry>
 </search>

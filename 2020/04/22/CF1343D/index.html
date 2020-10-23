@@ -101,8 +101,10 @@
   <link rel="alternate" href="/atom.xml" title="Yzhid" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-  <body><div id="mobile-navbar" class="mobile-navbar">
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="mobile-header-logo">
+  <body><div>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><canvas class="fireworks" style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 100%; height:100%;">
+</canvas></div><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
     <a href="/." class="logo">Yzhid</a>
   </div>
   <div class="mobile-navbar-icon">
@@ -162,9 +164,7 @@
     
   </ul>
 </nav>
-<div>
-<canvas class="fireworks" style="position: fixed; left: 0px; top: 0px; z-index: 99999999; pointer-events: none; width: 100%; height:100%;">
-</canvas></div>
+
 
     <div class="container" id="mobile-panel">
       <header id="header" class="header"><div class="logo-wrapper">
@@ -492,20 +492,18 @@
 
 
   
-    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-  
-
-  
     <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
   
 
   
 
 
-    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<!--     <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
 <script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
-<script type="text/javascript" src="/js/src/anime.min.js?v=2.6.0"></script>
-<script type="text/javascript" src="/js/src/fireworks.js?v=2.6.0"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+ -->
+<!--   libs.swig 删除内容  jquery: 'jquery/jquery-3.1.1.min.js', -->
+    <script type="text/javascript" src="/js/src/anime.min.js"></script>
+<script type="text/javascript" src="/js/src/fireworks.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -523,6 +521,5 @@
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
   </body>
 </html>

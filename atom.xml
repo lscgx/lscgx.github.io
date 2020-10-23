@@ -6,7 +6,7 @@
   <link href="https://lscgx.github.io/atom.xml" rel="self"/>
   
   <link href="https://lscgx.github.io/"/>
-  <updated>2020-10-23T03:10:53.493Z</updated>
+  <updated>2020-10-23T03:25:38.563Z</updated>
   <id>https://lscgx.github.io/</id>
   
   <author>
@@ -21,12 +21,12 @@
     <link href="https://lscgx.github.io/2020/10/23/hexoimg/"/>
     <id>https://lscgx.github.io/2020/10/23/hexoimg/</id>
     <published>2020-10-23T01:54:36.000Z</published>
-    <updated>2020-10-23T03:10:53.493Z</updated>
+    <updated>2020-10-23T03:25:38.563Z</updated>
     
     <content type="html"><![CDATA[<h4 id="1-文章内图像"><a href="#1-文章内图像" class="headerlink" title="1 文章内图像"></a>1 文章内图像</h4><blockquote><p>hexo 3.9  下  ”![](img.png)“ 会被渲染成  ”/.io/xxx.png“. 实际图片不能正常显示</p><p>去掉 .io </p><p>修改下 \node_modules\hexo-asset-image\index.js</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">//$(this).attr('src', config.root + link  + src);</span></span><br><span class="line">&gt; $(<span class="keyword">this</span>).attr(<span class="string">'src'</span>, src);</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></blockquote><h4 id="2-首页图像"><a href="#2-首页图像" class="headerlink" title="2 首页图像"></a>2 首页图像</h4><blockquote><p>在 description 里添加 &lt; img src=’../../images/1.PNG’ &gt;</p><p>第一页的话不需要 ”../../“ ，第二页开始就需要了。但是加了第一页也不会出问题。</p></blockquote>]]></content>
     
     
-    <summary type="html">hexo 图像显示问题</summary>
+    <summary type="html">hexo 图像显示问题 &lt;img src=&#39;../../images/hdr.jpg&#39;&gt;</summary>
     
     
     

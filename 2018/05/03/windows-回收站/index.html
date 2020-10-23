@@ -269,14 +269,14 @@
       
         <h3 id="Recycle-Bin文件夹"><a href="#Recycle-Bin文件夹" class="headerlink" title="$Recycle.Bin文件夹"></a>$Recycle.Bin文件夹</h3><p>Windows在每个盘符(volume)下都有一个名为$Recycle.Bin的隐藏文件夹</p>
 <a id="more"></a> 
-<img src="/.io//05/03/windows-回收站/c.png" title="c volume">
-<img src="/.io//05/03/windows-回收站/f.png" title="f volume">
-<p>$Recycle.Bin文件夹为每个用户都建立一个子文件夹( 私有的回收站 )，如下：<br><img src="/.io//05/03/windows-回收站/recyclebin.png" title="f volume"><br>子文件夹名为用户的SID(WIN7 以上)</p>
-<h4 id="SID"><a href="#SID" class="headerlink" title="SID"></a>SID</h4><p>SID ”S-1-5-21-3548966769-4075873859-2225452062-1001“中，“s”表示Security identifier of  the user or group.”1”表示revision level,”5” 表示 authority level，”21-3…062” 表示 the domain or local computer identifier. “1001” 表示 Relative Id of User or Group.<br>可以在 \HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList 下查看用户的 SID，如下<br><img src="/.io//05/03/windows-回收站/regedit.png" title="f volume"></p>
-<h4 id="用户私有-bin"><a href="#用户私有-bin" class="headerlink" title="用户私有 bin"></a>用户私有 bin</h4><img src="/.io//05/03/windows-回收站/userbin.png" title="userbin">
-<p>一般的删除两个文件，bin中会出现两个文件：$R\&lt;FileID>.\&lt;ext>,$I\&lt;FileID>.\&lt;ext>。<br>$R\&lt;FileID>.\&lt;ext> 包含了被删除文件的content，$I\&lt;FileID>.\&lt;ext>为被删除文件的metadata，包括删除时间、路径、大小。<br><img src="/.io//05/03/windows-回收站/userbinr.png" title="userbin"></p>
-<h5 id="R-lt-FileID-lt-ext"><a href="#R-lt-FileID-lt-ext" class="headerlink" title="$R\&lt;FileID>.\&lt;ext>"></a>$R\&lt;FileID>.\&lt;ext></h5><img src="/.io//05/03/windows-回收站/content.png" title="userbin">
-<h5 id="I-lt-FileID-lt-ext"><a href="#I-lt-FileID-lt-ext" class="headerlink" title="$I\&lt;FileID>.\&lt;ext>"></a>$I\&lt;FileID>.\&lt;ext></h5><img src="/.io//05/03/windows-回收站/userbini.png" title="userbin">
+<img src="05/03/windows-回收站/c.png" title="c volume">
+<img src="05/03/windows-回收站/f.png" title="f volume">
+<p>$Recycle.Bin文件夹为每个用户都建立一个子文件夹( 私有的回收站 )，如下：<br><img src="05/03/windows-回收站/recyclebin.png" title="f volume"><br>子文件夹名为用户的SID(WIN7 以上)</p>
+<h4 id="SID"><a href="#SID" class="headerlink" title="SID"></a>SID</h4><p>SID ”S-1-5-21-3548966769-4075873859-2225452062-1001“中，“s”表示Security identifier of  the user or group.”1”表示revision level,”5” 表示 authority level，”21-3…062” 表示 the domain or local computer identifier. “1001” 表示 Relative Id of User or Group.<br>可以在 \HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList 下查看用户的 SID，如下<br><img src="05/03/windows-回收站/regedit.png" title="f volume"></p>
+<h4 id="用户私有-bin"><a href="#用户私有-bin" class="headerlink" title="用户私有 bin"></a>用户私有 bin</h4><img src="05/03/windows-回收站/userbin.png" title="userbin">
+<p>一般的删除两个文件，bin中会出现两个文件：$R\&lt;FileID>.\&lt;ext>,$I\&lt;FileID>.\&lt;ext>。<br>$R\&lt;FileID>.\&lt;ext> 包含了被删除文件的content，$I\&lt;FileID>.\&lt;ext>为被删除文件的metadata，包括删除时间、路径、大小。<br><img src="05/03/windows-回收站/userbinr.png" title="userbin"></p>
+<h5 id="R-lt-FileID-lt-ext"><a href="#R-lt-FileID-lt-ext" class="headerlink" title="$R\&lt;FileID>.\&lt;ext>"></a>$R\&lt;FileID>.\&lt;ext></h5><img src="05/03/windows-回收站/content.png" title="userbin">
+<h5 id="I-lt-FileID-lt-ext"><a href="#I-lt-FileID-lt-ext" class="headerlink" title="$I\&lt;FileID>.\&lt;ext>"></a>$I\&lt;FileID>.\&lt;ext></h5><img src="05/03/windows-回收站/userbini.png" title="userbin">
 <h3 id="Restoring-A-File"><a href="#Restoring-A-File" class="headerlink" title="Restoring A File"></a>Restoring A File</h3><h4 id="1、被删除文件的文件夹被删除"><a href="#1、被删除文件的文件夹被删除" class="headerlink" title="1、被删除文件的文件夹被删除"></a>1、被删除文件的文件夹被删除</h4><p>将重新建立原文件夹，若原文件夹删除后又重建，文件回复至现文件夹。</p>
 <h4 id="2、删除文件夹"><a href="#2、删除文件夹" class="headerlink" title="2、删除文件夹"></a>2、删除文件夹</h4><p>对文件夹和文件夹里的各个文件都建立 $R\&lt;FileID>.\&lt;ext> 和 $I\&lt;FileID>.\&lt;ext> 文件。</p>
 <h4 id="3、重复删除同一文件"><a href="#3、重复删除同一文件" class="headerlink" title="3、重复删除同一文件"></a>3、重复删除同一文件</h4><p>文件删除还原再删除 $R\&lt;FileID>.\&lt;ext> 和 $I\&lt;FileID>.\&lt;ext> 文件 是不同的。</p>

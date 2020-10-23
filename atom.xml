@@ -6,7 +6,7 @@
   <link href="https://lscgx.github.io/atom.xml" rel="self"/>
   
   <link href="https://lscgx.github.io/"/>
-  <updated>2020-10-23T02:56:04.439Z</updated>
+  <updated>2020-10-23T03:05:31.042Z</updated>
   <id>https://lscgx.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo 图像显示问题</title>
+    <link href="https://lscgx.github.io/2020/10/23/hexoimg/"/>
+    <id>https://lscgx.github.io/2020/10/23/hexoimg/</id>
+    <published>2020-10-23T01:54:36.000Z</published>
+    <updated>2020-10-23T03:05:31.042Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="1-文章内图像"><a href="#1-文章内图像" class="headerlink" title="1 文章内图像"></a>1 文章内图像</h4><blockquote><p>hexo 3.9  下  ”!<a href="img.png"></a>“ 会被渲染成  ”/.io/xxx.png“. 实际图片不能正常显示</p><p>去掉 .io </p><p>修改下 \node_modules\hexo-asset-image\index.js</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">//$(this).attr('src', config.root + link  + src);</span></span><br><span class="line">&gt; $(<span class="keyword">this</span>).attr(<span class="string">'src'</span>, src);</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></blockquote><h4 id="2-首页图像"><a href="#2-首页图像" class="headerlink" title="2 首页图像"></a>2 首页图像</h4><blockquote><p>在 description 里添加 <img src="../../images/1.PNG"> </p><p>第一页的话不需要 ”../../“ ，第二页开始就需要了。但是加了第一页也不会出问题。</p></blockquote>]]></content>
+    
+    
+    <summary type="html">hexo 图像显示问题</summary>
+    
+    
+    
+    <category term="技术" scheme="https://lscgx.github.io/categories/技术/"/>
+    
+    
+    <category term="hexo" scheme="https://lscgx.github.io/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>TESTTETS</title>
@@ -468,33 +489,6 @@
     <category term="贪心" scheme="https://lscgx.github.io/tags/贪心/"/>
     
     <category term="最短路" scheme="https://lscgx.github.io/tags/最短路/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CF1343D Constant Palindrome Sum [ 贪心 尺取法 前缀和]</title>
-    <link href="https://lscgx.github.io/2020/04/22/CF1343D/"/>
-    <id>https://lscgx.github.io/2020/04/22/CF1343D/</id>
-    <published>2020-04-22T07:48:52.000Z</published>
-    <updated>2020-04-22T09:32:30.408Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://codeforces.com/contest/1343/problem/D" target="_blank" rel="noopener">CF1343D Constant Palindrome Sum</a></p><p>You are given an array a consisting of n integers (it is guaranteed that n is even, i.e. divisible by 2). All ai does not exceed some integer k.</p><p>Your task is to replace the <strong>minimum</strong> number of elements (replacement is the following operation: choose some index i from 1 to n and replace ai with some integer in range [1;k][1;k]) to satisfy the following conditions:</p><ul><li>after all replacements, all ai are positive integers not greater than k;</li><li>for all i from 1 to n/2 the following equation is true: ai+an−i+1=x, where x should be <strong>the same</strong> for all n2 pairs of elements.</li></ul><p>You have to answer t independent test cases.</p><blockquote><p>每一对数，当 $x \in [min(a_i,a_{n−i+1})+1;max(a_i,a_{n−i+1})+k] $, 至多只需要修改一个，否则需要修改两个；特别的，当 $x=a[i]+a[n-i+1]$ 时，无需修改；使用前缀和，$d[min(a_i,a_{n−i+1})+1]$ = -1; $d[max(a_i,a_{n−i+1})+k+1]=1$ 因为可能多个值相同所以用 $++,–$  .</p><p>对于 $x=a[i]+a[n-i+1]$   ,$d[a[i]+a[n-i-1]]–;  d[a[i]+a[n-i-1]+1]++; $</p><p>所以对于 i 需要修改 $d[max(a_i,a_{n−i+1})+k] - d[min(a_i,a_{n−i+1})+1]$ 次。</p><p>然后，从左到右扫描一遍</p></blockquote><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX=<span class="number">200000</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> t,n,k,a[MAX],d[MAX*<span class="number">2</span>],ans;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="comment">//freopen("in","r",stdin);</span></span><br><span class="line">sf(t);</span><br><span class="line"><span class="keyword">while</span>(t--)&#123;</span><br><span class="line">ans = INF;</span><br><span class="line">mem(d,<span class="number">0</span>);</span><br><span class="line">sf(n);sf(k);</span><br><span class="line">fi(i,<span class="number">0</span>,n) sf(a[i]);</span><br><span class="line">fi(i,<span class="number">0</span>,n/<span class="number">2</span>)&#123;</span><br><span class="line">d[<span class="number">0</span>]+=<span class="number">2</span>;</span><br><span class="line">d[min(a[i],a[n-i<span class="number">-1</span>])+<span class="number">1</span>]--;</span><br><span class="line">d[max(a[i],a[n-i<span class="number">-1</span>])+k+<span class="number">1</span>]++;</span><br><span class="line">d[a[i]+a[n-i<span class="number">-1</span>]]--;</span><br><span class="line">d[a[i]+a[n-i<span class="number">-1</span>]+<span class="number">1</span>]++;</span><br><span class="line">&#125;</span><br><span class="line">fi(i,<span class="number">1</span>,k*<span class="number">2</span>+<span class="number">1</span>)&#123;</span><br><span class="line">d[i]+=d[i<span class="number">-1</span>];</span><br><span class="line">ans = min(ans,d[i]);</span><br><span class="line">&#125;</span><br><span class="line">pfn(ans);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">CF1343D Constant Palindrome Sum [ 贪心 尺取法 ]</summary>
-    
-    
-    
-    <category term="题解" scheme="https://lscgx.github.io/categories/题解/"/>
-    
-    <category term="算法" scheme="https://lscgx.github.io/categories/题解/算法/"/>
-    
-    
-    <category term="贪心" scheme="https://lscgx.github.io/tags/贪心/"/>
-    
-    <category term="尺取法" scheme="https://lscgx.github.io/tags/尺取法/"/>
-    
-    <category term="前缀和" scheme="https://lscgx.github.io/tags/前缀和/"/>
     
   </entry>
   

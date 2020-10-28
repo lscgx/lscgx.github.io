@@ -160,8 +160,8 @@ pre_install(){
     fi
     # Set shadowsocks config password
     echo "Please input password for shadowsocks-python"
-    read -p "(Default password: myss123):" shadowsockspwd
-    [ -z "${shadowsockspwd}" ] && shadowsockspwd="myss123"
+    read -p "(Default password: teddysun.com):" shadowsockspwd
+    [ -z "${shadowsockspwd}" ] && shadowsockspwd="teddysun.com"
     echo
     echo "---------------------------"
     echo "password = ${shadowsockspwd}"
@@ -234,23 +234,23 @@ pre_install(){
 # Download files
 download_files(){
     # Download libsodium file
-    if ! wget --no-check-certificate -O libsodium-1.0.13.tar.gz https://gitee.com/511311/ss/raw/master/libsodium-1.0.13.tar.gz; then
+    if ! wget --no-check-certificate -O libsodium-1.0.13.tar.gz https://github.com/jedisct1/libsodium/releases/download/1.0.13/libsodium-1.0.13.tar.gz; then
         echo -e "[${red}Error${plain}] Failed to download libsodium-1.0.13.tar.gz!"
         exit 1
     fi
     # Download Shadowsocks file
-    if ! wget --no-check-certificate -O shadowsocks-master.zip https://gitee.com/511311/ss/raw/master/shadowsocks-master.zip; then
+    if ! wget --no-check-certificate -O shadowsocks-master.zip https://github.com/shadowsocks/shadowsocks/archive/master.zip; then
         echo -e "[${red}Error${plain}] Failed to download shadowsocks python file!"
         exit 1
     fi
     # Download Shadowsocks init script
     if check_sys packageManager yum; then
-        if ! wget --no-check-certificate https://gitee.com/511311/ss/raw/master/shadowsocks -O /etc/init.d/shadowsocks; then
+        if ! wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks -O /etc/init.d/shadowsocks; then
             echo -e "[${red}Error${plain}] Failed to download shadowsocks chkconfig file!"
             exit 1
         fi
     elif check_sys packageManager apt; then
-        if ! wget --no-check-certificate https://gitee.com/511311/ss/raw/master/shadowsocks-debian -O /etc/init.d/shadowsocks; then
+        if ! wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-debian -O /etc/init.d/shadowsocks; then
             echo -e "[${red}Error${plain}] Failed to download shadowsocks chkconfig file!"
             exit 1
         fi
@@ -275,7 +275,7 @@ EOF
 
 # Firewall set
 firewall_set(){
-    echo -e "[${green}Info${plain}] firewall set start..."
+    echo "firewall set start..."
     if centosversion 6; then
         /etc/init.d/iptables status > /dev/null 2>&1
         if [ $? -eq 0 ]; then
@@ -286,7 +286,7 @@ firewall_set(){
                 /etc/init.d/iptables save
                 /etc/init.d/iptables restart
             else
-                echo -e "[${green}Info${plain}] port ${shadowsocksport} has already been set up."
+                echo "port ${shadowsocksport} has already been set up."
             fi
         else
             echo -e "[${yellow}Warning${plain}] iptables looks like shutdown or not installed, please manually set it if necessary."
@@ -298,10 +298,18 @@ firewall_set(){
             firewall-cmd --permanent --zone=public --add-port=${shadowsocksport}/udp
             firewall-cmd --reload
         else
-            echo -e "[${yellow}Warning${plain}] firewalld looks like not running or not installed, please enable port ${shadowsocksport} manually if necessary."
+            echo "Firewalld looks like not running, try to start..."
+            systemctl start firewalld
+            if [ $? -eq 0 ]; then
+                firewall-cmd --permanent --zone=public --add-port=${shadowsocksport}/tcp
+                firewall-cmd --permanent --zone=public --add-port=${shadowsocksport}/udp
+                firewall-cmd --reload
+            else
+                echo -e "[${yellow}Warning${plain}] Try to start firewalld failed. please enable port ${shadowsocksport} manually if necessary."
+            fi
         fi
     fi
-    echo -e "[${green}Info${plain}] firewall set completed..."
+    echo "firewall set completed..."
 }
 
 # Install Shadowsocks
